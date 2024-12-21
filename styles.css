@@ -1,0 +1,144 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  color: #0aff0a;
+  font-family: "Helvetica", "Fira Code", "Courier New", Courier, monospace;
+  line-height: 1.6;
+  padding: 1rem;
+  animation: flicker 3s infinite;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.site-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+nav ul {
+  list-style-type: none;
+  display: inline-flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: #0aff0a;
+  text-decoration: none;
+  border-bottom: 1px dotted #0aff0a;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #fff;
+  animation: blink 1s step-start infinite;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  color: #0aff0a;
+  text-decoration: underline;
+}
+
+.ascii-divider {
+  border: none;
+  margin: 1rem auto;
+  width: 90%;
+  height: 1px;
+  background: linear-gradient(to right, #0aff0a, #000);
+}
+
+ul {
+  margin-left: 0.2rem;
+  list-style-type: none;
+}
+
+footer {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #0aff0a;
+}
+
+a {
+  color: #0aff0a;
+  animation: blink 10s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  25%, 75% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+  22%, 26%, 57% {
+    opacity: 0.7;
+  }
+}
+
+modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+  }
+
+  .modal-content {
+    position: relative;
+    margin: auto;
+    width: 80%; /* Adjust for your design */
+    height: 90%; /* Almost fullscreen */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .modal-content object {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Close button styles */
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #999;
+  }
+
