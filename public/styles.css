@@ -142,3 +142,172 @@ modal {
     color: #999;
   }
 
+
+  /* ====== styles.css Retro Add-Ons ====== */
+
+/* Make the entire body emulate a CRT with faint horizontal scan lines */
+.retro-transition {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0) 4px
+  );
+  background-size: 100% 4px; /* Adjust for thickness of lines */
+  animation: scanline-flicker 2s infinite steps(1, start);
+}
+
+/* Subtle flicker of these lines */
+@keyframes scanline-flicker {
+  0%, 100% { opacity: 0.98; }
+  50% { opacity: 0.95; }
+}
+
+/* Glitch effect for big headings */
+.glitch {
+  position: relative;
+  display: inline-block;
+  font-size: 2.5rem;
+  color: #0aff0a; /* The "Matrix green" color */
+  animation: glitch-animation 2s infinite;
+  overflow: visible;
+}
+
+/* Clone text layers with slight offsets and color changes */
+.glitch::before,
+.glitch::after {
+  content: attr(data-text); /* If you want separate text, or just keep content: '' */
+  position: absolute;
+  left: 0;
+  color: #0aff0a;
+  background: transparent;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+}
+
+/* Slight red offset on before */
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 red;
+  animation: glitch-anim-2 2s infinite;
+}
+
+/* Slight blue offset on after */
+.glitch::after {
+  left: -2px;
+  text-shadow: -1px 0 blue;
+  animation: glitch-anim 2s infinite;
+}
+
+/* Keyframes for glitch main text */
+@keyframes glitch-animation {
+  0% {
+    text-shadow: 0 0 1px #0aff0a, 0 0 2px #0aff0a;
+  }
+  20% {
+    text-shadow: 2px 0 2px #0aff0a;
+  }
+  40% {
+    text-shadow: -2px 0 2px #0aff0a;
+  }
+  60% {
+    text-shadow: 2px -2px 2px #0aff0a;
+  }
+  80% {
+    text-shadow: 2px 2px 2px #0aff0a;
+  }
+  100% {
+    text-shadow: 0 0 1px #0aff0a, 0 0 2px #0aff0a;
+  }
+}
+
+/* Keyframes for glitch pseudo-element 'before' */
+@keyframes glitch-anim {
+  0% {
+    clip: rect(47px, 9999px, 44px, 0);
+  }
+  20% {
+    clip: rect(68px, 9999px, 44px, 0);
+  }
+  40% {
+    clip: rect(35px, 9999px, 50px, 0);
+  }
+  60% {
+    clip: rect(16px, 9999px, 44px, 0);
+  }
+  80% {
+    clip: rect(80px, 9999px, 99px, 0);
+  }
+  100% {
+    clip: rect(77px, 9999px, 69px, 0);
+  }
+}
+
+/* Keyframes for glitch pseudo-element 'before' alternate run */
+@keyframes glitch-anim-2 {
+  0% {
+    clip: rect(17px, 9999px, 26px, 0);
+  }
+  20% {
+    clip: rect(68px, 9999px, 99px, 0);
+  }
+  40% {
+    clip: rect(35px, 9999px, 70px, 0);
+  }
+  60% {
+    clip: rect(50px, 9999px, 44px, 0);
+  }
+  80% {
+    clip: rect(10px, 9999px, 80px, 0);
+  }
+  100% {
+    clip: rect(47px, 9999px, 44px, 0);
+  }
+}
+
+/* ====== PROJECT CARDS ====== */
+.project-card {
+  display: flex;               /* side-by-side layout */
+  flex-wrap: wrap;            /* allow wrapping on smaller screens */
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  border: 1px solid #0aff0a;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2); /* slight overlay effect */
+  box-shadow: 0 0 10px rgba(10, 255, 10, 0.3); /* greenish glow */
+}
+
+.project-media {
+  flex: 0 0 auto;             /* keep the media a fixed width if desired */
+  border: 1px solid #0aff0a;  /* optional border around image/video */
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #000;
+}
+
+.project-media img,
+.project-media video,
+.project-media iframe {
+  max-width: 300px; /* limit the width */
+  height: auto;     /* preserve aspect ratio */
+  display: block;
+}
+
+.project-info {
+  flex: 1;  /* take up remaining space */
+  min-width: 200px;
+}
+
+.project-info h3 {
+  margin-top: 0; /* remove extra space */
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+
+.project-info p {
+  margin: 0.5rem 0;
+}
+f
