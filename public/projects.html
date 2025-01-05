@@ -17,7 +17,7 @@
       <ul>
         <li><a href="/">Home</a></li>
         <li><a href="#featured">Featured</a></li>
-        <li><a href="#more">More Projects</a></li>
+        <!-- <li><a href="#more">More Projects</a></li> -->
       </ul>
     </nav>
   </header>
@@ -32,12 +32,15 @@
       <!-- Project Card 1 -->
       <div class="project-card">
         <!-- Where you display your GIF/Video/Image -->
-        <div class="project-media">
+        <div class="project-media" style="display: flex; gap: 10px;">
           <!-- Example: displaying a GIF -->
-          <video width="300" height="180" controls>
+          <video width="300" height="180" autoplay muted loop controls>
           <source src="images/booxcligif.mov" type="video/mp4">
-        </video>
+          </video>
           <!-- or <video ...> or <iframe> if you want a YouTube embed. -->
+          <video width="300" height="180" autoplay muted loop controls>
+          <source src="images/clipreview.mov" type="video/mp4">
+          </video>
         </div>
         <div class="project-info">
           <h3>Boox Uploader CLI</h3>
@@ -53,15 +56,16 @@
 
       <!-- Project Card 2 -->
       <div class="project-card">
-        <div class="project-media">
+        <div class="project-media" style="display: flex; gap: 10px;">
           <!-- Example: YouTube video -->
-          <iframe width="100%" height="100%" 
-            src="images/rl-video-episode-0.mp4" 
-            title="YouTube video"
-            frameborder="0" 
-            allowfullscreen
-            style="width: 300px; height: 180px;"
-            autoplay
+          <iframe width="800" height="480" 
+              src="images/rl-video-episode-0.mp4" 
+              title="YouTube video"
+              frameborder="0" 
+              allowfullscreen
+              autoplay
+              muted
+              loop
           ></iframe>
         </div>
         <div class="project-info">
@@ -78,18 +82,23 @@
       </div>
     </section>
 
-    <section id="more">
-      <h2>More Projects</h2>
-      <!-- Similar structure or simpler list -->
-      <p>Work in progress!</p>
-    </section>
+    <!-- <section id="more"> -->
+    <!--   <!-1- <h2>More Projects</h2> -1-> -->
+    <!--   <!-1- <!-2- Similar structure or simpler list -2-> -1-> -->
+    <!--   <!-1- <p>Work in progress!</p> -1-> -->
+    <!-- </section> -->
   </main>
 
   <hr class="ascii-divider" />
 
   <footer>
-    <p>© 2024 Shivom Sharma</p>
+    <p>© 2025 Shivom Sharma</p>
   </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.body.classList.add('glitch-in');
+    });
+</script>
 </body>
 </html>
 

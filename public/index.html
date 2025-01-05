@@ -16,6 +16,7 @@
     rel="stylesheet" 
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
   >
+
 </head>
 <!-- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣶⣦⡄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ -->
 <!-- ⠀⠀⠀⠀⠀⢀⣀⣀⣀⡀⢀⠀⢹⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ -->
@@ -36,7 +37,9 @@
 <body>
   <header>
     <h1 class="site-title">Shivom Sharma</h1>
-    <div style="font-family: monospace; font-size: 5px; white-space: pre-wrap;">
+    <div id="asciiContainer">
+        <div id="mainAsciiArt"
+            style="font-family: monospace; font-size: 5px; white-space: pre-wrap;">
 ⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⣾⡳⣼⣆⠀⠀⢹⡄⠹⣷⣄⢠⠇⠻⣷⣶⢀⣸⣿⡾⡏⠀⠰⣿⣰⠏⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⣀⣀⣀⡹⣟⡪⢟⣷⠦⠬⣿⣦⣌⡙⠿⡆⠻⡌⠿⣦⣿⣿⣿⣿⣦⣿⡿⠟⠚⠉⠀⠉⠳⣄⡀⠀⠀⠁⠀
 ⠀⠀⠀⠀⠀⠀⠀⡀⢀⣼⣟⠛⠛⠙⠛⠉⠻⢶⣮⢿⣯⡙⢶⡌⠲⢤⡑⠀⠈⠛⠟⢿⣿⠛⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣆⠀⠀⠀
@@ -68,7 +71,9 @@
 ⣀⣤⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠘⣷⣻⡟⠀⡼⠁⣴⣿⣿⣯⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣀⠀⠀⠀⠀
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣯⣿⣤⣤⣤⣬⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣄
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+        </div>
     </div>
+    <script src="/js/particles.js"></script>
      
     <!-- Audio controls -->
     <!-- <audio --> 
@@ -84,7 +89,6 @@
       <ul>
         <li><a href="#about">About Me</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
         <li><a href="#resume" id="resumeButton">Resume</a></li>
       </ul>
     </nav>
@@ -98,9 +102,43 @@
       <p>
         Hello there, I'm <strong>Shivom</strong> and I'm a Mechatronics Engineering & Management Student 
         in my 4th year at McMaster University. I have a passion for problem-solving, creating, and doing 
-        it through a variety of mediums including programming, video editing, and many more!
+        it through a variety of mediums including programming, <a href="https://instagram.com/6ixspirit" target="_blank" style="text-decoration: bold" >video editing</a> , and many more!
       </p>
     </section>
+
+    <section id="tools" style="text-align: center; overflow: hidden; white-space: nowrap;">
+        <div class="tools-icons" style="display: inline-block; transform: scale(1.5); text-decoration: none; margin-top: 20px; animation: scroll 5s linear infinite;">
+            <span style="text-decoration: none; margin-right: 20px;">
+                <i class="fab fa-python"></i> Python
+            </span>
+            <span style="text-decoration: none; margin-right: 20px;">
+                <i class="fab fa-js-square"></i> JavaScript
+            </span>
+            <span style="text-decoration: none; margin-right: 20px;">
+                <i class="fab fa-github"></i> GitHub
+            </span>
+            <span style="text-decoration: none; margin-right: 20px;">
+                <i class="fab fa-docker"></i> Docker
+            </span>
+            <span style="text-decoration: none; margin-right: 20px;">
+                <i class="fab fa-cuttlefish"></i> C++
+            </span>
+            <span style="text-decoration: none; color: green; margin-right: 20px;">
+                <img src="https://yoolk.ninja/wp-content/uploads/2020/11/Apps-Neovim.png" alt="Neovim Logo" style="max-height: 20px; vertical-align: middle;"> Neovim
+            </span>
+        </div>
+    </section>
+    
+    <style>
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
 
     <section id="projects">
       <h2>Stuff I've Been Working On Recently!</h2>
@@ -117,19 +155,9 @@
       </ul>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        Drop me a line at: 
-        <a href="mailto:shars119@mcmaster.ca">shars119@mcmaster.ca</a>.
-      </p>
-    </section>
-
     <section id="Test">
-      <h2>TEST</h2>
-
     <!-- Modal for Resume -->
-    <div id="resumeModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8);">
+    <div id="resumeModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; background-color: rgba(0,0,0,0.8); z-index: 1000;">
       <div class="modal-content" style="max-width: 800px; margin: 10% auto; background-color: white; padding: 20px; border-radius: 5px;">
         <span class="close" style="color: black; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
         <object 
@@ -144,24 +172,27 @@
     <!-- </section> -->
     <!-- <section id="spotify-info"> -->
     <!-- </section> -->
+  </section>
   </main>
 
   <hr class="ascii-divider" />
 
   <footer>
+    <div id="spotify-info" style="display: inline-block">
     </div>
-    <div id="spotify-info">
-    </div>
-    <div class="social-media" style="transform: scale(1.5);">
-      <a href="https://linkedin.com/in/shivomsharma" target="_blank">
+    <div class="social-media" style="transform: scale(1.5); text-decoration: none;">
+      <a href="https://linkedin.com/in/shivomsharma" target="_blank" style="text-decoration: none;">
         <i class="fab fa-linkedin"></i>
       </a>
-      <a href="https://github.com/RealShivomSharma" target="_blank">
+      <a href="https://github.com/RealShivomSharma" target="_blank" style="text-decoration: none;">
         <i class="fab fa-github"></i>
+      </a>
+      <a href="mailto:shars119@mcmaster.ca" target="_blank" style="text-decoration: none;">
+          <i class="fas fa-envelope"></i> 
       </a>
     </div>
     <p>Let me cook!</p>
-    <p>© 2024 Shivom Sharma </p>
+    <p>© 2025 Shivom Sharma </p>
   </footer>
 
   <!-- Modal Toggle Script -->
@@ -224,6 +255,7 @@
 
       // Run the fetch on page load and refresh every 60 seconds
       window.addEventListener("DOMContentLoaded", () => {
+
           fetchSpotifyTrack();
           setInterval(fetchSpotifyTrack, 60000);
       });
@@ -248,6 +280,35 @@
       }
     }
   </style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Select all internal links you'd like to glitch-out on click
+    // For example: all <a> that link to your own site or .html files
+    const internalLinks = document.querySelectorAll(
+      'a[href^="/"], a[href^="./"], a[href^="../"], a[href$=".html"]'
+    );
+
+    internalLinks.forEach(link => {
+      link.addEventListener("click", (event) => {
+        // 1) Avoid glitching if the href is just an #anchor on this page
+        if (link.getAttribute('href').startsWith('#')) {
+          return; // do nothing, let it jump
+        }
+
+        // 2) Prevent normal navigation
+        event.preventDefault();
+
+        // 3) Add the "glitch-out" class to body
+        document.body.classList.add("glitch-out");
+
+        // 4) After the animation finishes, finally navigate
+        setTimeout(() => {
+          window.location = link.href;
+        }, 600); // match the .6s in your CSS
+      });
+    });
+  });
+</script>
 </body>
 </html>
 
