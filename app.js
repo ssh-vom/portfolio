@@ -82,7 +82,6 @@ app.get('/callback', async (req, res) => {
 // 3) Current track endpoint
 app.get('/current-track', async (req, res) => {
   if (!accessToken) {
-    // If not authorized yet, instruct user to go to /login
     return res.status(401).json({ error: 'Not Authorized. Please visit /login first.' });
   }
 
@@ -100,14 +99,15 @@ app.get('/current-track', async (req, res) => {
     const trackInfo = {
       name: track.name,
       artist: track.artists.map((a) => a.name).join(', '),
-      albumCover: track.album.images?.[0]?.url ?? null
+      albumCover: track.album.images?.[0]?.url ?? null,
+      currentTime: response.data.progress_ms,
+        duration: track.duration_ms,
     };
 
     res.json(trackInfo);
   } catch (error) {
     console.error('Error fetching current track:', error.response?.data || error);
 
-    // If token is expired, attempt a refresh
     if (error.response && error.response.status === 401) {
       await refreshAccessToken();
       return res.redirect('/current-track');
