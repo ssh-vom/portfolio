@@ -1,35 +1,81 @@
-// server.js
 const express = require('express');
 const axios = require('axios');
 const dotenv = require('dotenv');
 const querystring = require('querystring');
+const fs = require('fs').promises;
+const path = require('path');
 
 dotenv.config();
 
 const app = express();
 const port = 8888;
 
-// Grab from .env
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const SPOTIFY_REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
-// Store tokens in memory (not recommended in production)
+// Path to store tokens
+const TOKENS_PATH = path.join(__dirname, 'tokens.json');
+
+// In-memory token cache
 let accessToken = null;
 let refreshToken = null;
+let tokenExpirationTime = null;
 
-/**
- * Serve all static frontend files (index.html, CSS, audio, etc.)
- * from the "public" folder.
- */
-app.use(express.static('public'));
+// Load tokens from file if they exist
+async function loadTokens() {
+  try {
+    const data = await fs.readFile(TOKENS_PATH, 'utf8');
+    const tokens = JSON.parse(data);
+    refreshToken = tokens.refreshToken;
+    return true;
+  } catch (error) {
+    console.log('No stored tokens found. Server needs initial authentication.');
+    return false;
+  }
+}
 
-/**
- * Spotify Authorization Flow
- */
+// Save tokens to file
+async function saveTokens(tokens) {
+  await fs.writeFile(TOKENS_PATH, JSON.stringify(tokens, null, 2));
+}
 
-// 1) Login endpoint: redirect to Spotify's authorize URL
-app.get('/login', (req, res) => {
+// Refresh the access token using stored refresh token
+async function refreshAccessToken() {
+  try {
+    const response = await axios.post(
+      'https://accounts.spotify.com/api/token',
+      querystring.stringify({
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken
+      }),
+      {
+        headers: {
+          Authorization: `Basic ${Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+    );
+
+    accessToken = response.data.access_token;
+    // Set expiration time (usually 1 hour) with a small buffer
+    tokenExpirationTime = Date.now() + (response.data.expires_in * 1000) - 60000;
+    
+    // If we got a new refresh token, store it
+    if (response.data.refresh_token) {
+      refreshToken = response.data.refresh_token;
+      await saveTokens({ refreshToken });
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error refreshing token:', error.response?.data || error);
+    return false;
+  }
+}
+
+// Initial authentication route (only needed once during deployment)
+app.get('/init-auth', (req, res) => {
   const scope = 'user-read-playback-state user-read-currently-playing';
   const authURL = `https://accounts.spotify.com/authorize?${querystring.stringify({
     response_type: 'code',
@@ -41,7 +87,7 @@ app.get('/login', (req, res) => {
   res.redirect(authURL);
 });
 
-// 2) Callback endpoint: exchange code for access token & refresh token
+// Callback to handle initial authentication
 app.get('/callback', async (req, res) => {
   const { code } = req.query;
 
@@ -67,22 +113,29 @@ app.get('/callback', async (req, res) => {
 
     accessToken = tokenResponse.data.access_token;
     refreshToken = tokenResponse.data.refresh_token;
+    tokenExpirationTime = Date.now() + (tokenResponse.data.expires_in * 1000) - 60000;
 
-    console.log('Access token:', accessToken);
-    console.log('Refresh token:', refreshToken);
+    // Store tokens
+    await saveTokens({ refreshToken });
 
-    // Redirect the user back to the homepage (or to /current-track)
-    res.redirect('/'); // or /current-track if you want to go there directly
+    res.send('Authentication successful! You can now close this window and restart the server.');
   } catch (error) {
     console.error('Error exchanging code for token:', error.response?.data || error);
     res.status(500).send('Error during authorization');
   }
 });
 
-// 3) Current track endpoint
+// Serve static files
+app.use(express.static('public'));
+
+// Current track endpoint - no user login required
 app.get('/current-track', async (req, res) => {
-  if (!accessToken) {
-    return res.status(401).json({ error: 'Not Authorized. Please visit /login first.' });
+  // Check if token needs refresh
+  if (!accessToken || Date.now() >= tokenExpirationTime) {
+    const refreshed = await refreshAccessToken();
+    if (!refreshed) {
+      return res.status(401).json({ error: 'Authorization failed. Server needs to be re-authenticated.' });
+    }
   }
 
   try {
@@ -101,54 +154,44 @@ app.get('/current-track', async (req, res) => {
       artist: track.artists.map((a) => a.name).join(', '),
       albumCover: track.album.images?.[0]?.url ?? null,
       currentTime: response.data.progress_ms,
-        duration: track.duration_ms,
+      duration: track.duration_ms,
     };
 
     res.json(trackInfo);
   } catch (error) {
     console.error('Error fetching current track:', error.response?.data || error);
-
-    if (error.response && error.response.status === 401) {
-      await refreshAccessToken();
-      return res.redirect('/current-track');
+    
+    if (error.response?.status === 401) {
+      // Token expired, try refreshing one more time
+      const refreshed = await refreshAccessToken();
+      if (refreshed) {
+        return res.redirect('/current-track');
+      }
     }
+    
     res.status(500).json({ error: 'Error fetching current track' });
   }
 });
 
-// 4) Token refresh function
-async function refreshAccessToken() {
-  if (!refreshToken) {
-    console.warn('No refresh token available.');
-    return;
+// Initialize server and start listening
+async function initializeServer() {
+  const hasTokens = await loadTokens();
+  if (hasTokens) {
+    // Try to refresh the access token
+    const refreshed = await refreshAccessToken();
+    if (!refreshed) {
+      console.log('Failed to refresh token. Please visit /init-auth to re-authenticate.');
+    }
+  } else {
+    console.log('No tokens found. Please visit /init-auth to authenticate.');
   }
 
-  try {
-    const response = await axios.post(
-      'https://accounts.spotify.com/api/token',
-      querystring.stringify({
-        grant_type: 'refresh_token',
-        refresh_token: refreshToken
-      }),
-      {
-        headers: {
-          Authorization: `Basic ${Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString('base64')}`,
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      }
-    );
-
-    accessToken = response.data.access_token;
-    console.log('Refreshed Access Token:', accessToken);
-  } catch (error) {
-    console.error('Error refreshing access token:', error.response?.data || error);
-  }
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+    if (!hasTokens) {
+      console.log(`Please visit http://localhost:${port}/init-auth to perform initial authentication`);
+    }
+  });
 }
 
-/**
- * Start the server
- */
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
-
+initializeServer();
