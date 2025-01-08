@@ -7,7 +7,7 @@
 body {
   background-color: #000;
   color: #0aff0a;
-  font-family: "Helvetica", "Fira Code", "Courier New", Courier, monospace;
+  font-family: "JetBrains Mono", monospace;
   line-height: 1.6;
   padding: 1rem;
   animation: flicker 60s infinite;
@@ -396,7 +396,7 @@ body.glitch-in {
     text-align: left;
     margin-top: 50px;
     color: #00ff00;
-    font-family: "Helvetica", "Fira Code", "Courier New", Courier, monospace;
+    font-family: "Jetbrains-Mono" monospace;
     opacity: 0;
     animation: fadeIn 0.5s ease-out forwards;
 }
