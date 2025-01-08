@@ -8,7 +8,7 @@ const path = require('path');
 dotenv.config();
 
 const app = express();
-const port = 8888;
+const port = process.env.PORT || 8888;
 
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;

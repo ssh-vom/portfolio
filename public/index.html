@@ -59,26 +59,6 @@
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣯⣿⣤⣤⣤⣬⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣄
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
         </div>
-        <div id="spotify-info" class="player-container">
-            <h3 id="CurrentlyPlaying" class="track-name" style="text-align: left;">Currently Playing:</h3>
-            <div class="player-header">
-                <img id="albumCover" src="" alt="Album Cover" class="album-cover">
-                <div class="track-info">
-                    <h3 id="trackName" class="track-name"></h3>
-                    <p id="artistName" class="track-artist"></p>
-                </div>
-            </div>
-
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div id="progressBarFill" class="progress-bar-fill"></div>
-                </div>
-                <div class="time-display">
-                    <span id="currentTime">0:00</span>
-                    <span id="totalDuration">0:00</span>
-                </div>
-            </div>
-        </div>
     </div>
     <script src="/js/particles.js"></script>
      
@@ -93,9 +73,9 @@
 
     <!-- Navigation menu -->
     <nav>
-      <ul>
-        <!-- <li><a href="#about" style="font-weight: bold; font-size: 1.2em;">About Me</a></li> -->
-        <li><a href="projects.html" style="font-weight: bold; font-size: 1.2em;">Projects</a></li>
+        <ul>
+            <!-- <li><a href="#about" style="font-weight: bold; font-size: 1.2em;">About Me</a></li> -->
+            <li><a href="projects.html" style="font-weight: bold; font-size: 1.2em;">Projects</a></li>
         <li><a href="#resume" id="resumeButton" style="font-weight: bold; font-size: 1.2em;">Resume</a></li>
       </ul>
     </nav>
@@ -104,18 +84,23 @@
   <hr class="ascii-divider" />
 
   <main>
-    <section id="about">
+    <section id="about-education">
       <h2>About Me</h2>
       <p>
-        Hello there, I'm <strong>Shivom</strong> and I'm a Mechatronics Engineering & Management Student 
-        in my 4th year at McMaster University. I enjoy problem-solving, creating, and doing 
-        it through a variety of mediums including programming, <a href="https://instagram.com/6ixspirit" target="_blank" style="text-decoration: bold" >video editing</a> , and many more!
+        Hello there, I'm <strong>Shivom</strong> and I'm a Mechatronics Engineering & Management Student and Software Engineer. I enjoy problem-solving, creating, and doing 
+        it through a variety of mediums including programming, <a href="https://instagram.com/6ixspirit" target="_blank" style="text-decoration: bold" >video editing</a>, and many more!
         Currently open to new opportunities/work prospects!
       </p>
+      <h3>Education</h3>
+      <p>
+        <strong>Degree:</strong> 4th year Mechatronics Engineering & Management @ McMaster University
+        <strong>Expected Graduation:</strong> 2026 <br>
+        <strong>Relevant Courses:</strong> OS, RTOS, DSA, Applications of Machine Learning, Embedded Systems, Software Development
+      </p>
     </section>
-
     <section id="tools" style="text-align: left; overflow: hidden; white-space: normal;">
         <div class="tools-icons" style="display: inline-block; transform: scale(1); text-decoration: none; margin-top: 20px; animation: none;">
+            <h2>Tools</h2>
             <span style="text-decoration: none; margin-right: 20px;">
                 <i class="fa fa-python"></i> Python
             </span>
@@ -207,7 +192,12 @@
                                 class="company-logo">
                             <strong class="role-title">Manufacturing Controls Dev Engineer Intern at Tesla</strong>
                         </div>
-                        <p class="description-list">Focused on developing innovative solutions for electric vehicles.</p>
+                        <ul class="description-list">
+                            <li>Developed defect detection algorithm using Halcon to reduce NCM parts on Cybertruck IM rotor line, capable of detecting defects on rotor with an accuracy of 0.5mm and processing time of 22ms</li>
+                            <li>Designed a machine vision detection system with a goal of removing manual QIS on maximum capacity of 7000 parts weekly</li>
+                            <li>Managed project workflows, defining hardware, lighting, vision and software requirements through cross-functional collaboration and independent research, saving $10000 from original cost estimate</li>
+                            <li>Programmed PLC logic for NCM stations automating pneumatic controls reducing time per part by 30%</li>
+                        </ul>
                     </div>
                 </div>
             </li>
@@ -223,7 +213,10 @@
                                 class="company-logo">
                             <strong class="role-title">Senior IT Desktop Analyst at National Bank of Canada</strong>
                         </div>
-                        <p class="description-list">Analyzed market trends and financial data.</p>
+                        <ul class="description-list">
+                            <li>Delivered IT Solutions to VIP Traders, investment bankers and electronic trading developers within a team of 5</li>
+                            <li>Developed Dynamic floorplan VBA Model to log user/client workstation setup status, reducing timefor deployments and workstation servicing by 30%</li>
+                        </ul>
                     </div>
                 </div>
             </li>
@@ -246,6 +239,9 @@
         document.querySelectorAll('.timeline-item').forEach(item => {
             observer.observe(item);
         });
+        document.querySelectorAll('player-container').forEach(item => {
+            observer.observe(item);
+        });
 
         // Click handlers for expanding/collapsing content
         document.querySelectorAll('.timeline-card').forEach(card => {
@@ -266,9 +262,6 @@
           <ul>
             <li>Embedded Systems in Verilog</li>
             <li>Reading:</li>
-            <li>Build a personal website</li>
-            <li>Read a book on software architecture</li>
-            <li>Attend a tech conference</li>
           </ul>
     </section>
 
@@ -286,10 +279,29 @@
         ></object>
       </div>
     </div>
-    <!-- </section> -->
-    <!-- <section id="spotify-info"> -->
-    <!-- </section> -->
-  </section>
+    </section>
+    <section id="spotify-info">
+        <div id="spotify-info" class="player-container" style="transform: scale(0.8)">
+            <h3 id="CurrentlyPlaying" class="track-name" style="text-align: left;">Currently Playing:</h3>
+            <div class="player-header">
+                <img id="albumCover" src="" alt="Album Cover" class="album-cover">
+                <div class="track-info">
+                    <h3 id="trackName" class="track-name"></h3>
+                    <p id="artistName" class="track-artist"></p>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressBarFill" class="progress-bar-fill"></div>
+                </div>
+                <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalDuration">0:00</span>
+                </div>
+            </div>
+        </div>
+    </section>
   </main>
 
   <hr class="ascii-divider" />
