@@ -527,5 +527,78 @@ body.glitch-in {
     100% { opacity: 0.5; }
 }
 
+.player-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.player-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.album-cover {
+    width: 96px;
+    height: 96px;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    object-fit: cover;
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.track-name {
+    color: rgb(74, 222, 128);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.track-artist {
+    color: rgba(74, 222, 128, 0.7);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.progress-container {
+    width: 100%;
+    height: 1.5;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(34, 197, 94, 0.2);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: rgb(34, 197, 94);
+    border-radius: 9999px;
+    transition: width 0.1s ease;
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(74, 222, 128, 0.6);
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+}
+
 
 

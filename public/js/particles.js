@@ -5,7 +5,7 @@ const asciiChars = ['.', '*', 'o', '+', 'x', '~', '`', '^'];
 const particleCount = 50;
 
 // Grab container
-const container = document.getElementById('asciiContainer');
+const container = document.getElementById('spotify-info');
 
 // Container bounding box (for random spawn positioning)
 // We'll get updated bounds later if needed

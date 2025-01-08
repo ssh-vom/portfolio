@@ -25,7 +25,7 @@
   <header>
     <h1 class="site-title glitch" data-text="       ">Shivom Sharma</h1>
     <div id="asciiContainer">
-        <div id="mainAsciiArt"
+        <div id="mainAsciiArt" class="site-title glitch" data-text="Nah I'd Win"
             style="font-family: monospace; font-size: 5px; white-space: pre-wrap;">
 ⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⣾⡳⣼⣆⠀⠀⢹⡄⠹⣷⣄⢠⠇⠻⣷⣶⢀⣸⣿⡾⡏⠀⠰⣿⣰⠏⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⣀⣀⣀⡹⣟⡪⢟⣷⠦⠬⣿⣦⣌⡙⠿⡆⠻⡌⠿⣦⣿⣿⣿⣿⣦⣿⡿⠟⠚⠉⠀⠉⠳⣄⡀⠀⠀⠁⠀
@@ -59,8 +59,28 @@
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣯⣿⣤⣤⣤⣬⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣄
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
         </div>
+        <div id="spotify-info" class="player-container">
+            <h3 id="CurrentlyPlaying" class="track-name" style="text-align: left;">Currently Playing:</h3>
+            <div class="player-header">
+                <img id="albumCover" src="" alt="Album Cover" class="album-cover">
+                <div class="track-info">
+                    <h3 id="trackName" class="track-name"></h3>
+                    <p id="artistName" class="track-artist"></p>
+                </div>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div id="progressBarFill" class="progress-bar-fill"></div>
+                </div>
+                <div class="time-display">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalDuration">0:00</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- <script src="/js/particles.js"></script> -->
+    <script src="/js/particles.js"></script>
      
     <!-- Audio controls -->
     <!-- <audio --> 
@@ -126,9 +146,7 @@
             <span style="text-decoration: none; margin-right: 20px;">
                 <i class="fab fa-aws"></i> S3
             </span>
-            <span style="text-decoration: none; margin-right: 20px;">
-                <i class="fa fa-csharp"></i> 
-            </span>
+            <br></br>
             <span style="text-decoration: none; margin-right: 20px;">
                 <img src="https://user-images.githubusercontent.com/8083855/30329899-bffb884c-97e4-11e7-8b93-f8e4bed7338a.png" 
                 alt="Neovim Logo" 
@@ -277,8 +295,6 @@
   <hr class="ascii-divider" />
 
   <footer>
-    <div id="spotify-info" style="display: inline-block">
-    </div>
     <div class="social-media" style="transform: scale(1.5); text-decoration: none;">
       <a href="https://linkedin.com/in/shivomsharma" target="_blank" style="text-decoration: none;">
         <i class="fab fa-linkedin"></i>
@@ -327,37 +343,44 @@
           try {
               const response = await fetch("/current-track");
               if (!response.ok) {
-                  spotifyInfo.innerHTML = "<p>No track data available (not authorized or none playing).</p>";
+                  spotifyInfo.innerHTML = "<p>No track data available</p>";
                   return;
               }
+
               const trackData = await response.json();
               if (trackData && trackData.name) {
-                  spotifyInfo.innerHTML = `
-                      <p><strong>Track:</strong> ${trackData.name}</p>
-                      <p><strong>Artist:</strong> ${trackData.artist}</p>
-                      <p>
-                      <img 
-                  src="${trackData.albumCover}" 
-                  alt="Album Cover" 
-                  style="max-height: 120px; border: 2px solid green;"
-                      >
-                      </p>
-                      <input type="range" min="0" max="${trackData.duration}" value="${trackData.currentTime}" style="width: 100%; appearance: none; background: linear-gradient(to right, #1DB954 0%, #1DB954 ${trackData.currentTime / trackData.duration * 100}%, #ccc ${trackData.currentTime / trackData.duration * 100}%, #ccc 100%); height: 8px; border-radius: 5px; outline: none; transition: background 0.3s ease;" oninput="this.nextElementSibling.value = this.value; this.style.background = 'linear-gradient(to right, #1DB954 0%, #1DB954 ' + (this.value / this.max * 100) + '%, #ccc ' + (this.value / this.max * 100) + '%, #ccc 100%)';" style="accent-color: #1DB954;">
-                      <output style="display: block; text-align: center; margin-top: 5px; font-weight: bold; color: #1DB954;">${new Date(trackData.currentTime).toISOString().substr(14, 5)} / ${new Date(trackData.duration).toISOString().substr(14, 5)}</output>
-                      `;
+                  // Update track info
+                  document.getElementById('trackName').textContent = trackData.name;
+                  document.getElementById('artistName').textContent = trackData.artist;
+                  document.getElementById('albumCover').src = trackData.albumCover;
+
+                  // Update progress bar
+                  const progress = (trackData.currentTime / trackData.duration) * 100;
+                  document.getElementById('progressBarFill').style.width = `${progress}%`;
+
+                  // Update time display
+                  document.getElementById('currentTime').textContent = formatTime(trackData.currentTime);
+                  document.getElementById('totalDuration').textContent = formatTime(trackData.duration);
               } else {
-                  spotifyInfo.innerHTML = "<p>No track is currently playing.</p>";
+                  spotifyInfo.innerHTML = "<p>No track is currently playing</p>";
               }
           } catch (error) {
               console.error("Error fetching Spotify track:", error);
-              spotifyInfo.innerHTML = "<p>Error fetching Spotify track data.</p>";
+              spotifyInfo.innerHTML = "<p>Error fetching track data</p>";
           }
       }
 
-      // Run the fetch on page load and refresh every 60 seconds
-      window.addEventListener("DOMContentLoaded", () => {
+      function formatTime(ms) {
+          const totalSeconds = Math.floor(ms / 1000);
+          const minutes = Math.floor(totalSeconds / 60);
+          const seconds = totalSeconds % 60;
+          return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      }
+
+      // Initial fetch and refresh interval
+      document.addEventListener('DOMContentLoaded', () => {
           fetchSpotifyTrack();
-          setInterval(fetchSpotifyTrack, 10000);
+          setInterval(fetchSpotifyTrack, 1000);
       });
   </script>
   <!-- Bouncing Animation Style -->
