@@ -6,7 +6,7 @@
 
 body {
   background-color: #000;
-  color: #0aff0a;
+  color: #22c55e;
   font-family: "JetBrains Mono", monospace;
   line-height: 1.6;
   padding: 1rem;
@@ -52,7 +52,7 @@ nav ul {
 }
 
 nav a {
-  color: #0aff0a;
+  color: #22c55e;
   text-decoration: none;
   border-bottom: 1px dotted #0aff0a;
   transition: color 0.2s ease;
@@ -70,9 +70,8 @@ main {
 
 h2 {
   margin-bottom: 0.5rem;
-  color: #0aff0a;
-  color: #0aff0a;
-    font-weight: bold;
+  color: #22c55e;
+  font-weight: bold;
 }
 
 .ascii-divider {
@@ -96,7 +95,7 @@ footer {
 }
 
 a {
-  color: #0aff0a;
+  color: #22c55e;
   animation: blink 10s step-start infinite;
 }
 
@@ -395,7 +394,7 @@ body.glitch-in {
 .timeline-section {
     text-align: left;
     margin-top: 50px;
-    color: #00ff00;
+    color: #22c55e;
     font-family: "Jetbrains-Mono" monospace;
     opacity: 0;
     animation: fadeIn 0.5s ease-out forwards;
@@ -418,7 +417,7 @@ body.glitch-in {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #00ff00;
+    background: #22c55e;
     opacity: 0.3;
 }
 
@@ -443,7 +442,7 @@ body.glitch-in {
     width: 20px;
     height: 20px;
     background: #000;
-    border: 2px solid #00ff00;
+    border: 2px solid #22c55e;
     border-radius: 50%;
     transition: transform 0.3s ease;
     cursor: pointer;
@@ -451,13 +450,13 @@ body.glitch-in {
 
 .timeline-dot:hover {
     transform: scale(1.2);
-    box-shadow: 0 0 10px #00ff00;
+    box-shadow: 0 0 10px #22c55e;
 }
 
 .timeline-card {
     background: rgba(0, 255, 0, 0.05);
     padding: 20px;
-    border: 1px solid #00ff00;
+    border: 1px solid #22c55e;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -496,7 +495,7 @@ body.glitch-in {
 
 .role-title {
     font-size: 1.1em;
-    color: #00ff00;
+    color: #22c55e;
     margin: 0;
 }
 
@@ -514,7 +513,7 @@ body.glitch-in {
     right: 20px;
     background: rgba(0, 255, 0, 0.1);
     padding: 10px;
-    border: 1px solid #00ff00;
+    border: 1px solid #22c55e;
     border-radius: 4px;
     font-size: 0.8em;
     opacity: 0;
