@@ -22,15 +22,180 @@
   >
 </head>
 <body>
-  <header>
-    <h1 class="site-title glitch" data-text="       ">Shivom Sharma</h1>
+  <!-- === JOURNALIZED HOMEPAGE: MODERN FLAT LAYOUT === -->
+  <div id="journalHome">
+    <header class="journal-header journal-header-top">
+      <div class="journal-header-bar">
+        <h1 class="journal-title">Shivom Sharma</h1>
+        <div class="theme-toggle-wrapper">
+          <button id="themeToggleBtnJournal" class="theme-toggle-btn journal" title="Switch to Shell (Retro) Mode">
+            <i class="fa fa-sun"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div class="journal-header-section">
+        <div class="journal-header-flex">
+          <div class="journal-profile-pic">
+            <img src="https://images.unsplash.com/photo-1596778402543-30383de6efeb" alt="Profile" />
+          </div>
+          <div class="journal-header-info">
+            <h1 class="journal-title">Shivom Sharma</h1>
+            <h2 class="journal-subtitle">Backend Systems Engineer</h2>
+            <div class="journal-header-meta">
+              <span class="journal-meta"><i class="fa fa-map-marker"></i> Toronto, ON</span>
+              <span class="journal-meta"><i class="fa fa-envelope"></i> shivom.sharma.eng@gmail.com</span>
+            </div>
+            <p class="journal-summary">
+              Systems engineer specializing in high-performance computing, embedded systems, and financial technology. Focused on building robust, scalable solutions that push the boundaries of performance and reliability.
+            </p>
+            <div class="journal-header-actions">
+              <a href="#" class="journal-btn journal-btn-main"><i class="fa fa-download"></i> Download Resume</a>
+              <a href="#contact" class="journal-btn journal-btn-outline">Get in Touch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="journal-container">
+      <!-- Core Competencies -->
+      <section class="journal-section">
+        <h2 class="journal-section-title">Core Competencies</h2>
+        <div class="journal-competency-grid">
+          <div class="journal-competency"><i class="fa fa-star"></i> High-Performance Computing</div>
+          <div class="journal-competency"><i class="fa fa-star"></i> Distributed Systems</div>
+          <div class="journal-competency"><i class="fa fa-star"></i> System Architecture</div>
+          <div class="journal-competency"><i class="fa fa-star"></i> Real-time Processing</div>
+          <div class="journal-competency"><i class="fa fa-star"></i> Financial Systems</div>
+          <div class="journal-competency"><i class="fa fa-star"></i> Embedded Development</div>
+          <div class="journal-competency"><i class="fa fa-star"></i> Performance Optimization</div>
+          <div class="journal-competency"><i class="fa fa-star"></i> Low-latency Solutions</div>
+        </div>
+      </section>
+
+      <!-- Technical Skills -->
+      <section class="journal-section">
+        <h2 class="journal-section-title">Technical Skills</h2>
+        <div class="journal-skills">
+          <div>
+            <h3 class="journal-skill-title">Programming Languages</h3>
+            <div class="journal-skills-list">
+              <span class="journal-skill-tag">Rust</span>
+              <span class="journal-skill-tag">C++</span>
+              <span class="journal-skill-tag">Python</span>
+              <span class="journal-skill-tag">Go</span>
+              <span class="journal-skill-tag">CUDA/OpenCL</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="journal-skill-title">Technologies & Tools</h3>
+            <div class="journal-skills-list">
+              <span class="journal-skill-tag">PostgreSQL</span>
+              <span class="journal-skill-tag">Redis</span>
+              <span class="journal-skill-tag">Docker</span>
+              <span class="journal-skill-tag">Kubernetes</span>
+              <span class="journal-skill-tag">RabbitMQ</span>
+              <span class="journal-skill-tag">gRPC</span>
+              <span class="journal-skill-tag">FPGA</span>
+              <span class="journal-skill-tag">ARM</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="journal-section">
+        <h2 class="journal-section-title">Professional Experience</h2>
+        <div class="journal-experience-list">
+          <div class="journal-experience-card">
+            <div class="journal-experience-header">
+              <div>
+                <h3 class="journal-experience-role">Senior Backend Engineer</h3>
+                <div class="journal-experience-company">Financial Tech Company</div>
+              </div>
+              <div class="journal-experience-meta"><i class="fa fa-clock-o"></i> 2021 - Present</div>
+            </div>
+            <ul class="journal-experience-details">
+              <li>Led development of high-frequency trading systems with sub-microsecond latency</li>
+              <li>Improved system performance by 40% through custom FPGA acceleration</li>
+              <li>Architected distributed market data processing pipeline handling 1M+ messages/sec</li>
+            </ul>
+          </div>
+          <div class="journal-experience-card">
+            <div class="journal-experience-header">
+              <div>
+                <h3 class="journal-experience-role">Systems Developer</h3>
+                <div class="journal-experience-company">Tech Startup</div>
+              </div>
+              <div class="journal-experience-meta"><i class="fa fa-clock-o"></i> 2018 - 2021</div>
+            </div>
+            <ul class="journal-experience-details">
+              <li>Developed embedded systems for IoT devices using Rust and C++</li>
+              <li>Implemented real-time data processing pipeline for sensor networks</li>
+              <li>Reduced power consumption by 30% through optimization</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="journal-section">
+        <h2 class="journal-section-title">Education</h2>
+        <div class="journal-education-card">
+          <div>
+            <h3 class="journal-education-degree">Master's in Computer Science</h3>
+            <div class="journal-education-school">Top Technical University</div>
+            <div class="journal-education-specialization"><i class="fa fa-book"></i> Specialization in High-Performance Computing</div>
+          </div>
+          <div class="journal-education-meta">2016 - 2018</div>
+        </div>
+      </section>
+
+      <!-- Featured Projects -->
+      <section class="journal-section">
+        <h2 class="journal-section-title">Featured Projects</h2>
+        <div class="journal-featured-projects-grid">
+          <div class="journal-featured-project-card">
+            <h3 class="journal-featured-title">HFT Engine</h3>
+            <p class="journal-featured-desc">Low-latency trading system with FPGA acceleration</p>
+            <div class="journal-featured-tags">
+              <span class="journal-featured-tag">Rust</span>
+              <span class="journal-featured-tag">FPGA</span>
+              <span class="journal-featured-tag">C++</span>
+            </div>
+          </div>
+          <div class="journal-featured-project-card">
+            <h3 class="journal-featured-title">IoT Monitor</h3>
+            <p class="journal-featured-desc">Real-time monitoring for industrial IoT devices</p>
+            <div class="journal-featured-tags">
+              <span class="journal-featured-tag">Python</span>
+              <span class="journal-featured-tag">MQTT</span>
+              <span class="journal-featured-tag">TimescaleDB</span>
+            </div>
+          </div>
+        </div>
+        <a href="#projects" class="journal-btn journal-btn-outline journal-featured-more"><i class="fa fa-arrow-right"></i> View All Projects</a>
+      </section>
+    </div>
+  </div>
+  <!-- End journalHome -->
+
+  <!-- Only show this header in retro mode -->
+  <header id="retroHeader">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 class="site-title glitch" data-text="       ">Shivom Sharma</h1>
+      <div class="theme-toggle-wrapper">
+        <button id="themeToggleBtn" class="theme-toggle-btn shell" title="Switch to Journal Mode">
+          <i class="fa fa-moon"></i>
+        </button>
+      </div>
+    </div>
     <div id="asciiContainer">
         <div id="mainAsciiArt" class="site-title glitch" data-text="Nah I'd Win"
             style="font-family: monospace; font-size: 5px; white-space: pre-wrap;">
 ⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⣾⡳⣼⣆⠀⠀⢹⡄⠹⣷⣄⢠⠇⠻⣷⣶⢀⣸⣿⡾⡏⠀⠰⣿⣰⠏⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡀⣀⣀⣀⡹⣟⡪⢟⣷⠦⠬⣿⣦⣌⡙⠿⡆⠻⡌⠿⣦⣿⣿⣿⣿⣦⣿⡿⠟⠚⠉⠀⠉⠳⣄⡀⠀⠀⠁⠀
 ⠀⠀⠀⠀⠀⠀⠀⡀⢀⣼⣟⠛⠛⠙⠛⠉⠻⢶⣮⢿⣯⡙⢶⡌⠲⢤⡑⠀⠈⠛⠟⢿⣿⠛⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣆⠀⠀⠀
-⠀⠀⠀⠀⠀⡸⠯⣙⠛⢉⣉⣙⣿⣿⡳⢶⣦⣝⢿⣆⠉⠻⣄⠈⢆⢵⡈⠀⠀⢰⡆⠀⣼⠓⠀⠀⠀          Nah    ⠀⠀⠈⣷⠀⠀
+⠀⠀⠀⠀⠀⠈⠯⣙⠛⢉⣉⣙⣿⣿⡳⢶⣦⣝⢿⣆⠉⠻⣄⠈⢆⢵⡈⠀⠀⢰⡆⠀⣼⠓⠀⠀⠀          Nah    ⠀⠀⠈⣷⠀⠀
 ⠀⠀⠀⠖⠉⠻⣟⡿⣿⣭⢽⣽⣶⣈⢛⣾⣿⣧⠀⠙⠓⠀⠑⢦⡀⠹⣧⢂⠀⣿⡇⢀⣿⠺⠇⠀          ⠀I'd⠀          ⠀⣿⠀⠀
 ⠀⠀⠀⠀⠐⠈⠉⢛⣿⣿⣶⣤⣈⠉⣰⣗⡈⢛⣇⠀⣵⡀⠀⠘⣿⡄⢻⣤⠀⢻⡇⣼⣧⣿⠀   win⠀⡿⠀⠀
 ⠀⠀⠀⠀⠀⣠⣾⣿⢍⡉⠛⠻⣷⡆⠨⣿⣭⣤⣍⠀⢹⣷⡀⠀⠹⣿⡄⠈⠀⢿⠁⣿⣿⠏⠀⠀⠀                        ⠀⠀⠀⣇⠀⠀
@@ -40,10 +205,10 @@
 ⠀⠀⣠⣞⣋⣿⣿⣾⣿⡿⡛⣹⡟⣤⢰⡿⠟⠉⣀⣀⣤⣤⡠⠙⢁⣾⡿⠂⠀⣿⠟⣁⠀⣹⠀⣹⣿⡟⣼⣿⣿⣌⣿⣞⣿⣿⠁⠀⠀⠀
 ⠀⢠⡿⢛⢟⣿⣿⣿⣿⣿⣿⡟⣼⣿⣟⢓⠛⣿⣏⣿⣵⣗⣵⣴⣿⢟⡵⣣⣼⣿⢟⣵⣶⢻⣶⣿⠀⠀⣈⢻⣿⣿⣿⢿⣾⢿⣧⠀⠀⠀
 ⠀⠘⠃⢸⣿⡾⣿⣿⣿⣿⣯⣿⣿⣿⣶⣿⣿⣟⣾⡿⣫⣿⣿⣿⣽⣿⣿⣿⣿⢫⣾⣿⣿⣿⣿⣿⣴⡆⣻⣿⡏⣿⢻⣧⣿⡿⣿⡆⠀⠀
-⠀⠀⠀⠜⣿⣾⢿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣭⣿⣖⣿⢿⣿⡿⣿⣿⣿⡿⢡⢯⣿⣿⣿⣿⣿⣿⣿⣧⡿⣾⣷⣿⣿⢿⣿⡇⠉⠁⠀⠀
-⠀⠀⠀⠀⣿⣥⣾⣿⣿⣿⣿⣿⣿⣿⡇⣭⣿⣿⣿⣿⠃⠞⠟⣸⣿⠏⣸⣧⣀⠿⢿⣿⣿⣟⣿⣿⣿⣿⣽⣿⢿⣿⣿⣿⣿⠁⠀⠀⠀⠀
-⠀⠀⠀⠈⠛⣹⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣟⣿⣿⡿⢶⣦⣄⣿⠏⠀⣿⣟⣿⣶⠾⣿⣟⣋⣛⣿⣿⣿⣿⡇⣻⣿⣿⣿⡏⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠟⠛⠫⣿⣿⣿⣿⣿⡿⣧⠛⣿⠛⣿⣿⣿⣷⡌⠹⡟⠀⠀⠉⡟⠋⢠⣾⣿⣿⣿⡟⣿⣿⣿⣿⢀⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀
+⠀⠀⠀⠜⣿⣾⢿⣿⣿⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣭⣿⣖⣿⢿⣿⡿⣿⣿⣿⡿⢡⢯⣿⣿⣿⣿⣿⣿⣿⣧⡿⣾⣷⣿⣿⢿⣿⡇⠉⠁⠀⠀
+⠀⠀⠀⠀⣿⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⢿⣿⣿⣿⣿⠁⠀⠀⠀⠀
+⠀⠀⠀⠈⠛⣹⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣟⣿⣿⡿⢶⣦⣄⣿⠏⠀⣿⣟⣿⣶⠾⣿⣟⣋⣛⣿⣿⣿⣿⣿⣿⣿⣿⡇⣻⣿⣿⣿⡏⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠟⠛⠫⣿⣿⣿⣿⣿⡿⣧⠛⣿⠛⣿⣿⣿⣷⡌⠹⡟⠀⠀⠉⡟⠋⢠⣾⣿⣿⣿⡟⣿⣿⣿⣿⣿⢀⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠘⠋⣾⣷⣿⣿⣧⠙⠀⠙⢣⠝⠛⠋⣽⣷⢦⠇⠀⠀⠘⠁⣤⣾⣿⠝⠛⠉⠘⢻⣿⣿⢿⣼⣷⡟⢻⣷⠉⠀⡀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠐⠟⢻⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠈⠛⠀⠀⠀⠀⠀⣾⠟⠀⢸⣷⣿⡇⠀⠛⠀⠀⠁⠀⠀⠀
 
@@ -57,7 +222,7 @@
 ⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣮⣿⣿⡀⠹⡷⣦⣀⡀⡀⢸⣿⠏⢠⣾⣿⠀⠀⣾⣿⣿⣿⣿⣶⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀
 ⣀⣤⣴⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠘⣷⣻⡟⠀⡼⠁⣴⣿⣿⣯⣥⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣀⠀⠀⠀⠀
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣯⣿⣤⣤⣤⣬⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣄
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
         </div>
     </div>
     <script src="/js/particles.js"></script>
@@ -75,8 +240,8 @@
     <nav>
         <ul>
             <!-- <li><a href="#about" style="font-weight: bold; font-size: 1.2em;">About Me</a></li> -->
-            <li><a href="projects.html" style="font-weight: bold; font-size: 1.2em;">Projects</a></li>
-        <li><a href="#resume" id="resumeButton" style="font-weight: bold; font-size: 1.2em;">Resume</a></li>
+            <li><a href="#" id="projectsNav" style="font-weight: bold; font-size: 1.2em;">Projects</a></li>
+      <li><a href="#resume" id="resumeButton" style="font-weight: bold; font-size: 1.2em;">Resume</a></li>
       </ul>
     </nav>
   </header>
@@ -85,6 +250,14 @@
 
   <main>
     <section id="about-education">
+      <div id="journalizedProfile" style="display:none; align-items:center; gap:2rem; margin-bottom:1.5rem;">
+        <img src="https://via.placeholder.com/120" alt="Shivom Sharma photo" id="profilePic" style="border-radius:50%; border:3px solid #22c55e; width:120px; height:120px; object-fit:cover;">
+        <div>
+          <h2 style="margin-bottom:0.5rem;">Shivom Sharma</h2>
+          <p style="margin-bottom:0.5rem;">Mechatronics Engineering & Management Student | Software Engineer</p>
+          <p style="font-size:0.95em; color:#888;">Open to new opportunities!</p>
+        </div>
+      </div>
       <h2>About Me</h2>
       <p>
         Hello there, my name is <strong>Shivom</strong>, I'm a Mechatronics Engineering & Management Student and Software Engineer. I enjoy problem-solving, creating, and doing 
@@ -336,7 +509,7 @@
       </a>
     </div>
     <p>Let me cook!</p>
-    <p>© 2025 Shivom Sharma </p>
+    <p> 2025 Shivom Sharma </p>
   </footer>
 
   <!-- Modal Toggle Script -->
@@ -461,6 +634,19 @@
     });
   });
 </script>
+  <script src="/js/theme.js"></script>
+  <script>
+    // Smart projects nav: route to correct projects page based on theme
+    document.addEventListener('DOMContentLoaded', function() {
+      var projectsNav = document.getElementById('projectsNav');
+      if (projectsNav) {
+        projectsNav.addEventListener('click', function(e) {
+          e.preventDefault();
+          var isJournal = document.body.classList.contains('journalized-mode');
+          window.location.href = isJournal ? 'projects-journal.html' : 'projects.html';
+        });
+      }
+    });
+  </script>
 </body>
 </html>
-
