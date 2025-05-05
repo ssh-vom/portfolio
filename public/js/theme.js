@@ -73,7 +73,7 @@
   // On load, apply persisted theme
   function init() {
     let theme = localStorage.getItem(THEME_KEY);
-    if (!theme) theme = 'retro-mode';
+    if (!theme) theme = 'journalized-mode';
     setThemeMode(theme);
   }
   document.addEventListener('DOMContentLoaded', init);
