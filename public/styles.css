@@ -128,7 +128,7 @@ modal {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
   }
 
@@ -193,7 +193,7 @@ modal {
   font-size: 2.5rem;
   color: #0aff0a; /* The "Matrix green" color */
   animation: glitch-animation 2s infinite;
-  overflow: visible;
+  overflow: hidden;
 }
 
 /* Clone text layers with slight offsets and color changes */
@@ -879,6 +879,7 @@ body.journalized-mode #journalizedProfile {
   margin-bottom: 2rem;
   box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
 }
+
 body.journalized-mode #journalizedProfile #profilePic {
   border: 3px solid #e5e5e5;
 }
@@ -1297,30 +1298,42 @@ main {
 
 /* Default (Retro Mode Active): Hide Journal, Show Retro */
 body:not(.journalized-mode) #journalHome {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute; /* Prevent layout shifts when hidden */
-  z-index: -1; /* Ensure it's behind active content */
+    display: none;
+
+  /* opacity: 0; */
+  /* visibility: hidden; */
+  /* position: absolute; /1* Prevent layout shifts when hidden *1/ */
+  /* z-index: -1; /1* Ensure it's behind active content *1/ */
 }
 body:not(.journalized-mode) #retroHeader,
+body:not(.journalized-mode) main,
+body:not(.journalized-mode) footer {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    z-index: 1;
+}
 body:not(.journalized-mode) main {
-  opacity: 1;
-  visibility: visible;
-  position: relative; /* Or static, ensure it's positioned normally */
-  z-index: 1;
+    display: block;
 }
 
-/* Journal Mode Active: Show Journal, Hide Retro */
+body:not(.journalized-mode) #retroHeader{
+    display: block;
+    text-align: center;
+}
+
 body.journalized-mode #journalHome {
-  opacity: 1;
-  visibility: visible;
-  position: relative; /* Or static */
-  z-index: 1;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    z-index 1;
 }
+
 body.journalized-mode #retroHeader,
-body.journalized-mode main {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-  z-index: -1;
+body.journalized-mode main,
+body.journalized-mode footer {
+    display: none;
 }
+
