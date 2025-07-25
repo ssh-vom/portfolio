@@ -316,6 +316,7 @@
       </div>
     </div>
     </section>
+  </main>
     <section id="spotify-info">
         <div id="spotify-info" class="player-container" style="transform: scale(0.8)">
             <h3 id="CurrentlyPlaying" class="track-name" style="text-align: left;">Currently Playing:</h3>
@@ -338,7 +339,6 @@
             </div>
         </div>
     </section>
-  </main>
 
   <hr class="ascii-divider" />
 
@@ -366,12 +366,10 @@
 
     btn.onclick = function () {
       modal.style.display = "block";
-      modal.classList.add("bounce-in");
     };
 
     span.onclick = function () {
       modal.style.display = "none";
-      modal.classList.remove("bounce-in");
     };
 
     window.onclick = function (event) {
