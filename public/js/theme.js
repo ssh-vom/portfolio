@@ -2,15 +2,15 @@
 (function() {
   const THEME_KEY = 'portfolio_theme_mode';
   const body = document.body;
-  const themeBtnRetro = document.getElementById('themeToggleBtn'); // Retro button
-  const themeBtnJournal = document.getElementById('themeToggleBtnJournal'); // Journal button
-  const themeIconRetro = themeBtnRetro ? themeBtnRetro.querySelector('i') : null; // Retro icon
-  const themeIconJournal = themeBtnJournal ? themeBtnJournal.querySelector('i') : null; // Journal icon
+  const themeBtnRetro = document.getElementById('themeToggleBtn');
+  const themeBtnJournal = document.getElementById('themeToggleBtnJournal');
+  const themeIconRetro = themeBtnRetro ? themeBtnRetro.querySelector('i') : null;
+  const themeIconJournal = themeBtnJournal ? themeBtnJournal.querySelector('i') : null;
 
   // Helper to set theme mode
   function setThemeMode(mode) {
     // Check if at least one button/icon pair exists
-    if ((!themeBtnRetro || !themeIconRetro) && (!themeBtnJournal || !themeIconJournal)) return;
+    // Always set class even if buttons are missing so theme persists site-wide
 
     body.classList.remove('retro-mode', 'journalized-mode');
     body.classList.add(mode);
@@ -73,7 +73,7 @@
   // On load, apply persisted theme
   function init() {
     let theme = localStorage.getItem(THEME_KEY);
-    if (!theme) theme = 'journalized-mode';
+    if (!theme) theme = 'retro-mode';
     setThemeMode(theme);
   }
   document.addEventListener('DOMContentLoaded', init);

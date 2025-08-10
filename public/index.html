@@ -6,10 +6,14 @@
     name="viewport" 
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
   />
+  <!-- Cache-busting headers -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>Shivom Sharma Portfolio</title>
   
-  <!-- Link to your stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- Link to your stylesheet with cache-busting -->
+  <link rel="stylesheet" href="styles.css?v=2025.07.26">
   
   <!-- Link to Font Awesome for social media icons -->
   <link 
@@ -95,7 +99,7 @@
         it through a variety of mediums including programming, <a href="https://instagram.com/6ixspirit" target="_blank" style="text-decoration: bold" >video editing</a>, and many more!
         Currently open to new opportunities/work prospects!
       </p>
-      <h2>Education</h3>
+      <h2>Education</h2>
       <p>
         <strong>Degree:</strong> 4th year Mechatronics Engineering & Business @ McMaster University
         <strong>Expected Graduation:</strong> 2026 <br>
@@ -263,7 +267,7 @@
         document.querySelectorAll('.timeline-item').forEach(item => {
             observer.observe(item);
         });
-        document.querySelectorAll('player-container').forEach(item => {
+        document.querySelectorAll('.player-container').forEach(item => {
             observer.observe(item);
         });
 
@@ -307,7 +311,7 @@
     </section>
   </main>
     <section id="spotify-info">
-        <div id="spotify-info" class="player-container" style="transform: scale(0.8)">
+        <div class="player-container" style="transform: scale(0.9)">
             <h3 id="CurrentlyPlaying" class="track-name" style="text-align: left;">Currently Playing:</h3>
             <div class="player-header">
                 <img id="albumCover" src="" alt="Album Cover" class="album-cover">
@@ -332,7 +336,7 @@
   <hr class="ascii-divider" />
 
   <footer>
-    <div class="social-media" style="transform: scale(1.5); text-decoration: none;">
+    <div class="social-media" style="transform: scale(1.2); text-decoration: none;">
       <a href="https://linkedin.com/in/shivomsharma" target="_blank" style="text-decoration: none;">
         <i class="fab fa-linkedin"></i>
       </a>
@@ -420,22 +424,11 @@
   </script>
   <!-- Bouncing Animation Style -->
   <style>
-    .bounce-in {
-      animation: bounceIn 0.5s;
-    }
-
+    /* Tone down bounce for a cleaner feel */
+    .bounce-in { animation: bounceIn 0.32s ease-out; }
     @keyframes bounceIn {
-      0% {
-        transform: scale(0.5);
-        opacity: 0;
-      }
-      60% {
-        transform: scale(1.05);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: translateY(8px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
   </style>
 <script>
@@ -467,7 +460,7 @@
     });
   });
 </script>
-  <script src="/js/theme.js"></script>
+  <script src="/js/theme.js?v=1"></script>
   <script>
     // Smart projects nav: route to correct projects page based on theme
     document.addEventListener('DOMContentLoaded', function() {

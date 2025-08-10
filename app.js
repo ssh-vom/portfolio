@@ -125,8 +125,14 @@ app.get('/callback', async (req, res) => {
   }
 });
 
-// Serve static files
-app.use(express.static('public'));
+// Serve built React app if present
+const distPath = path.join(__dirname, 'dist');
+const publicPath = path.join(__dirname, 'public');
+
+// Static for built assets first (so /assets/* resolves to built files)
+app.use(express.static(distPath));
+// Static for legacy/public assets (PDF, media)
+app.use(express.static(publicPath));
 
 // Current track endpoint - no user login required
 app.get('/current-track', async (req, res) => {
@@ -170,6 +176,17 @@ app.get('/current-track', async (req, res) => {
     }
     
     res.status(500).json({ error: 'Error fetching current track' });
+  }
+});
+
+// SPA fallback to React build index.html if it exists
+app.get('*', async (req, res, next) => {
+  try {
+    const indexFile = path.join(distPath, 'index.html');
+    await fs.access(indexFile);
+    res.sendFile(indexFile);
+  } catch (e) {
+    next();
   }
 });
 
