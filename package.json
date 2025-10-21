@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RealShivomSharma/portfolio.git"
+    "url": "git+https://github.com/ssh-vom/portfolio.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/RealShivomSharma/portfolio/issues"
+    "url": "https://github.com/ssh-vom/portfolio/issues"
   },
-  "homepage": "https://github.com/RealShivomSharma/portfolio#readme",
+  "homepage": "https://github.com/ssh-vom/portfolio#readme",
   "description": "",
   "dependencies": {
     "axios": "^1.7.9",

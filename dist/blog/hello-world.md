@@ -6,10 +6,5 @@ date: 2025-10-21
 
 # Hello World
 
-This is the first blog post! You can write Markdown here.
+This is the first blog post! 
 
-- Supports **Markdown**
-- Supports frontmatter (title, date, etc.)
-- Will be rendered in your site style
-
-Enjoy blogging!

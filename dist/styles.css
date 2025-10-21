@@ -63,14 +63,12 @@ header {
 
 nav ul {
   list-style-type: none;
+  gap: 2rem;
   display: inline-flex;
-  gap: 1rem;
   padding: 0.6rem 0.9rem;
-  border: 1px solid var(--border);
-  background: var(--card);
-  border-radius: 999px;
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow);
+  /* border: 1px solid var(--border)*0.2; */
+  backdrop-filter: blur(2px);
+  /* box-shadow: var(--shadow); */
 }
 
 nav a, button#resumeButton {
@@ -78,16 +76,14 @@ nav a, button#resumeButton {
   text-decoration: none;
   border: none;
   background: transparent;
-  padding: 0.35rem 0.2rem;
-  border-radius: 999px;
   transition: all 0.25s ease;
   cursor: pointer;
 }
 
-nav a:hover, button#resumeButton:hover {
-  color: #111;
-  background: linear-gradient(180deg, #65f0a0, var(--accent));
-}
+/* nav a:hover, button#resumeButton:hover { */
+/*   color: #111; */
+/*   background: linear-gradient(180deg, #65f0a0, var(--accent)); */
+/* } */
 
 main {
   max-width: 980px;
