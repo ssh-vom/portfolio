@@ -74,7 +74,7 @@ export default function Header({ onOpenResume }) {
       <nav>
         <ul>
           <li>
-            <button href="/projects.html" id="projectsButton" style={{ fontWeight: 'bold', fontSize: '1.2em', background: 'transparent', color: '#22c55e', border: 'none', cursor: 'pointer' }} onClick={onOpenResume}>
+             <button href="/projects.html" id="projectsButton" style={{ fontWeight: 'bold', fontSize: '1.2em', background: 'transparent', color: '#22c55e', border: 'none', cursor: 'pointer' }} onClick={onOpenResume}>
               Projects
             </button>
           </li>
@@ -83,9 +83,11 @@ export default function Header({ onOpenResume }) {
               Resume
             </button>
           </li>
+          <li>
+            <a href="/blog" style={{ fontWeight: 'bold', fontSize: '1.2em', color: '#22c55e', textDecoration: 'none' }}>Blog</a>
+          </li>
         </ul>
-      </nav>
-    </header>
+      </nav>    </header>
   );
 }
 
