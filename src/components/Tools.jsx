@@ -23,9 +23,6 @@ export default function Tools() {
                 <span style={{ textDecoration: 'none', marginRight: 20 }}>
                     <i className="fa fa-database"></i> SQL
                 </span>
-                <span style={{ textDecoration: 'none', marginRight: 20 }}>
-                    <i className="fab fa-aws"></i> S3
-                </span>
             </div>
         </section>
     );
