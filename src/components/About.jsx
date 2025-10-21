@@ -16,19 +16,18 @@ export default function About() {
                     <p style={{ fontSize: '0.95em', color: '#888' }}>Open to new opportunities!</p>
                 </div>
             </div>
-            <h2 style={{ color: '#2390be' }}>About Me </h2>
+            <h2 style={{ color: '#2390be' }}>About Me</h2>
             <p>
-                Hello there, my name is <strong> Shivom </strong>, I'm a Mechatronics Engineering & Business Student and Software Engineer. I enjoy problem-solving, creating, and doing
+                Hello there, my name is <strong> Shivom </strong>, I'm a Mechatronics Engineering & Business Student, working in Software Engineering. I enjoy problem-solving, creating, and doing
                 it through a variety of mediums including programming, <a href="https://instagram.com/6ixspirit" target="_blank" style={{ textDecoration: 'bold' }}>video editing</a>, and many more!
                 Currently open to new opportunities/work prospects!
             </p>
+            &nbsp;
             <h2 style={{ color: '#2390be' }}>Education</h2>
-            <p>
-                <strong>Degree:</strong> 4th year Mechatronics Engineering & Business @ McMaster University
-                <strong> Expected Graduation:</strong> 2026 <br />
-                <strong>Relevant Courses:</strong> OS, RTOS, DSA, Applications of Machine Learning, Embedded Systems, Software Development
-            </p>
-        </section>
+            <p><strong>Degree:</strong> 4th year Mechatronics Engineering & Business @ McMaster University</p>
+            <p><strong> Expected Graduation:</strong> 2026 <br /></p>
+            <p><strong>Courses:</strong> OS, RTOS, DSA, AI/ML, Embedded Systems, Software Development</p>
+        </section >
     );
 }
 
