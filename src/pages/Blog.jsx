@@ -7,22 +7,29 @@ export default function Blog() {
 
     useEffect(() => {
         async function fetchPosts() {
-            const files = [
-                '/blog/hello-world.md',
-            ];
+            const files = ['/blog/hello-world.md'];
             const loadedPosts = await Promise.all(
                 files.map(async (file) => {
                     const res = await fetch(file);
+                    if (!res.ok) {
+                        console.error('Failed to fetch:', file);
+                        return null;
+                    }
+
                     const text = await res.text();
-                    const { body: data } = fm(text);
+                    const { attributes } = fm(text);
+
                     return {
-                        ...data,
-                        slug: data.slug || file.replace('/blog/', '').replace('.md', ''),
+                        ...attributes,
+                        slug: attributes.slug || file.replace('/blog/', '').replace('.md', ''),
                     };
                 })
             );
-            setPosts(loadedPosts);
+
+            // filter out any nulls from failed fetches
+            setPosts(loadedPosts.filter(Boolean));
         }
+
         fetchPosts();
     }, []);
 
@@ -30,12 +37,20 @@ export default function Blog() {
         <section id="blog">
             <h2>Blog</h2>
             <ul>
-                {posts.map((post) => (
-                    <li key={post.slug}>
-                        <Link to={`/blog/${post.slug}`}>{post.title} <span style={{ fontSize: '0.8em', color: '#888' }}>{post.date}</span></Link>
-                    </li>
-                ))}
+                {posts.length === 0 ? (
+                    <p style={{ color: '#888' }}>No posts found</p>
+                ) : (
+                    posts.map((post) => (
+                        <li key={post.slug}>
+                            <Link to={`/blog/${post.slug}`}>
+                                {post.title}{' '}
+                                <span style={{ fontSize: '0.8em', color: '#888' }}>{String(post.date)}</span>
+                            </Link>
+                        </li>
+                    ))
+                )}
             </ul>
         </section>
     );
 }
+

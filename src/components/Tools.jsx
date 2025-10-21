@@ -15,12 +15,6 @@ export default function Tools() {
                     <i className="fab fa-golang"></i> Go
                 </span>
                 <span style={{ textDecoration: 'none', marginRight: 20 }}>
-                    <i className="fab fa-git-square"></i> Git
-                </span>
-                <span style={{ textDecoration: 'none', marginRight: 20 }}>
-                    <i className="fab fa-docker"></i> Docker
-                </span>
-                <span style={{ textDecoration: 'none', marginRight: 20 }}>
                     <i className="fa fa-c"></i>
                 </span>
                 <span style={{ textDecoration: 'none', marginRight: 20 }}>
@@ -28,9 +22,6 @@ export default function Tools() {
                 </span>
                 <span style={{ textDecoration: 'none', marginRight: 20 }}>
                     <i className="fa fa-database"></i> SQL
-                </span>
-                <span style={{ textDecoration: 'none', marginRight: 20 }}>
-                    <i className="fab fa-kubernetes"></i> Kubernetes
                 </span>
                 <span style={{ textDecoration: 'none', marginRight: 20 }}>
                     <i className="fab fa-aws"></i> S3

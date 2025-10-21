@@ -23,7 +23,7 @@ export default function BlogPost() {
         <section id="blog-post" style={{ maxWidth: 700, margin: '0 auto', padding: 24 }}>
             <Link to="/blog">← Back to Blog</Link>
             <h1>{frontmatter.title}</h1>
-            <div style={{ color: '#888', fontSize: '0.9em', marginBottom: 24 }}>{frontmatter.date}</div>
+            <div style={{ color: '#888', fontSize: '0.9em', marginBottom: 24 }}>{String(frontmatter.date)}</div>
             <ReactMarkdown>{content}</ReactMarkdown>
         </section>
     );

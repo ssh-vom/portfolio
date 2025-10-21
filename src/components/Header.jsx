@@ -73,11 +73,6 @@ export default function Header() {
             <nav>
                 <ul>
                     <li>
-                        <button href="/projects" id="projectsButton" style={{ fontWeight: 'bold', fontSize: '1.2em', background: 'transparent', color: '#2390be', border: 'none', cursor: 'pointer' }}>
-                            Projects
-                        </button>
-                    </li>
-                    <li>
                         <a href="https://drive.google.com/file/d/1PMs5TTdMTYWLZmehMqSo2x6h27O3yQJP/view?usp=sharing" style={{ fontWeight: 'bold', fontSize: '1.2em', background: 'transparent', color: '#2390be', border: 'none', cursor: 'pointer' }}>
                             Resume
                         </a>
