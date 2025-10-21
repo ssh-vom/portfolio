@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import matter from 'gray-matter';
+import fm from 'front-matter';
 
 export default function BlogPost() {
     const { slug } = useParams();
@@ -12,7 +12,7 @@ export default function BlogPost() {
         async function fetchPost() {
             const res = await fetch(`/blog/${slug}.md`);
             const text = await res.text();
-            const { content, data } = matter(text);
+            const { attributes: data, body: content } = fm(text);
             setContent(content);
             setFrontmatter(data);
         }

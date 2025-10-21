@@ -3,7 +3,6 @@ import Header from '../components/Header.jsx';
 import About from '../components/About.jsx';
 import Tools from '../components/Tools.jsx';
 import Timeline from '../components/Timeline.jsx';
-import Projects from '../components/Projects.jsx';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
 import Footer from '../components/Footer.jsx';
 
@@ -15,7 +14,6 @@ export default function App() {
                 <About />
                 <Tools />
                 <Timeline />
-                <Projects />
             </main>
             <section id="spotify-info">
                 <SpotifyNowPlaying />

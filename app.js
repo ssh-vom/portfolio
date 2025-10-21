@@ -149,11 +149,9 @@ app.get("/current-track", async (req, res) => {
   if (!accessToken || Date.now() >= tokenExpirationTime) {
     const refreshed = await refreshAccessToken();
     if (!refreshed) {
-      return res
-        .status(401)
-        .json({
-          error: "Authorization failed. Server needs to be re-authenticated.",
-        });
+      return res.status(401).json({
+        error: "Authorization failed. Server needs to be re-authenticated.",
+      });
     }
   }
 

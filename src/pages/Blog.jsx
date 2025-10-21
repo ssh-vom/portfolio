@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import matter from 'gray-matter';
+import fm from 'front-matter';
 
 export default function Blog() {
     const [posts, setPosts] = useState([]);
@@ -14,7 +14,7 @@ export default function Blog() {
                 files.map(async (file) => {
                     const res = await fetch(file);
                     const text = await res.text();
-                    const { data } = matter(text);
+                    const { body: data } = fm(text);
                     return {
                         ...data,
                         slug: data.slug || file.replace('/blog/', '').replace('.md', ''),
@@ -30,13 +30,12 @@ export default function Blog() {
         <section id="blog">
             <h2>Blog</h2>
             <ul>
-                <li>test</li>
+                {posts.map((post) => (
+                    <li key={post.slug}>
+                        <Link to={`/blog/${post.slug}`}>{post.title} <span style={{ fontSize: '0.8em', color: '#888' }}>{post.date}</span></Link>
+                    </li>
+                ))}
             </ul>
         </section>
-        // {posts.map((post) => (
-        //     <li key={post.slug}>
-        //         <Link to={`/blog/${post.slug}`}>{post.title} <span style={{ fontSize: '0.8em', color: '#888' }}>{post.date}</span></Link>
-        //     </li>
-        // ))
     );
 }
