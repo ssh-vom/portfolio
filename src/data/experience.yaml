@@ -7,26 +7,27 @@
 - companyLogo: https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png
   title: Tesla, Software Engineer Intern
   bullets:
-    - Developed AI agent SDKs in Go/TypeScript, enabling natural language queries across robot and station telemetry
-    - Deployed agent using Docker and Kubernetes, utilizing request affinity for 2X faster in-memory session handling
-    - Optimized RAG pipelines with 500GB+ Confluence and MongoDB ingestion, boosting LLM retrieval accuracy by 40%
-    - Leveraged Go's concurrency model to build an API gateway handling thousands of requests from factory systems
-    - Instituted a part version control system in Python, React, and MongoDB, reducing manufacturing data conflicts by 90%, contributing to $300K in incremental revenue
+    - Built AI Copilot (Python, TypeScript, Kafka, LangGraph) to automate factory tasks, cutting manual labour costs by 15%
+    - Eliminated cross-functional data conflicts with full stack version control using React, FastAPI and MongoDB
+    - Created scalable backend LLM communication via robust REST APIs and dynamic chat UI components
+    - Improved CI/CD reliability by orchestrating Kubernetes deployments using Helm, Docker, and GitHub Actions
+    - Delivered real-time UI updates by implementing async agent communication with WebSockets and Redis pub/sub
 
 - companyLogo: https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png
   title: Tesla, Software Engineer Intern
   bullets:
-    - Built a distributed Redis + Celery backend with GraphQL APIs to deliver real-time factory metrics to 2000+ engineers
-    - Refactored SQL Server, PostgreSQL, and MySQL schemas to reduce query latency by 18% in cross-platform services
-    - Accelerated factory layout visualization speed by 20% using graph optimizations with Djikstra's algorithm
-    - Re-engineered ETL pipelines in Airflow and FastAPI, cutting layout load times by 83%
-    - Increased code coverage by 25% via CI/CD integration and implementation of unit and A/B test frameworks
+    - Delivered factory metrics to 2K+ engineers by building distributed systems with Python, Redis, Celery, and GraphQL
+    - Decreased query latency by 18% through schema redesign of SQL Server, PostgreSQL, and MySQL databases
+    - Boosted data pipeline throughput by optimizing ETL pipelines in Airflow and FastAPI, leveraging Pandas and NumPy
+    - Saved 80+ engineering hours per week in load times by implementing Revit model compression with AWS S3 storage
+    - Enhanced code coverage through CI/CD integration with unit and A/B tests, accelerating iteration in agile sprints
 
 - companyLogo: https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png
   title: Tesla, Controls Engineer Intern
   bullets:
-    - Delivered a high-speed computer vision pipeline in Python for Cybertruck rotor QC, achieving 98% accuracy at 22ms latency per part saving $242K annually
-    - Integrated C# APIs to automate FTP image logging, collecting 5,000+ daily training samples for model refinement
-    - Collaborated with hardware teams to reduce system costs by $20K per line via joint software/hardware optimization
-    - Programmed PLC logic into Tesla Standard Library, cutting robot cycle times by 30% across multiple production lines
+    - Saved $242K by delivering a high-speed, multi-camera computer vision system using Python for Cybertruck rotor QC
+    - Collaborated cross-functionally to reduce system cost by $20K per line via joint software/hardware optimization
+    - Captured 5K+ images daily for model training by integrating C# APIs with PLC and HMI devices
+    - Cut cycle times across multiple production lines by programming PLC logic into Tesla Standard Library
+    - Applied Siemens TIA Portal diagnostics, logic analyzers, and hardware debugging tools to validate/tune various I/O
 
