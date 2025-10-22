@@ -10,7 +10,7 @@ export default function Footer() {
                 <a href="https://github.com/ssh-vom" target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                     <i className="fab fa-github"></i>
                 </a>
-                <a href="mailto:shars119@mcmaster.ca" target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
+                <a href="mailto:shivom.sharma.eng@gmail.com" target="_blank" rel="noreferrer" style={{ textDecoration: 'none' }}>
                     <i className="fas fa-envelope"></i>
                 </a>
             </div>
