@@ -84,7 +84,7 @@ body {
 .steam-username {
   font-size: 28px;
   color: var(--steam-text-light);
-  /* font-family: serif; /* Steam names can be generic, but serif gives a nice look */ */
+  font-family: serif; /* Steam names can be generic, but serif gives a nice look */
   margin: 0;
 }
 
@@ -328,4 +328,39 @@ body {
 .edit-profile-btn:hover {
     background: #3d3d3d;
     color: #fff;
+}
+
+/* Post Content Styles */
+.steam-post-content h1,
+.steam-post-content h2,
+.steam-post-content h3 {
+  color: var(--steam-text-light);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.steam-post-content p {
+  margin-bottom: 15px;
+}
+
+.steam-post-content a {
+  color: var(--steam-accent);
+  text-decoration: none;
+}
+
+.steam-post-content a:hover {
+  text-decoration: underline;
+}
+
+.steam-post-content ul, 
+.steam-post-content ol {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.steam-post-content blockquote {
+  border-left: 4px solid var(--steam-bg-lighter);
+  padding-left: 15px;
+  color: #8f98a0;
+  margin-bottom: 15px;
 }

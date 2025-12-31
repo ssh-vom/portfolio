@@ -1,8 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './pages/App.jsx';
-import Blog from './pages/Blog.jsx';
 import BlogPost from './pages/BlogPost.jsx';
 import './steam-theme.css';
 
@@ -12,7 +11,7 @@ createRoot(rootElement).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog" element={<Navigate to="/?tab=BLOG" replace />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
     </BrowserRouter>
