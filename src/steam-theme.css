@@ -95,6 +95,7 @@ body {
   font-size: 13px;
   color: #8f98a0;
   margin-top: 4px;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
 .steam-flag {
@@ -145,6 +146,8 @@ body {
   margin-bottom: 20px;
   border-radius: 3px;
   box-shadow: 0 0 8px rgba(0,0,0,0.5);
+  overflow-x: auto; /* Allow horizontal scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
 }
 
 .steam-nav-item {
@@ -155,6 +158,7 @@ body {
   cursor: pointer;
   border-bottom: 3px solid transparent;
   transition: all 0.2s;
+  white-space: nowrap; /* Prevent tabs from breaking lines */
 }
 
 .steam-nav-item:hover {
@@ -193,6 +197,23 @@ body {
     top: 0;
     right: 0;
     margin-top: 10px;
+  }
+  .steam-location {
+    justify-content: center;
+  }
+  .steam-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .steam-nav {
+    justify-content: flex-start; /* Ensure items start from left when scrolling */
+  }
+  .timeline-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .company-logo {
+    margin-bottom: 10px;
   }
 }
 

@@ -13,7 +13,7 @@ export default function Header() {
                 <h1 className="steam-username">Shivom Sharma</h1>
 
                 <div className="steam-location">
-                    <img src="https://community.akamai.steamstatic.com/public/images/countryflags/us.gif" alt="CA" className="steam-flag" />
+                    <img src="https://community.akamai.steamstatic.com/public/images/countryflags/ca.gif" alt="CA" className="steam-flag" />
                     <span>Toronto, Ontario</span>
                     <span style={{ color: '#66c0f4', marginLeft: '10px' }}>● CURRENTLY BUILDING: PORTFOLIO V2.EXE</span>
                 </div>
