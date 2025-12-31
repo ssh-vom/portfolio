@@ -40,7 +40,18 @@ export default function SpotifyNowPlaying() {
   };
 
   if (error && !track) {
-    return <div className="player-container"><p>{error}</p></div>;
+     // Show something even if error/offline to maintain layout? Or hide?
+     // Steam usually shows "Last Online" etc.
+     // I'll show a "Not Playing" state
+    return (
+        <div className="steam-playing-box">
+            <div className="steam-playing-header">Currently Playing</div>
+             <div style={{ color: '#8f98a0', fontSize: '13px' }}>
+                 <i className="fa fa-spotify" style={{ marginRight: '8px' }}></i>
+                 Not playing anything...
+             </div>
+        </div>
+    );
   }
 
   if (!track) return null;
@@ -48,26 +59,26 @@ export default function SpotifyNowPlaying() {
   const progress = (track.currentTime / track.duration) * 100;
 
   return (
-    <div className="player-container" style={{ transform: 'scale(0.9)' }}>
-      <h3 id="CurrentlyPlaying" className="player-title" style={{ textAlign: 'left' }}>Currently Playing:</h3>
-      <div className="player-header">
-        <img id="albumCover" src={track.albumCover || ''} alt="Album Cover" className="album-cover" />
-        <div className="track-info">
-          <h3 id="trackName" className="track-name">{track.name}</h3>
-          <p id="artistName" className="track-artist">{track.artist}</p>
+    <div className="steam-playing-box">
+      <div className="steam-playing-header">Currently Playing</div>
+      <div style={{ display: 'flex', gap: '12px', marginBottom: '10px' }}>
+        <img src={track.albumCover || ''} alt="Album Art" style={{ width: '60px', height: '60px', borderRadius: '4px', border: '1px solid #3d4450' }} />
+        <div style={{ overflow: 'hidden' }}>
+          <div style={{ color: '#fff', fontSize: '14px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 'bold' }}>{track.name}</div>
+          <div style={{ color: '#66c0f4', fontSize: '12px' }}>{track.artist}</div>
+          <div style={{ color: '#8f98a0', fontSize: '11px', marginTop: '2px' }}>
+             <i className="fa fa-music"></i> Playing on Spotify
+          </div>
         </div>
       </div>
-      <div className="progress-container">
-        <div className="progress-bar">
-          <div id="progressBarFill" className="progress-bar-fill" style={{ width: `${progress}%` }}></div>
-        </div>
-        <div className="time-display">
-          <span id="currentTime">{formatTime(track.currentTime)}</span>
-          <span id="totalDuration">{formatTime(track.duration)}</span>
-        </div>
+      
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#8f98a0' }}>
+          <span>{formatTime(track.currentTime)}</span>
+          <div style={{ flex: 1, height: '4px', background: '#3d4450', borderRadius: '2px' }}>
+              <div style={{ width: `${progress}%`, height: '100%', background: '#c6d4df', borderRadius: '2px' }}></div>
+          </div>
+          <span>{formatTime(track.duration)}</span>
       </div>
     </div>
   );
 }
-
-
