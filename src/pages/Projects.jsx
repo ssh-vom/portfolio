@@ -19,7 +19,7 @@ export default function Projects() {
         {
             title: "OpenAI PPO Agent | OpenAI Gym, Pytorch, Numpy",
             description: "Implemented OpenAI's research paper with a simplified neural network for efficient RL training.",
-            github: "https://github.com/ssh-vom/openai-ppo-pong"
+            github: "https://github.com/ssh-vom/OpenAI_PPO_Pong"
         },
         {
             title: "Spotify Lyrics Searcher | Python, Genius Lyrics API, Spotify API",
