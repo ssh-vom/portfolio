@@ -3,7 +3,8 @@ import { useSearchParams } from 'react-router-dom';
 import About from '../components/About.jsx';
 import Timeline from '../components/Timeline.jsx';
 import SteamLayout from '../components/SteamLayout.jsx';
-import Blog from './Blog.jsx'; // Import from local directory
+import Blog from './Blog.jsx';
+import Projects from './Projects.jsx';
 import '../steam-theme.css';
 
 export default function App() {
@@ -33,12 +34,7 @@ export default function App() {
                 );
             case 'PROJECTS':
                 return (
-                    <div className="steam-box">
-                        <div className="steam-box-title">Projects</div>
-                        <div style={{ padding: '20px', textAlign: 'center', color: '#8f98a0' }}>
-                            Work in Progress...
-                        </div>
-                    </div>
+                    <Projects />
                 );
             case 'EXPERIENCE':
                 return <Timeline />;
