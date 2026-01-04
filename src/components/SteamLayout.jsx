@@ -4,7 +4,7 @@ import Tools from './Tools.jsx';
 import SpotifyNowPlaying from './SpotifyNowPlaying.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function SteamLayout({ children, activeTab, onTabChange }) {
+export default function SteamLayout({ children, activeTab, onTabChange, readingMode = false }) {
     const navigate = useNavigate();
 
     const handleTabClick = (tab) => {
@@ -15,6 +15,16 @@ export default function SteamLayout({ children, activeTab, onTabChange }) {
             navigate(`/?tab=${tab}`);
         }
     };
+
+    if (readingMode) {
+        return (
+            <div className="steam-container reading-mode-container">
+                <div className="steam-content-main">
+                    {children}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="steam-container">

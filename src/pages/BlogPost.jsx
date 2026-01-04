@@ -42,6 +42,9 @@ export default function BlogPost() {
     const { slug } = useParams();
     const [content, setContent] = useState('');
     const [frontmatter, setFrontmatter] = useState({});
+    const [readingMode, setReadingMode] = useState(() => {
+        return localStorage.getItem('readingMode') === 'true';
+    });
 
     useEffect(() => {
         // Load post statically using the blog utilities
@@ -54,6 +57,12 @@ export default function BlogPost() {
             setFrontmatter({});
         }
     }, [slug]);
+
+    const toggleReadingMode = () => {
+        const newMode = !readingMode;
+        setReadingMode(newMode);
+        localStorage.setItem('readingMode', newMode.toString());
+    };
 
     const components = {
         code({ node, inline, className, children, ...props }) {
@@ -108,8 +117,8 @@ export default function BlogPost() {
     };
 
     return (
-        <SteamLayout activeTab="BLOG">
-            <div className="steam-box" id="blog-post">
+        <SteamLayout activeTab="BLOG" readingMode={readingMode}>
+            <div className={`steam-box ${readingMode ? 'reading-mode' : ''}`} id="blog-post">
                 <div style={{ marginBottom: '15px' }}>
                     <Link
                         to="/?tab=BLOG"
@@ -118,6 +127,14 @@ export default function BlogPost() {
                     >
                         <i className="fa fa-arrow-left"></i> Back to Blog
                     </Link>
+                    <button
+                        onClick={toggleReadingMode}
+                        className="edit-profile-btn"
+                        style={{ marginLeft: '10px', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                    >
+                        <i className={`fa ${readingMode ? 'fa-compress' : 'fa-expand'}`}></i>
+                        {readingMode ? 'Exit Reading Mode' : 'Reading Mode'}
+                    </button>
                 </div>
 
                 <div className="steam-box-title" style={{ fontSize: '24px', borderBottom: '1px solid #3d4450', marginBottom: '15px', paddingBottom: '10px' }}>

@@ -385,3 +385,96 @@ body {
   color: #8f98a0;
   margin-bottom: 15px;
 }
+
+/* Reading Mode Styles */
+.reading-mode-container {
+  background: #1b1e24;
+  min-height: 100vh;
+  max-width: none;
+  padding: 0;
+}
+
+.steam-box.reading-mode {
+  background: transparent;
+  border: none;
+  padding: 80px 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.steam-post-content {
+  transition: all 0.3s ease;
+}
+
+.steam-box.reading-mode .steam-post-content {
+  font-size: 20px;
+  line-height: 1.9;
+  color: #d4d4d4;
+}
+
+.steam-box.reading-mode .steam-post-content p {
+  margin-bottom: 24px;
+}
+
+.steam-box.reading-mode .steam-post-content h1 {
+  font-size: 2.5em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #eff0f1;
+}
+
+.steam-box.reading-mode .steam-post-content h2 {
+  font-size: 2em;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  color: #eff0f1;
+}
+
+.steam-box.reading-mode .steam-post-content h3 {
+  font-size: 1.5em;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #eff0f1;
+}
+
+.steam-box.reading-mode .steam-post-content ul,
+.steam-box.reading-mode .steam-post-content ol {
+  margin-bottom: 24px;
+  padding-left: 30px;
+}
+
+.steam-box.reading-mode .steam-post-content li {
+  margin-bottom: 12px;
+}
+
+.steam-box.reading-mode .steam-post-content blockquote {
+  border-left-color: #3d4450;
+  padding: 20px;
+  margin: 24px 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.steam-box.reading-mode .steam-post-content code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+.steam-box.reading-mode .steam-post-content pre {
+  margin: 24px 0;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.steam-box.reading-mode .steam-post-content img {
+  margin: 32px 0;
+  border-radius: 4px;
+}
+
+.steam-box.reading-mode .steam-box-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+}
