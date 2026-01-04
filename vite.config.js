@@ -1,9 +1,19 @@
 import { defineConfig } from "vite";
 import yaml from "@rollup/plugin-yaml";
 import react from "@vitejs/plugin-react";
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
 export default defineConfig({
-  plugins: [react(), yaml()],
+  plugins: [
+    react(),
+    yaml(),
+    ViteImageOptimizer({
+      png: { quality: 80 },
+      jpeg: { quality: 80 },
+      webp: { quality: 80 },
+      includePublic: true,
+    })
+  ],
   server: {
     port: 5173,
     strictPort: true,

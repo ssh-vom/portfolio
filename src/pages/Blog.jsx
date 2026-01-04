@@ -1,36 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import fm from 'front-matter';
+import { getAllPosts } from '../utils/blog.js';
 
 export default function Blog() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        async function fetchPosts() {
-            const files = ['/blog/hello-world.md'];
-            const loadedPosts = await Promise.all(
-                files.map(async (file) => {
-                    const res = await fetch(file);
-                    if (!res.ok) {
-                        console.error('Failed to fetch:', file);
-                        return null;
-                    }
-
-                    const text = await res.text();
-                    const { attributes } = fm(text);
-
-                    return {
-                        ...attributes,
-                        slug: attributes.slug || file.replace('/blog/', '').replace('.md', ''),
-                    };
-                })
-            );
-
-            // filter out any nulls from failed fetches
-            setPosts(loadedPosts.filter(Boolean));
-        }
-
-        fetchPosts();
+        // Load posts statically using the blog utilities
+        const loadedPosts = getAllPosts();
+        setPosts(loadedPosts);
     }, []);
 
     return (
