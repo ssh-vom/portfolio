@@ -1,8 +1,7 @@
-import React from 'react';
 import Header from './Header.jsx';
 import Tools from './Tools.jsx';
 import SpotifyNowPlaying from './SpotifyNowPlaying.jsx';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function SteamLayout({ children, activeTab, onTabChange, readingMode = false }) {
     const navigate = useNavigate();
@@ -29,10 +28,10 @@ export default function SteamLayout({ children, activeTab, onTabChange, readingM
     return (
         <div className="steam-container">
             <Header />
-            
+
             <div className="steam-nav">
-                {['ALL', 'PROJECTS', 'EXPERIENCE', 'BLOG'].map((tab) => (
-                    <div 
+                {['ALL', 'PROJECTS', 'EXPERIENCE', 'BLOG', 'READINGS'].map((tab) => (
+                    <div
                         key={tab}
                         className={`steam-nav-item ${activeTab === tab ? 'active' : ''}`}
                         onClick={() => handleTabClick(tab)}
@@ -50,7 +49,7 @@ export default function SteamLayout({ children, activeTab, onTabChange, readingM
                 <div className="steam-sidebar">
                     <SpotifyNowPlaying />
                     <Tools />
-                    
+
                     <div className="steam-box">
                         <div className="steam-box-title">Links</div>
                         <div className="steam-link-list">
@@ -67,7 +66,7 @@ export default function SteamLayout({ children, activeTab, onTabChange, readingM
                     </div>
                 </div>
             </div>
-            
+
             <div style={{ textAlign: 'center', marginTop: '40px', color: '#8f98a0', fontSize: '12px' }}>
                 © 2025 Shivom Sharma
             </div>

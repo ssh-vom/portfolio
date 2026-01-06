@@ -5,6 +5,7 @@ import Timeline from '../components/Timeline.jsx';
 import SteamLayout from '../components/SteamLayout.jsx';
 import Blog from './Blog.jsx';
 import Projects from './Projects.jsx';
+import Readings from './Readings.jsx';
 import '../steam-theme.css';
 
 export default function App() {
@@ -40,6 +41,8 @@ export default function App() {
                 return <Timeline />;
             case 'BLOG':
                 return <Blog />;
+            case 'READINGS':
+                return <Readings />;
             default:
                 return <About />;
         }

@@ -67,7 +67,6 @@ export default function BlogPost() {
     const components = {
         code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '');
-            console.log('Code block detected:', { match, className, children });
             if (!inline && match && match[1] === 'mermaid') {
                 return <Mermaid chart={String(children).replace(/\n$/, '')} />;
             }
@@ -87,18 +86,17 @@ export default function BlogPost() {
             );
         },
         img({ node, src, alt, ...props }) {
-            console.log('Image detected:', src, 'alt:', alt);
             if (!src) return null;
-            
+
             let width = props.width;
-            
+
             if (alt) {
                 const widthMatch = alt.match(/(\d+)%$/);
                 if (widthMatch) {
                     width = widthMatch[1] + '%';
                 }
             }
-            
+
             const fullSrc = src.startsWith('/') ? src : '/' + src;
             return (
                 <div style={{ margin: '20px 0' }}>
