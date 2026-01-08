@@ -23,7 +23,7 @@ export default function Header() {
                 </div>
 
                 <div style={{ marginTop: '12px' }}>
-                    <a href="https://drive.google.com/file/d/1PMs5TTdMTYWLZmehMqSo2x6h27O3yQJP/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="edit-profile-btn">
+                    <a href="https://drive.google.com/file/d/1jtsiATzGVQKmDypHrziT4Cgerhbk4YKJ/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="edit-profile-btn">
                         Resume
                     </a>
                 </div>
@@ -32,6 +32,6 @@ export default function Header() {
             <div className="steam-level-badge">
                 <span className="steam-level-value">24</span>
             </div>
-        </div>
+        </div >
     );
 }
