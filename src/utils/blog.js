@@ -2,7 +2,6 @@ import fm from 'front-matter';
 
 // Static import of all blog posts
 const postFiles = import.meta.glob('/src/blog/**/*.md', { eager: true, query: '?raw', import: 'default' });
-console.log('Post files found:', Object.keys(postFiles));
 
 /**
  * Get all blog posts with parsed frontmatter

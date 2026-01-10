@@ -1,48 +1,22 @@
 import React from 'react';
+import { toolBadges } from '../data/toolBadges.js';
 
 export default function Tools() {
-    const tools = [
-        { name: 'Python', icon: 'fa-brands fa-python' },
-        { name: 'Node.js', icon: 'fa fa-nodejs' },
-        { name: 'Go', icon: 'fab fa-golang' }, // Check if fab is correct class for existing css
-        { name: 'C', icon: 'fa fa-copyright' },
-        { name: 'C++', icon: 'fa fa-code' },
-        { name: 'SQL', icon: 'fa fa-database' },
-        { name: 'React', icon: 'fa fa-React' }
-    ];
-
-    // Original had fa-c and fa-c++ which might be custom or specific font awesome version.
-    // I'll stick to the original classes if possible, but structure them better.
-    // The original code: <i className="fa fa-c"></i> and <i className="fa fa-c"></i>++ (literal text)
-
     return (
         <div className="steam-box">
-            <div className="steam-box-title">Tech Badges <span style={{ float: 'right', fontSize: '12px', color: '#66c0f4' }}>{tools.length}</span></div>
+            <div className="steam-box-title">
+                Tech Badges <span className="badge-count">{toolBadges.length}</span>
+            </div>
             <div className="steam-badge-grid">
-                <div className="steam-badge" title="Python">
-                    <i className="fa fa-python"></i>
-                </div>
-                <div className="steam-badge" title="Node.js">
-                    <i className="fab fa-node-js"></i>
-                </div>
-                <div className="steam-badge" title="Go">
-                    <i className="fab fa-golang"></i>
-                </div>
-                <div className="steam-badge" title="C">
-                    <span style={{ fontWeight: 'bold', fontSize: '14px' }}>C</span>
-                </div>
-                <div className="steam-badge" title="C++">
-                    <span style={{ fontWeight: 'bold', fontSize: '14px' }}>C++</span>
-                </div>
-                <div className="steam-badge" title="SQL">
-                    <i className="fas fa-database"></i>
-                </div>
-                <div className="steam-badge" title="React">
-                    <i className="fa fa-react"></i>
-                </div>
-                <div className="steam-badge" title="Git">
-                    <i className="fab fa-git-alt"></i>
-                </div>
+                {toolBadges.map((tool) => (
+                    <div className="steam-badge" title={tool.name} key={tool.name}>
+                        {tool.iconClass ? (
+                            <i className={tool.iconClass}></i>
+                        ) : (
+                            <span className="steam-badge-label">{tool.label}</span>
+                        )}
+                    </div>
+                ))}
             </div>
         </div>
     );

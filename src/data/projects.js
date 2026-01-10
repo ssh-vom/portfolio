@@ -1,0 +1,32 @@
+export const projects = [
+  {
+    title: 'OpenArcade | C,C++,Python,JavaScript',
+    description:
+      'An accessible-modular gaming controller, multi-threaded firmware, and a configurator UI application.',
+    github: 'https://github.com/ssh-vom/openarcade',
+  },
+  {
+    title: 'Kalshi Research Engine | Python, Numpy, Pandas, TimescaleDB',
+    description:
+      'A research project aimed at determining the accuracy of prediction markets like Kalshi.',
+    github: 'https://github.com/ssh-vom/kalshi-research',
+  },
+  {
+    title: 'BooxServe | Go, Docker, TCP/IP, HTTP',
+    description:
+      'A CLI tool to download Manga and Textbooks to Boox E-Ink Tablets.',
+    github: 'https://github.com/ssh-vom/boox-uploader-cli',
+  },
+  {
+    title: 'OpenAI PPO Agent | OpenAI Gym, Pytorch, Numpy',
+    description:
+      "Implemented OpenAI's research paper with a simplified neural network for efficient RL training.",
+    github: 'https://github.com/ssh-vom/OpenAI_PPO_Pong',
+  },
+  {
+    title: 'Spotify Lyrics Searcher | Python, Genius Lyrics API, Spotify API',
+    description:
+      "Developed a fuzzy searcher to get close matches for songs I can't quite remember the lyrics for.",
+    github: 'https://github.com/ssh-vom/LyricsSearcher',
+  },
+];

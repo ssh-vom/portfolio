@@ -5,7 +5,7 @@ export default function Header() {
         <div className="steam-header">
             <div className="steam-avatar-container">
                 <div className="steam-avatar">
-                    <img src="/images/pfp.jpeg" alt="Avatar" style={{ backgroundColor: '#000' }} /> {/* Replace with actual avatar URL */}
+                    <img src="/images/pfp.jpeg" alt="Avatar" className="steam-avatar-image" />
                 </div>
             </div>
 
@@ -15,7 +15,7 @@ export default function Header() {
                 <div className="steam-location">
                     <img src="https://community.akamai.steamstatic.com/public/images/countryflags/ca.gif" alt="CA" className="steam-flag" />
                     <span>Toronto, Ontario</span>
-                    <span style={{ color: '#66c0f4', marginLeft: '10px' }}>● CURRENTLY BUILDING: OpenArcade</span>
+                    <span className="steam-status">● CURRENTLY BUILDING: OpenArcade</span>
                 </div>
 
                 <div className="steam-description">

@@ -14,15 +14,15 @@ export default function Blog() {
     return (
         <div className="steam-box" id="blog">
             <div className="steam-box-title">Blog Posts</div>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
+            <ul className="blog-list">
                 {posts.length === 0 ? (
-                    <p style={{ color: '#888' }}>No posts found</p>
+                    <p className="blog-empty">No posts found</p>
                 ) : (
                     posts.map((post) => (
-                        <li key={post.slug} style={{ marginBottom: '10px', padding: '10px', background: 'rgba(0,0,0,0.2)', border: '1px solid transparent' }}>
-                            <Link to={`/blog/${post.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
-                                <div style={{ fontSize: '16px', color: '#66c0f4', fontWeight: 'bold' }}>{post.title}</div>
-                                <div style={{ fontSize: '12px', color: '#8f98a0', marginTop: '4px' }}>{String(post.date)}</div>
+                        <li key={post.slug} className="blog-item">
+                            <Link to={`/blog/${post.slug}`} className="blog-link">
+                                <div className="blog-title">{post.title}</div>
+                                <div className="blog-date">{String(post.date)}</div>
                             </Link>
                         </li>
                     ))

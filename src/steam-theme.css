@@ -66,6 +66,10 @@ body {
   object-fit: cover;
 }
 
+.steam-avatar-image {
+  background-color: #000;
+}
+
 .steam-avatar-status {
   position: absolute;
   bottom: 8px;
@@ -96,6 +100,11 @@ body {
   color: #8f98a0;
   margin-top: 4px;
   flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.steam-status {
+  color: var(--steam-accent);
+  margin-left: 10px;
 }
 
 .steam-flag {
@@ -328,6 +337,12 @@ body {
   border: 1px solid transparent;
 }
 
+.steam-link i {
+  width: 20px;
+  margin-right: 8px;
+  text-align: center;
+}
+
 .steam-link:hover {
   color: var(--steam-text-light);
   background: rgba(255,255,255,0.05);
@@ -349,6 +364,287 @@ body {
 .edit-profile-btn:hover {
     background: #3d3d3d;
     color: #fff;
+}
+
+.steam-footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #8f98a0;
+  font-size: 12px;
+}
+
+.badge-count {
+  float: right;
+  font-size: 12px;
+  color: var(--steam-accent);
+}
+
+.steam-badge-label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.steam-playing-status {
+  color: #8f98a0;
+  font-size: 13px;
+}
+
+.steam-playing-status i {
+  margin-right: 8px;
+}
+
+.steam-playing-details {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.steam-album-art {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  border: 1px solid #3d4450;
+}
+
+.steam-track-info {
+  overflow: hidden;
+}
+
+.steam-track-title {
+  color: #fff;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+
+.steam-track-artist {
+  color: var(--steam-accent);
+  font-size: 12px;
+}
+
+.steam-track-meta {
+  color: #8f98a0;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.steam-track-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #8f98a0;
+}
+
+.steam-track-bar {
+  flex: 1;
+  height: 4px;
+  background: #3d4450;
+  border-radius: 2px;
+}
+
+.steam-track-bar-fill {
+  height: 100%;
+  background: #c6d4df;
+  border-radius: 2px;
+}
+
+.steam-track-time {
+  min-width: 32px;
+  text-align: center;
+}
+
+.about-text {
+  color: #c6d4df;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.about-paragraph {
+  margin-bottom: 15px;
+}
+
+.about-link {
+  color: var(--steam-accent);
+  text-decoration: none;
+}
+
+.about-section-title {
+  margin-top: 20px;
+}
+
+.about-education {
+  margin-top: 10px;
+}
+
+.about-education-item {
+  margin: 5px 0;
+}
+
+.about-education-label {
+  color: #fff;
+}
+
+.timeline-container {
+  list-style: none;
+  padding: 0;
+}
+
+.company-logo {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.timeline-date {
+  color: #8f98a0;
+  font-size: 12px;
+  margin-left: auto;
+}
+
+.timeline-company {
+  color: #c6d4df;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.description-list {
+  padding-left: 20px;
+  color: #8f98a0;
+  font-size: 13px;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.project-card {
+  background: rgba(255,255,255,0.03);
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+
+.project-title {
+  color: #eff0f1;
+  font-size: 16px;
+  margin: 0;
+}
+
+.project-link {
+  color: var(--steam-accent);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 12px;
+  background: rgba(102, 192, 244, 0.1);
+  border-radius: 2px;
+  border: 1px solid rgba(102, 192, 244, 0.3);
+  white-space: nowrap;
+}
+
+.project-description {
+  color: #c6d4df;
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.blog-list {
+  list-style: none;
+  padding: 0;
+}
+
+.blog-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid transparent;
+}
+
+.blog-link {
+  text-decoration: none;
+  display: block;
+}
+
+.blog-title {
+  font-size: 16px;
+  color: var(--steam-accent);
+  font-weight: bold;
+}
+
+.blog-date {
+  font-size: 12px;
+  color: #8f98a0;
+  margin-top: 4px;
+}
+
+.blog-empty {
+  color: #888;
+}
+
+.reading-list {
+  list-style: none;
+  padding: 0;
+}
+
+.reading-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid transparent;
+}
+
+.reading-link {
+  text-decoration: none;
+  display: block;
+  color: #fff;
+}
+
+.reading-empty {
+  color: #888;
+}
+
+.blog-post-actions {
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.blog-post-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.blog-post-title {
+  font-size: 24px;
+  border-bottom: 1px solid #3d4450;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+.blog-post-date {
+  color: #8f98a0;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.blog-post-content {
+  color: #c6d4df;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 /* Post Content Styles */

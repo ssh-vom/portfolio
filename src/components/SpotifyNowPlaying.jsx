@@ -40,14 +40,11 @@ export default function SpotifyNowPlaying() {
   };
 
   if (error && !track) {
-     // Show something even if error/offline to maintain layout? Or hide?
-     // Steam usually shows "Last Online" etc.
-     // I'll show a "Not Playing" state
     return (
         <div className="steam-playing-box">
             <div className="steam-playing-header">Currently Playing</div>
-             <div style={{ color: '#8f98a0', fontSize: '13px' }}>
-                 <i className="fa fa-spotify" style={{ marginRight: '8px' }}></i>
+             <div className="steam-playing-status">
+                 <i className="fa fa-spotify"></i>
                  Not playing anything...
              </div>
         </div>
@@ -61,23 +58,23 @@ export default function SpotifyNowPlaying() {
   return (
     <div className="steam-playing-box">
       <div className="steam-playing-header">Currently Playing</div>
-      <div style={{ display: 'flex', gap: '12px', marginBottom: '10px' }}>
-        <img src={track.albumCover || ''} alt="Album Art" style={{ width: '60px', height: '60px', borderRadius: '4px', border: '1px solid #3d4450' }} />
-        <div style={{ overflow: 'hidden' }}>
-          <div style={{ color: '#fff', fontSize: '14px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontWeight: 'bold' }}>{track.name}</div>
-          <div style={{ color: '#66c0f4', fontSize: '12px' }}>{track.artist}</div>
-          <div style={{ color: '#8f98a0', fontSize: '11px', marginTop: '2px' }}>
+      <div className="steam-playing-details">
+        <img src={track.albumCover || ''} alt="Album Art" className="steam-album-art" />
+        <div className="steam-track-info">
+          <div className="steam-track-title">{track.name}</div>
+          <div className="steam-track-artist">{track.artist}</div>
+          <div className="steam-track-meta">
              <i className="fa fa-music"></i> Playing on Spotify
           </div>
         </div>
       </div>
-      
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#8f98a0' }}>
-          <span>{formatTime(track.currentTime)}</span>
-          <div style={{ flex: 1, height: '4px', background: '#3d4450', borderRadius: '2px' }}>
-              <div style={{ width: `${progress}%`, height: '100%', background: '#c6d4df', borderRadius: '2px' }}></div>
+
+      <div className="steam-track-progress">
+          <span className="steam-track-time">{formatTime(track.currentTime)}</span>
+          <div className="steam-track-bar">
+              <div className="steam-track-bar-fill" style={{ width: `${progress}%` }}></div>
           </div>
-          <span>{formatTime(track.duration)}</span>
+          <span className="steam-track-time">{formatTime(track.duration)}</span>
       </div>
     </div>
   );

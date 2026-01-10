@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 const querystring = require("querystring");
 const fs = require("fs").promises;
 const path = require("path");
-// lol
 
 dotenv.config();
 
@@ -14,6 +13,8 @@ const port = process.env.PORT || 8888;
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const SPOTIFY_REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
+const spotifyConfigured =
+  SPOTIFY_CLIENT_ID && SPOTIFY_CLIENT_SECRET && SPOTIFY_REDIRECT_URI;
 
 // Path to store tokens
 const TOKENS_PATH = path.join(__dirname, "tokens.json");
@@ -29,6 +30,9 @@ async function loadTokens() {
     const data = await fs.readFile(TOKENS_PATH, "utf8");
     const tokens = JSON.parse(data);
     refreshToken = tokens.refreshToken;
+    if (!refreshToken) {
+      return false;
+    }
     return true;
   } catch (error) {
     console.log("No stored tokens found. Server needs initial authentication.");
@@ -43,6 +47,9 @@ async function saveTokens(tokens) {
 
 // Refresh the access token using stored refresh token
 async function refreshAccessToken() {
+  if (!spotifyConfigured || !refreshToken) {
+    return false;
+  }
   try {
     const response = await axios.post(
       "https://accounts.spotify.com/api/token",
@@ -77,6 +84,9 @@ async function refreshAccessToken() {
 
 // Initial authentication route (only needed once during deployment)
 app.get("/init-auth", (req, res) => {
+  if (!spotifyConfigured) {
+    return res.status(503).send("Spotify is not configured.");
+  }
   const scope = "user-read-playback-state user-read-currently-playing";
   const authURL = `https://accounts.spotify.com/authorize?${querystring.stringify(
     {
@@ -92,6 +102,9 @@ app.get("/init-auth", (req, res) => {
 
 // Callback to handle initial authentication
 app.get("/callback", async (req, res) => {
+  if (!spotifyConfigured) {
+    return res.status(503).send("Spotify is not configured.");
+  }
   const { code } = req.query;
 
   if (!code) {
@@ -137,14 +150,20 @@ app.get("/callback", async (req, res) => {
 // Serve built React app if present
 const distPath = path.join(__dirname, "dist");
 const publicPath = path.join(__dirname, "public");
+const isProduction = process.env.NODE_ENV === "production";
 
-// Static for built assets first (so /assets/* resolves to built files)
-app.use(express.static(distPath));
-// Static for legacy/public assets (PDF, media)
-app.use(express.static(publicPath));
+// Static for built assets in production only.
+if (isProduction) {
+  app.use(express.static(distPath));
+}
+// Static for legacy/public assets (PDF, media) without serving index.html
+app.use(express.static(publicPath, { index: false }));
 
 // Current track endpoint - no user login required
 app.get("/current-track", async (req, res) => {
+  if (!spotifyConfigured) {
+    return res.status(503).json({ error: "Spotify is not configured." });
+  }
   // Check if token needs refresh
   if (!accessToken || Date.now() >= tokenExpirationTime) {
     const refreshed = await refreshAccessToken();
@@ -195,6 +214,9 @@ app.get("/current-track", async (req, res) => {
 
 // SPA fallback to React build index.html if it exists
 app.get("*", async (req, res, next) => {
+  if (!isProduction) {
+    return next();
+  }
   try {
     const indexFile = path.join(distPath, "index.html");
     await fs.access(indexFile);
@@ -206,6 +228,11 @@ app.get("*", async (req, res, next) => {
 
 // Initialize server and start listening
 async function initializeServer() {
+  if (!spotifyConfigured) {
+    console.warn(
+      "Spotify environment variables missing. /current-track will be unavailable.",
+    );
+  }
   const hasTokens = await loadTokens();
   if (hasTokens) {
     // Try to refresh the access token

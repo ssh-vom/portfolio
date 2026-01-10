@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { gruvboxDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 import { getPostBySlug } from '../utils/blog.js';
 import SteamLayout from '../components/SteamLayout.jsx';
 
 function Mermaid({ chart }) {
-    const ref = useRef(null);
     const [svg, setSvg] = useState('');
 
     useEffect(() => {
@@ -35,7 +33,7 @@ function Mermaid({ chart }) {
         });
     }, [chart]);
 
-    return <div ref={ref} dangerouslySetInnerHTML={{ __html: svg }} />;
+    return <div dangerouslySetInnerHTML={{ __html: svg }} />;
 }
 
 export default function BlogPost() {
@@ -117,35 +115,33 @@ export default function BlogPost() {
     return (
         <SteamLayout activeTab="BLOG" readingMode={readingMode}>
             <div className={`steam-box ${readingMode ? 'reading-mode' : ''}`} id="blog-post">
-                <div style={{ marginBottom: '15px' }}>
+                <div className="blog-post-actions">
                     <Link
                         to="/?tab=BLOG"
-                        className="edit-profile-btn"
-                        style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                        className="edit-profile-btn blog-post-button"
                     >
                         <i className="fa fa-arrow-left"></i> Back to Blog
                     </Link>
                     <button
                         onClick={toggleReadingMode}
-                        className="edit-profile-btn"
-                        style={{ marginLeft: '10px', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                        className="edit-profile-btn blog-post-button"
                     >
                         <i className={`fa ${readingMode ? 'fa-compress' : 'fa-expand'}`}></i>
                         {readingMode ? 'Exit Reading Mode' : 'Reading Mode'}
                     </button>
                 </div>
 
-                <div className="steam-box-title" style={{ fontSize: '24px', borderBottom: '1px solid #3d4450', marginBottom: '15px', paddingBottom: '10px' }}>
+                <div className="steam-box-title blog-post-title">
                     {frontmatter.title || 'Loading...'}
                 </div>
 
                 {frontmatter.date && (
-                    <div style={{ color: '#8f98a0', fontSize: '13px', marginBottom: '20px' }}>
+                    <div className="blog-post-date">
                         Posted on {String(frontmatter.date)}
                     </div>
                 )}
 
-                <div className="steam-post-content" style={{ color: '#c6d4df', fontSize: '14px', lineHeight: '1.6' }}>
+                <div className="steam-post-content blog-post-content">
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         rehypePlugins={[]}

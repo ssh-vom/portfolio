@@ -54,23 +54,22 @@ export default function SteamLayout({ children, activeTab, onTabChange, readingM
                         <div className="steam-box-title">Links</div>
                         <div className="steam-link-list">
                             <a href="https://linkedin.com/in/shivomsharma" target="_blank" rel="noreferrer" className="steam-link">
-                                <i className="fab fa-linkedin" style={{ width: '20px' }}></i> LinkedIn
+                                <i className="fab fa-linkedin"></i> LinkedIn
                             </a>
                             <a href="https://github.com/ssh-vom" target="_blank" rel="noreferrer" className="steam-link">
-                                <i className="fab fa-github" style={{ width: '20px' }}></i> GitHub
+                                <i className="fab fa-github"></i> GitHub
                             </a>
                             <a href="mailto:shivom.sharma.eng@gmail.com" className="steam-link">
-                                <i className="fas fa-envelope" style={{ width: '20px' }}></i> Email
+                                <i className="fas fa-envelope"></i> Email
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div style={{ textAlign: 'center', marginTop: '40px', color: '#8f98a0', fontSize: '12px' }}>
+            <div className="steam-footer">
                 © 2025 Shivom Sharma
             </div>
         </div>
     );
 }
-
