@@ -1,8 +1,8 @@
-import React from 'react';
+import { useEffect } from 'react';
 import roles from '../data/experience.yaml';
 
 function useFadeInOnIntersect(selector) {
-    React.useEffect(() => {
+    useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {

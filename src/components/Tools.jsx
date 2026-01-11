@@ -1,4 +1,3 @@
-import React from 'react';
 import { toolBadges } from '../data/toolBadges.js';
 
 export default function Tools() {

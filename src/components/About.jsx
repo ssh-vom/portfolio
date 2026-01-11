@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function About() {
     return (
         <div className="steam-box" id="about-education">
@@ -10,7 +8,7 @@ export default function About() {
                     it through a variety of mediums including programming, <a href="https://instagram.com/6ixspirit" target="_blank" rel="noopener noreferrer" className="about-link">video editing</a>, and many more!
                     Currently open to new opportunities/work prospects!
                 </p>
-                
+
                 <div className="steam-box-title about-section-title">Education</div>
                 <div className="about-education">
                     <p className="about-education-item"><strong className="about-education-label">Degree:</strong> 4th year Mechatronics Engineering & Business @ McMaster University</p>

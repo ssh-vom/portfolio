@@ -1,4 +1,4 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './pages/App.jsx';
@@ -7,13 +7,13 @@ import './steam-theme.css';
 
 const rootElement = document.getElementById('root');
 createRoot(rootElement).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/blog" element={<Navigate to="/?tab=BLOG" replace />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+    <StrictMode>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<App />} />
+                <Route path="/blog" element={<Navigate to="/?tab=BLOG" replace />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+            </Routes>
+        </BrowserRouter>
+    </StrictMode>
 );
