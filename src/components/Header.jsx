@@ -21,7 +21,7 @@ export default function Header() {
                 </div>
 
                 <div style={{ marginTop: '12px' }}>
-                    <a href="https://drive.google.com/file/d/1jtsiATzGVQKmDypHrziT4Cgerhbk4YKJ/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="edit-profile-btn">
+                    <a href="https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="edit-profile-btn">
                         Resume
                     </a>
                 </div>
