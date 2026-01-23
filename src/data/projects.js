@@ -35,4 +35,29 @@ export const projects = [
       "Developed a fuzzy searcher to get close matches for songs I can't quite remember the lyrics for.",
     github: "https://github.com/ssh-vom/LyricsSearcher",
   },
+  {
+    title: "Digital Logic Components | Verilog, Quartus",
+    description:
+      "Built reusable combinational/sequential modules (muxes, counters, FFs) and a seven‑segment decoder validated with simulation.",
+  },
+  {
+    title: "Reaction Timer FSM | Verilog, ModelSim, Quartus",
+    description:
+      "Designed a reaction‑time game with an LFSR‑based random delay, FSM control logic, and seven‑segment display output.",
+  },
+  {
+    title: "Audio DSP FIR + Echo Engine | Verilog, FPGA DSP",
+    description:
+      "Implemented FIR filtering and echo effects with audio routing, serial/parallel conversion, and I2C‑controlled IO.",
+  },
+  {
+    title: "Nios II Platform Integration | Qsys, Quartus",
+    description:
+      "Integrated a Nios II system with memory‑mapped IO, on‑chip memory, and JTAG UART; verified behavior with SignalTap.",
+  },
+  {
+    title: "Soft CPU Stepper Controller | Verilog, Quartus",
+    description:
+      "Built a custom soft CPU datapath (ALU, regfile, PC) with control FSM and branching to drive a stepper motor.",
+  },
 ];
