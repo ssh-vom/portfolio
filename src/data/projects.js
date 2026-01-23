@@ -54,7 +54,7 @@ export const projects = [
     description:
       "Implemented FIR filtering and echo effects with audio routing, serial/parallel conversion, and I2C‑controlled IO.",
     github:
-      "https://github.com/ssh-vom/FPGA/tree/main/projects/audio-dps-fir-echo",
+      "https://github.com/ssh-vom/FPGA/tree/main/projects/audio-dsp-fir-echo",
   },
   {
     title: "Nios II Platform Integration | Qsys, Quartus, C++, Verilog",
