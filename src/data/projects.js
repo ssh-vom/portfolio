@@ -39,25 +39,35 @@ export const projects = [
     title: "Digital Logic Components | Verilog, Quartus",
     description:
       "Built reusable combinational/sequential modules (muxes, counters, FFs) and a seven‑segment decoder validated with simulation.",
+    github:
+      "https://github.com/ssh-vom/FPGA/tree/main/projects/digital-logic-components",
   },
   {
     title: "Reaction Timer FSM | Verilog, ModelSim, Quartus",
     description:
       "Designed a reaction‑time game with an LFSR‑based random delay, FSM control logic, and seven‑segment display output.",
+    github:
+      "https://github.com/ssh-vom/FPGA/tree/main/projects/reaction-timer-fsm",
   },
   {
     title: "Audio DSP FIR + Echo Engine | Verilog, FPGA DSP",
     description:
       "Implemented FIR filtering and echo effects with audio routing, serial/parallel conversion, and I2C‑controlled IO.",
+    github:
+      "https://github.com/ssh-vom/FPGA/tree/main/projects/audio-dps-fir-echo",
   },
   {
-    title: "Nios II Platform Integration | Qsys, Quartus",
+    title: "Nios II Platform Integration | Qsys, Quartus, C++, Verilog",
     description:
       "Integrated a Nios II system with memory‑mapped IO, on‑chip memory, and JTAG UART; verified behavior with SignalTap.",
+    github:
+      "https://github.com/ssh-vom/FPGA/tree/main/projects/nios-ii-platform-integration",
   },
   {
-    title: "Soft CPU Stepper Controller | Verilog, Quartus",
+    title: "Soft CPU Stepper Controller | Verilog, Quartus, C++",
     description:
       "Built a custom soft CPU datapath (ALU, regfile, PC) with control FSM and branching to drive a stepper motor.",
+    github:
+      "https://github.com/ssh-vom/FPGA/tree/main/projects/soft-cpu-stepper-controller",
   },
 ];
