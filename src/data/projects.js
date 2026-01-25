@@ -70,4 +70,10 @@ export const projects = [
     github:
       "https://github.com/ssh-vom/FPGA/tree/main/projects/soft-cpu-stepper-controller",
   },
+  {
+    title: "Sniffles | C++, Qt",
+    description:
+      "A lightweight packet sniffer meant to emulate wireshark functionality",
+    github: "https://github.com/ssh-vom/sniffles",
+  },
 ];
