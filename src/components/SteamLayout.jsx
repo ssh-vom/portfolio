@@ -30,7 +30,7 @@ export default function SteamLayout({ children, activeTab, onTabChange, readingM
             <Header />
 
             <div className="steam-nav">
-                {['ALL', 'PROJECTS', 'EXPERIENCE', 'BLOG', 'READINGS'].map((tab) => (
+                {['ALL', 'PROJECTS', 'EXPERIENCE', 'BLOG', 'MISC'].map((tab) => (
                     <div
                         key={tab}
                         className={`steam-nav-item ${activeTab === tab ? 'active' : ''}`}

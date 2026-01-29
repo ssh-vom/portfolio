@@ -3,7 +3,7 @@ import { readingLinks } from '../data/readingLinks.js';
 export default function Readings() {
     return (
         <div className="steam-box" id="reading">
-            <div className="steam-box-title">Some of my favourite readings</div>
+            <div className="steam-box-title">Some of my favourite miscellaneous content</div>
             <ul className="reading-list">
                 {readingLinks.length === 0 ? (
                     <p className="reading-empty">None found</p>

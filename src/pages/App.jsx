@@ -41,7 +41,7 @@ export default function App() {
                 return <Timeline />;
             case 'BLOG':
                 return <Blog />;
-            case 'READINGS':
+            case 'MISC':
                 return <Readings />;
             default:
                 return <About />;
