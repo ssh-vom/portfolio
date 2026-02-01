@@ -28,7 +28,7 @@ I've found the terminal to be one of the places I feel most comfortable writing,
 with some inspiration from [@ThePrimeagen](https://www.youtube.com/theprimeagen) to now almost exclusively working through my terminal with [neovim](https://neovim.io/), and tmux while playing 
 with [opencode](https://opencode.ai/) for all of my AI needs.
 
-![](images/opencode_image.png)
+![](/images/opencode_image.png)
 
 I'm always trying new things in this area, most recently playing around with [helix](https://helix-editor.com/). I've also fearfully
 avoided emacs thus far, but ORG mode and the idea of bringing more things into my environment do feel very intriguing...
@@ -37,10 +37,10 @@ This is all to say, I've grown to appreciate the terminal so much in my daily wo
 
 [**walls**](https://www.github.com/ssh-vom/walls): a WallHaven CLI application for macOS to change your wallpaper instantly
 
-![](images/walls_project.png)
+![](/images/walls_project.png)
 [**BooxServe**](https://www.github.com/ssh-vom/BooxServe): A CLI built in Go to send manga and textbooks to e-ink tablets
 
-![](images/boox_serve_project.png)
+![](/images/boox_serve_project.png)
 
 I think CLI's and TUI's feel daunting for most users who don't program, leading programmers to hide their features
 behind layers of abstractions with buttons, sliders, dropdowns and alike with so many hurdles to get what you want
