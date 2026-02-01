@@ -2,6 +2,8 @@
 title: BLE is pretty cool
 slug: open-arcade
 date: 2026-01-03
+description: A high-level look at BLE and how it powers our OpenArcade wireless input modules.
+image: /images/OPENARCADE.png
 ---
 
 ![OpenArcade 50%](/images/OPENARCADE.png)

@@ -4,8 +4,20 @@ const dotenv = require("dotenv");
 const querystring = require("querystring");
 const fs = require("fs").promises;
 const path = require("path");
+const matter = require("gray-matter");
 
 dotenv.config();
+
+const PUBLIC_SITE_URL = process.env.PUBLIC_SITE_URL || "https://shivom.dev";
+const BLOG_DIR = path.join(__dirname, "src", "blog");
+const DEFAULT_META = {
+  title: "Shivom Sharma Portfolio",
+  description: "Portfolio and blog of Shivom Sharma.",
+  image: "/images/pfp.jpeg",
+  siteName: "Shivom Sharma",
+};
+const META_BLOCK_REGEX =
+  /<!--\s*opencode:meta\s*-->[\s\S]*?<!--\s*\/opencode:meta\s*-->/;
 
 const app = express();
 const port = process.env.PORT || 8888;
@@ -43,6 +55,178 @@ async function loadTokens() {
 // Save tokens to file
 async function saveTokens(tokens) {
   await fs.writeFile(TOKENS_PATH, JSON.stringify(tokens, null, 2));
+}
+
+function normalizeBaseUrl(url) {
+  return String(url || "").replace(/\/+$/, "");
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function toAbsoluteUrl(baseUrl, pathOrUrl) {
+  if (!pathOrUrl) return "";
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  const normalizedPath = pathOrUrl.startsWith("/")
+    ? pathOrUrl
+    : `/${pathOrUrl}`;
+  return `${baseUrl}${normalizedPath}`;
+}
+
+function toIsoDate(dateValue) {
+  if (!dateValue) return null;
+  const date = new Date(dateValue);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toISOString();
+}
+
+async function collectMarkdownFiles(dir) {
+  try {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    const files = [];
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        files.push(...(await collectMarkdownFiles(fullPath)));
+      } else if (entry.isFile() && entry.name.endsWith(".md")) {
+        files.push(fullPath);
+      }
+    }
+    return files;
+  } catch (error) {
+    console.warn("Blog directory not found:", dir);
+    return [];
+  }
+}
+
+let cachedBlogPosts = null;
+
+async function loadBlogPosts() {
+  if (cachedBlogPosts) return cachedBlogPosts;
+  const files = await collectMarkdownFiles(BLOG_DIR);
+  const posts = [];
+
+  for (const filePath of files) {
+    try {
+      const raw = await fs.readFile(filePath, "utf8");
+      const { data } = matter(raw);
+      const slug = data.slug || path.basename(filePath, ".md");
+      posts.push({
+        slug,
+        title: data.title || slug,
+        description: data.description || "",
+        image: data.image || "",
+        date: data.date || "",
+      });
+    } catch (error) {
+      console.warn("Failed to parse blog post:", filePath, error.message);
+    }
+  }
+
+  cachedBlogPosts = posts;
+  return posts;
+}
+
+async function getBlogPostBySlug(slug) {
+  const posts = await loadBlogPosts();
+  return posts.find((post) => post.slug === slug) || null;
+}
+
+function buildMetaTags({
+  title,
+  description,
+  image,
+  url,
+  type,
+  siteName,
+  publishedTime,
+}) {
+  const tags = [
+    `<meta name="description" content="${escapeHtml(description)}" />`,
+    `<meta property="og:title" content="${escapeHtml(title)}" />`,
+    `<meta property="og:description" content="${escapeHtml(description)}" />`,
+    `<meta property="og:image" content="${escapeHtml(image)}" />`,
+    `<meta property="og:url" content="${escapeHtml(url)}" />`,
+    `<meta property="og:type" content="${escapeHtml(type)}" />`,
+    `<meta property="og:site_name" content="${escapeHtml(siteName)}" />`,
+  ];
+
+  if (publishedTime) {
+    tags.push(
+      `<meta property="article:published_time" content="${escapeHtml(publishedTime)}" />`,
+    );
+  }
+
+  tags.push(
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
+    `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
+    `<meta name="twitter:image" content="${escapeHtml(image)}" />`,
+  );
+
+  return tags.join("\n");
+}
+
+function formatMetaBlock(metaTags) {
+  const indentedTags = metaTags
+    .split("\n")
+    .map((line) => `    ${line}`)
+    .join("\n");
+  return `    <!-- opencode:meta -->\n${indentedTags}\n    <!-- /opencode:meta -->`;
+}
+
+function replaceMetaBlock(html, metaTags) {
+  const metaBlock = formatMetaBlock(metaTags);
+  if (META_BLOCK_REGEX.test(html)) {
+    return html.replace(META_BLOCK_REGEX, metaBlock);
+  }
+  return html.replace("</head>", `${metaBlock}\n  </head>`);
+}
+
+function updateTitle(html, title) {
+  const safeTitle = escapeHtml(title);
+  if (/<title>[\s\S]*?<\/title>/i.test(html)) {
+    return html.replace(
+      /<title>[\s\S]*?<\/title>/i,
+      `<title>${safeTitle}</title>`,
+    );
+  }
+  return html.replace("</head>", `  <title>${safeTitle}</title>\n</head>`);
+}
+
+function buildMetaForPost(post, baseUrl) {
+  const normalizedBaseUrl = normalizeBaseUrl(baseUrl);
+  const hasPost = Boolean(post);
+  const title = hasPost ? post.title : DEFAULT_META.title;
+  const description = hasPost && post.description
+    ? post.description
+    : DEFAULT_META.description;
+  const imagePath = hasPost && post.image ? post.image : DEFAULT_META.image;
+  const image = toAbsoluteUrl(normalizedBaseUrl, imagePath);
+  const url = hasPost
+    ? `${normalizedBaseUrl}/blog/${encodeURIComponent(post.slug)}`
+    : normalizedBaseUrl;
+  const type = hasPost ? "article" : "website";
+  const publishedTime = hasPost ? toIsoDate(post.date) : null;
+
+  return {
+    pageTitle: hasPost ? `${title} | ${DEFAULT_META.siteName}` : title,
+    metaTags: buildMetaTags({
+      title,
+      description,
+      image,
+      url,
+      type,
+      siteName: DEFAULT_META.siteName,
+      publishedTime,
+    }),
+  };
 }
 
 // Refresh the access token using stored refresh token
@@ -158,6 +342,29 @@ if (isProduction) {
 }
 // Static for legacy/public assets (PDF, media) without serving index.html
 app.use(express.static(publicPath, { index: false }));
+
+// Blog post route with social meta tags (production only)
+app.get("/blog/:slug", async (req, res, next) => {
+  if (!isProduction) {
+    return next();
+  }
+
+  try {
+    const { slug } = req.params;
+    const post = await getBlogPostBySlug(slug);
+    const { metaTags, pageTitle } = buildMetaForPost(post, PUBLIC_SITE_URL);
+
+    const indexFile = path.join(distPath, "index.html");
+    let html = await fs.readFile(indexFile, "utf8");
+    html = updateTitle(html, pageTitle);
+    html = replaceMetaBlock(html, metaTags);
+
+    res.setHeader("Content-Type", "text/html");
+    res.status(200).send(html);
+  } catch (error) {
+    next(error);
+  }
+});
 
 // Current track endpoint - no user login required
 app.get("/current-track", async (req, res) => {

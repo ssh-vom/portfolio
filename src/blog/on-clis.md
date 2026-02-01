@@ -2,6 +2,8 @@
 title: On CLIs and TUIs
 slug: clis-and-tuis
 date: 2026-01-31
+description: Reflections on the simplicity and power of terminal-first workflows.
+image: /images/opencode_image.png
 ---
 
 # On The Art of the CLI and TUI
@@ -60,4 +62,3 @@ jump into without as many reservations.
 
 
 ~ Shivom
-
