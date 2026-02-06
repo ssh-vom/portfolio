@@ -1,6 +1,6 @@
 export const projects = [
   {
-    title: "OpenArcade | C,C++,Python,JavaScript",
+    title: "OpenArcade | C, C++, Python, JavaScript",
     description:
       "An accessible-modular gaming controller, multi-threaded firmware, and a configurator UI application.",
     github: "https://github.com/ssh-vom/openarcade",
