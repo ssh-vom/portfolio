@@ -1,56 +1,50 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import About from '../components/About.jsx';
 import Timeline from '../components/Timeline.jsx';
-import SteamLayout from '../components/SteamLayout.jsx';
-import Blog from './Blog.jsx';
 import Projects from './Projects.jsx';
-import Readings from './Readings.jsx';
-import '../steam-theme.css';
+import Blog from './Blog.jsx';
+import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
+import ContactColumn from '../components/ContactColumn.jsx';
+import EditorialLayout from '../components/EditorialLayout.jsx';
 
 export default function App() {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const tabParam = searchParams.get('tab');
-    const [activeTab, setActiveTab] = useState(tabParam || 'ALL');
+    // Intro column content
+    const introColumn = (
+        <>
+            <div className="intro-avatar">
+                <img src="/images/pfp.jpeg" alt="Shivom Sharma" />
+            </div>
+            <div className="intro-name">Shivom Sharma</div>
+            <div className="intro-location">Toronto, Ontario</div>
+            <div className="intro-description">
+                Software Engineer & Mechatronics Student
+            </div>
+            <SpotifyNowPlaying />
+        </>
+    );
 
-    useEffect(() => {
-        if (tabParam) {
-            setActiveTab(tabParam);
-        }
-    }, [tabParam]);
+    // About column content
+    const aboutColumn = <About />;
 
-    const handleTabChange = (tab) => {
-        setActiveTab(tab);
-        setSearchParams({ tab });
-    };
+    // Experience column content
+    const experienceColumn = <Timeline />;
 
-    const renderContent = () => {
-        switch (activeTab) {
-            case 'ALL':
-                return (
-                    <>
-                        <About />
-                        <Timeline />
-                    </>
-                );
-            case 'PROJECTS':
-                return (
-                    <Projects />
-                );
-            case 'EXPERIENCE':
-                return <Timeline />;
-            case 'BLOG':
-                return <Blog />;
-            case 'MISC':
-                return <Readings />;
-            default:
-                return <About />;
-        }
-    };
+    // Projects column content
+    const projectsColumn = <Projects />;
+
+    // Blog column content
+    const blogColumn = <Blog />;
+
+    // Contact column content
+    const contactColumn = <ContactColumn />;
 
     return (
-        <SteamLayout activeTab={activeTab} onTabChange={handleTabChange}>
-            {renderContent()}
-        </SteamLayout>
+        <EditorialLayout
+            introColumn={introColumn}
+            aboutColumn={aboutColumn}
+            experienceColumn={experienceColumn}
+            projectsColumn={projectsColumn}
+            blogColumn={blogColumn}
+            contactColumn={contactColumn}
+        />
     );
 }

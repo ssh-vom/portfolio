@@ -1,3 +1,0 @@
-import{_ as e,l as s,H as n,e as i,I as p}from"./mermaid.core-C5yVOBGb.js";import{p as g}from"./treemap-KMMF4GRG-De_SC0sT.js";import"./index-D2gztF74.js";import"./min-B8KZwQjM.js";import"./_baseUniq-DQ-_WdwR.js";var v={parse:e(async r=>{const a=await g("info",r);s.debug(a)},"parse")},d={version:p.version+""},m=e(()=>d.version,"getVersion"),c={getVersion:m},l=e((r,a,o)=>{s.debug(`rendering info diagram
-`+r);const t=n(a);i(t,100,400,!0),t.append("g").append("text").attr("x",100).attr("y",40).attr("class","version").attr("font-size",32).style("text-anchor","middle").text(`v${o}`)},"draw"),f={draw:l},S={parser:v,db:c,renderer:f};export{S as diagram};
-//# sourceMappingURL=infoDiagram-WHAUD3N6-Hq72kmBv.js.map

@@ -17,12 +17,28 @@
     <meta name="twitter:description" content="Portfolio and blog of Shivom Sharma." />
     <meta name="twitter:image" content="https://shivom.dev/images/pfp.jpeg" />
     <!-- /opencode:meta -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-    <!-- Removed styles.css to avoid conflicts with new steam-theme.css -->
+    <link rel="preconnect" href="https://fonts.cdnfonts.com">
+    <link href="https://fonts.cdnfonts.com/css/departure-mono" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css" />
-    <script type="module" crossorigin src="/assets/index-D2gztF74.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DbgiV2qE.css">
+    
+    <!-- SVG Noise Filter for Dithering -->
+    <svg style="position: absolute; width: 0; height: 0;">
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/>
+        <feColorMatrix type="saturate" values="0"/>
+        <feComponentTransfer>
+          <feFuncR type="linear" slope="0.3" intercept="0.35"/>
+          <feFuncG type="linear" slope="0.3" intercept="0.35"/>
+          <feFuncB type="linear" slope="0.3" intercept="0.35"/>
+        </feComponentTransfer>
+      </filter>
+    </svg>
+    <script type="module" crossorigin src="/assets/index-B8qu2Z6c.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-ByUz224h.css">
   </head>
   <body>
     <div id="root"></div>

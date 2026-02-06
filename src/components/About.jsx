@@ -1,21 +1,35 @@
 export default function About() {
     return (
-        <div className="steam-box" id="about-education">
-            <div className="steam-box-title">About Me</div>
-            <div className="about-text">
-                <p className="about-paragraph">
-                    Hello there, my name is <strong>Shivom</strong>. I'm a Mechatronics Engineering & Business Student, working in Software Engineering. I enjoy problem-solving, creating, and doing
-                    it through a variety of mediums including programming, <a href="https://instagram.com/6ixspirit" target="_blank" rel="noopener noreferrer" className="about-link">video editing</a>, and many more!
-                    Currently open to new opportunities/work prospects!
+        <>
+            <div className="column-title">About</div>
+            
+            <div className="about-content">
+                <p>
+                    Hello, I'm <strong>Shivom</strong> — a Software Engineer and Mechatronics Engineering 
+                    & Business student at McMaster University. I build things that live at the intersection 
+                    of software and hardware, with a particular interest in systems programming, embedded 
+                    systems, and developer tooling.
+                </p>
+                
+                <p>
+                    Beyond code, I explore creative mediums like <a href="https://instagram.com/6ixspirit" target="_blank" rel="noopener noreferrer">video editing</a> and 
+                    digital art. I believe the best engineering happens when technical rigor meets creative 
+                    thinking.
                 </p>
 
-                <div className="steam-box-title about-section-title">Education</div>
-                <div className="about-education">
-                    <p className="about-education-item"><strong className="about-education-label">Degree:</strong> 4th year Mechatronics Engineering & Business @ McMaster University</p>
-                    <p className="about-education-item"><strong className="about-education-label">Expected Graduation:</strong> 2026</p>
-                    <p className="about-education-item"><strong className="about-education-label">Courses:</strong> OS, RTOS, DSA, AI/ML, Embedded Systems, Software Development</p>
+                <p>
+                    Currently in my final year, expected to graduate in 2026. I'm always open to 
+                    opportunities that challenge me to grow — whether that's in systems engineering, 
+                    full-stack development, or something entirely new.
+                </p>
+            </div>
+
+            <div className="current-focus">
+                <div className="current-focus-label">Currently Building</div>
+                <div className="current-focus-text">
+                    OpenArcade — A local-first arcade game platform for classic game development
                 </div>
             </div>
-        </div>
+        </>
     );
 }

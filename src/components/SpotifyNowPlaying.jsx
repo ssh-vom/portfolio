@@ -41,11 +41,13 @@ export default function SpotifyNowPlaying() {
 
     if (error && !track) {
         return (
-            <div className="steam-playing-box">
-                <div className="steam-playing-header">Currently Playing</div>
-                <div className="steam-playing-status">
-                    <i className="fa fa-spotify"></i>
-                    Not playing anything...
+            <div className="spotify-widget">
+                <div className="spotify-header">
+                    <i className="fab fa-spotify"></i>
+                    Now Playing
+                </div>
+                <div className="spotify-not-playing">
+                    Silence...
                 </div>
             </div>
         );
@@ -56,25 +58,35 @@ export default function SpotifyNowPlaying() {
     const progress = (track.currentTime / track.duration) * 100;
 
     return (
-        <div className="steam-playing-box">
-            <div className="steam-playing-header">Currently Playing</div>
-            <div className="steam-playing-details">
-                <img src={track.albumCover || ''} alt="Album Art" className="steam-album-art" />
-                <div className="steam-track-info">
-                    <div className="steam-track-title">{track.name}</div>
-                    <div className="steam-track-artist">{track.artist}</div>
-                    <div className="steam-track-meta">
-                        <i className="fa fa-music"></i> Playing on Spotify
-                    </div>
+        <div className="spotify-widget">
+            <div className="spotify-header">
+                <i className="fab fa-spotify"></i>
+                Now Playing
+            </div>
+            
+            <div className="spotify-content">
+                <div className="spotify-album-art">
+                    <img src={track.albumCover || ''} alt="Album Art" />
+                </div>
+                
+                <div className="spotify-info">
+                    <div className="spotify-track">{track.name}</div>
+                    <div className="spotify-artist">{track.artist}</div>
+                    <div className="spotify-meta">Spotify</div>
                 </div>
             </div>
 
-            <div className="steam-track-progress">
-                <span className="steam-track-time">{formatTime(track.currentTime)}</span>
-                <div className="steam-track-bar">
-                    <div className="steam-track-bar-fill" style={{ width: `${progress}%` }}></div>
+            <div className="spotify-progress">
+                <div className="spotify-progress-bar">
+                    <div 
+                        className="spotify-progress-fill" 
+                        style={{ width: `${progress}%` }}
+                    ></div>
                 </div>
-                <span className="steam-track-time">{formatTime(track.duration)}</span>
+                <div className="spotify-time">
+                    <span>{formatTime(track.currentTime)}</span>
+                    <span>{formatTime(track.duration)}</span>
+                </div>
             </div>
         </div>
     );

@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { gruvboxDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import remarkGfm from 'remark-gfm';
 import { getPostBySlug } from '../utils/blog.js';
-import SteamLayout from '../components/SteamLayout.jsx';
+import EditorialLayout from '../components/EditorialLayout.jsx';
 
 function Mermaid({ chart }) {
     const [svg, setSvg] = useState('');
@@ -13,14 +13,15 @@ function Mermaid({ chart }) {
     useEffect(() => {
         import('mermaid').then(mermaid => {
             mermaid.default.initialize({
-                theme: 'dark',
+                theme: 'base',
                 themeVariables: {
-                    primaryColor: '#66c0f4',
-                    primaryTextColor: '#c6d4df',
-                    primaryBorderColor: '#3d4450',
-                    lineColor: '#8f98a0',
-                    secondaryColor: '#2a475e',
-                    tertiaryColor: '#1b2838',
+                    primaryColor: '#292524',
+                    primaryTextColor: '#faf9f7',
+                    primaryBorderColor: '#57534e',
+                    lineColor: '#78716c',
+                    secondaryColor: '#44403c',
+                    tertiaryColor: '#1c1917',
+                    fontFamily: 'Departure Mono, monospace',
                 },
                 securityLevel: 'loose',
             });
@@ -40,12 +41,8 @@ export default function BlogPost() {
     const { slug } = useParams();
     const [content, setContent] = useState('');
     const [frontmatter, setFrontmatter] = useState({});
-    const [readingMode, setReadingMode] = useState(() => {
-        return localStorage.getItem('readingMode') === 'true';
-    });
 
     useEffect(() => {
-        // Load post statically using the blog utilities
         const post = getPostBySlug(slug);
         if (post) {
             setContent(post.content);
@@ -56,12 +53,6 @@ export default function BlogPost() {
         }
     }, [slug]);
 
-    const toggleReadingMode = () => {
-        const newMode = !readingMode;
-        setReadingMode(newMode);
-        localStorage.setItem('readingMode', newMode.toString());
-    };
-
     const components = {
         code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || '');
@@ -70,7 +61,7 @@ export default function BlogPost() {
             }
             return !inline && match ? (
                 <SyntaxHighlighter
-                    style={gruvboxDark}
+                    style={vscDarkPlus}
                     language={match[1]}
                     PreTag="div"
                     {...props}
@@ -112,45 +103,39 @@ export default function BlogPost() {
         },
     };
 
-    return (
-        <SteamLayout activeTab="BLOG" readingMode={readingMode}>
-            <div className={`steam-box ${readingMode ? 'reading-mode' : ''}`} id="blog-post">
-                <div className="blog-post-actions">
-                    <Link
-                        to="/?tab=BLOG"
-                        className="edit-profile-btn blog-post-button"
-                    >
-                        <i className="fa fa-arrow-left"></i> Back to Blog
-                    </Link>
-                    <button
-                        onClick={toggleReadingMode}
-                        className="edit-profile-btn blog-post-button"
-                    >
-                        <i className={`fa ${readingMode ? 'fa-compress' : 'fa-expand'}`}></i>
-                        {readingMode ? 'Exit Reading Mode' : 'Reading Mode'}
-                    </button>
-                </div>
-
-                <div className="steam-box-title blog-post-title">
+    const readingContent = (
+        <>
+            <Link to="/" className="back-link">
+                ← Back
+            </Link>
+            
+            <div className="reading-mode-header">
+                <h1 className="reading-mode-title">
                     {frontmatter.title || 'Loading...'}
-                </div>
-
+                </h1>
                 {frontmatter.date && (
-                    <div className="blog-post-date">
-                        Posted on {String(frontmatter.date)}
+                    <div className="reading-mode-date">
+                        {String(frontmatter.date)}
                     </div>
                 )}
-
-                <div className="steam-post-content blog-post-content">
-                    <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
-                        rehypePlugins={[]}
-                        components={components}
-                    >
-                        {content}
-                    </ReactMarkdown>
-                </div>
             </div>
-        </SteamLayout>
+
+            <div className="reading-mode-content">
+                <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    rehypePlugins={[]}
+                    components={components}
+                >
+                    {content}
+                </ReactMarkdown>
+            </div>
+        </>
+    );
+
+    return (
+        <EditorialLayout 
+            introColumn={readingContent}
+            readingMode={true}
+        />
     );
 }
