@@ -4,6 +4,7 @@ export const projects = [
     description:
       "An accessible-modular gaming controller, multi-threaded firmware, and a configurator UI application.",
     github: "https://github.com/ssh-vom/openarcade",
+    previewImage: "/images/OPENARCADE.png",
   },
   {
     title: "Kalshi Research Engine | Python, Numpy, Pandas, TimescaleDB",
@@ -16,6 +17,7 @@ export const projects = [
     description:
       "A CLI tool to download Manga and Textbooks to Boox E-Ink Tablets.",
     github: "https://github.com/ssh-vom/boox-serve",
+    previewImage: "/images/boox_serve_project.png",
   },
   {
     title: "OpenAI PPO Agent | OpenAI Gym, Pytorch, Numpy",
@@ -28,6 +30,7 @@ export const projects = [
     description:
       "Created a TUI to preview, download and set macos wallpapers from wallhaven.cc",
     github: "https://github.com/ssh-vom/walls",
+    previewImage: "/images/walls_project.png",
   },
   {
     title: "Spotify Lyrics Searcher | Python, Genius Lyrics API, Spotify API",

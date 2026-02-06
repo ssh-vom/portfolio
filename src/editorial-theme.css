@@ -14,28 +14,29 @@
 
 /* ===== COLOR VARIABLES ===== */
 :root {
-  /* Dark Mode (Default) */
+  /* Dark Mode (Default) - Warm Stone */
   --bg-primary: #1c1917;
-  --bg-secondary: #292524;
-  --text-primary: #faf9f7;
-  --text-secondary: #a8a29e;
-  --text-muted: #78716c;
-  --border-color: rgba(250, 249, 247, 0.08);
-  --accent: #a8a29e;
-  --spotify-green: #1db954;
+  --bg-secondary: #2a2724;
+  --text-primary: #fafaf9;
+  --text-secondary: #d6d3d1;
+  --text-muted: #a8a29e;
+  --border-color: rgba(250, 250, 249, 0.15);
+  --accent: #d6d3d1;
+  --spotify-green: #22c55e;
   
   /* Dithering */
-  --noise-opacity: 0.06;
+  --noise-opacity: 0.05;
 }
 
 [data-theme="light"] {
-  --bg-primary: #faf9f7;
-  --bg-secondary: #f5f5f4;
-  --text-primary: #292524;
-  --text-secondary: #57534e;
-  --text-muted: #78716c;
-  --border-color: rgba(0, 0, 0, 0.08);
-  --accent: #57534e;
+  /* Light Mode - Warm Off-White */
+  --bg-primary: #f5f0e8;
+  --bg-secondary: #ebe5db;
+  --text-primary: #1a1714;
+  --text-secondary: #3d3934;
+  --text-muted: #7a7368;
+  --border-color: rgba(26, 23, 20, 0.12);
+  --accent: #3d3934;
   --spotify-green: #15803d;
   
   --noise-opacity: 0.04;
@@ -738,6 +739,56 @@ a:hover {
 .reading-mode-content pre code {
   background: none;
   padding: 0;
+}
+
+/* ===== HOVER LINK PREVIEWS ===== */
+.hover-link-container {
+  position: relative;
+  display: inline;
+}
+
+.hover-link {
+  position: relative;
+  z-index: 10;
+}
+
+.hover-preview {
+  position: fixed;
+  z-index: 9999;
+  width: 280px;
+  height: 180px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  pointer-events: none;
+  animation: previewFadeIn 0.2s ease-out;
+}
+
+.hover-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%);
+}
+
+@keyframes previewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Mobile: hide hover previews */
+@media (max-width: 768px) {
+  .hover-preview {
+    display: none;
+  }
 }
 
 .back-link {

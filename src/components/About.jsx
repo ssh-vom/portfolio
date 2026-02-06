@@ -1,3 +1,5 @@
+import HoverLink from './HoverLink.jsx';
+
 export default function About() {
     return (
         <>
@@ -12,7 +14,7 @@ export default function About() {
                 </p>
                 
                 <p>
-                    Beyond code, I explore creative mediums like <a href="https://instagram.com/6ixspirit" target="_blank" rel="noopener noreferrer">video editing</a> and 
+                    Beyond code, I explore creative mediums like <HoverLink href="https://instagram.com/6ixspirit" previewImage="/images/video-editing-preview.jpg">video editing</HoverLink> and 
                     digital art. I believe the best engineering happens when technical rigor meets creative 
                     thinking.
                 </p>

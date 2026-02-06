@@ -1,4 +1,5 @@
 import { projects } from '../data/projects.js';
+import HoverLink from '../components/HoverLink.jsx';
 
 function parseProject(project) {
     // Parse title and tech stack
@@ -6,7 +7,13 @@ function parseProject(project) {
     const name = parts[0];
     const techStack = parts[1] ? parts[1].split(', ') : [];
     
-    return { name, techStack, description: project.description, github: project.github };
+    return { 
+        name, 
+        techStack, 
+        description: project.description, 
+        github: project.github,
+        previewImage: project.previewImage 
+    };
 }
 
 export default function Projects() {
@@ -16,12 +23,22 @@ export default function Projects() {
             
             <div className="project-list">
                 {projects.map((project, index) => {
-                    const { name, techStack, description, github } = parseProject(project);
+                    const { name, techStack, description, github, previewImage } = parseProject(project);
                     
                     return (
                         <div key={index} className="project-item">
                             <div className="project-header">
-                                <div className="project-name">{name}</div>
+                                {previewImage ? (
+                                    <HoverLink 
+                                        href={github} 
+                                        previewImage={previewImage}
+                                        className="project-name-link"
+                                    >
+                                        <span className="project-name">{name}</span>
+                                    </HoverLink>
+                                ) : (
+                                    <span className="project-name">{name}</span>
+                                )}
                                 <a
                                     href={github}
                                     target="_blank"
