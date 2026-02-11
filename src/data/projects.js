@@ -7,6 +7,14 @@ export const projects = [
     previewImage: "/images/OPENARCADE.png",
   },
   {
+    title: "AnalyticZ | Python, TypeScript, Svelte",
+    description:
+      "An agent chat with job scheduling, threads, and concurrent data analysis",
+    github: "https://github.com/ssh-vom/analytics-agent",
+    previewImage:
+      "https://private-user-images.githubusercontent.com/81389102/548056300-02443af1-5788-41e4-9761-226effb11328.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzA3ODY0MjcsIm5iZiI6MTc3MDc4NjEyNywicGF0aCI6Ii84MTM4OTEwMi81NDgwNTYzMDAtMDI0NDNhZjEtNTc4OC00MWU0LTk3NjEtMjI2ZWZmYjExMzI4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjAyMTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwMjExVDA1MDIwN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTY3YTFmYjM2YzM0NGQwMmVjYjQxOTFiYmEzNDkzN2U5YWZkODgyZTJmZGE2M2YxNTA0NDEyMjFiMmY2MjA3NTgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.EaPKHlfxXX71O59MoNYr7LhJ_IUy96QbxXsbW_IhojM",
+  },
+  {
     title: "Kalshi Research Engine | Python, Numpy, Pandas, TimescaleDB",
     description:
       "A research project aimed at determining the accuracy of prediction markets like Kalshi.",
