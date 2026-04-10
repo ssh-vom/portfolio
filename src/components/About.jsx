@@ -3,33 +3,39 @@ import HoverLink from './HoverLink.jsx';
 export default function About() {
     return (
         <>
-            <div className="column-title">About</div>
+            <h2 className="section-heading">About</h2>
 
-            <div className="about-content">
+            <div className="about-text">
                 <p>
-                    Hello, I'm <strong>Shivom</strong> — a Software Engineer and Mechatronics Engineering
-                    & Business student at McMaster University. I build things that live at the intersection
-                    of software and hardware, with a particular interest in systems programming, embedded
-                    systems, and developer tooling.
+                    I'm a <strong>Software Engineer</strong> and final-year <strong>Mechatronics Engineering & Business</strong> student at 
+                    McMaster University. I specialize in building systems that bridge software and hardware — from low-level 
+                    embedded firmware to distributed backend infrastructure.
                 </p>
 
                 <p>
-                    Beyond code, I explore creative mediums like <HoverLink href="https://instagram.com/6ixspirit" previewImage="/images/video-editing-preview.jpg">video editing</HoverLink> and
-                    digital art. I believe the best engineering happens when technical rigor meets creative
-                    thinking.
+                    My experience spans <strong>AI/ML orchestration platforms</strong>, <strong>real-time robotics systems</strong>, and 
+                    <strong> high-performance computing</strong> (CUDA, Fast Multipole Methods). I've interned at Tesla three times, 
+                    working across software engineering, distributed systems, and controls/vision systems.
                 </p>
 
                 <p>
-                    Currently in my final year, expected to graduate in 2026. I'm always open to
-                    opportunities that challenge me to grow — whether that's in systems engineering,
-                    full-stack development, or something entirely new.
+                    Beyond engineering, I explore creative outlets like{' '}
+                    <HoverLink href="https://instagram.com/6ixspirit" previewImage="/images/video-editing-preview.jpg">
+                        video editing
+                    </HoverLink> and digital art. I believe the best technical solutions emerge 
+                    when rigorous engineering meets creative problem-solving.
+                </p>
+
+                <p>
+                    Expected graduation: <strong>2026</strong>. Always open to opportunities that challenge me to grow — 
+                    whether in systems engineering, full-stack development, or something entirely new.
                 </p>
             </div>
 
             <div className="current-focus">
                 <div className="current-focus-label">Currently Building</div>
                 <div className="current-focus-text">
-                    OpenArcade - Modular, Accessible, Video Gaming Controller
+                    OpenArcade — Modular, accessible gaming controller with multi-threaded firmware & configurator UI
                 </div>
             </div>
         </>

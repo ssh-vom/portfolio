@@ -1,28 +1,45 @@
 import roles from '../data/experience.yaml';
 
+function parseTitle(title) {
+    const parts = title.split(',').map(s => s.trim());
+    return {
+        company: parts[0] || '',
+        role: parts[1] || ''
+    };
+}
+
 export default function Timeline() {
     return (
         <>
-            <div className="column-title">Experience</div>
-            
-            <div className="timeline">
-                {roles.map((role, idx) => (
-                    <div 
-                        className={`timeline-item ${idx === 0 ? 'active' : ''}`} 
-                        key={idx}
-                    >
-                        <div className="timeline-date">{role.date}</div>
-                        <div className="timeline-role">{role.title}</div>
-                        <div className="timeline-company">{role.company}</div>
-                        <div className="timeline-description">
-                            <ul>
-                                {role.bullets.map((bullet, i) => (
+            <div className="section-header">
+                <div className="section-label">Experience</div>
+                <h2 className="section-title">Where I've Worked</h2>
+            </div>
+
+            <div className="experience-grid">
+                {roles.map((role, idx) => {
+                    const { company, role: roleTitle } = parseTitle(role.title);
+                    
+                    return (
+                        <div className="experience-card" key={idx}>
+                            <div className="experience-card-header">
+                                <h3 className="experience-card-title">{company}</h3>
+                            </div>
+                            
+                            <div className="experience-card-meta">
+                                <span className="experience-card-role">{roleTitle}</span>
+                            </div>
+                            
+                            <div className="experience-card-date">{role.date}</div>
+                            
+                            <ul className="experience-card-bullets">
+                                {role.bullets.slice(0, 4).map((bullet, i) => (
                                     <li key={i}>{bullet}</li>
                                 ))}
                             </ul>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
         </>
     );

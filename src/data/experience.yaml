@@ -1,48 +1,35 @@
-- companyLogo: https://brand.mcmaster.ca/app/uploads/2024/02/mcmaster-logo-2024-col.jpg
-  title: SwiftWare Lab, Undergraduate Researcher 
+- company: Tesla
+  title: Tesla, Software Engineer Intern — Material Flow Robotics & Design
+  date: May 2025 — August 2025
   bullets:
-    - Developed multiple solvers in C++ for fluid simulations to reduce memory and
-      computational footprint
-    - Outperformed BEM++ PDE compression benchmark by developing a Fast Multipole
-      solver in C++/CUDA
-    - Produced data visualizations and technical reports communicating simulation
-      insights to Waterloo researchers
-- companyLogo: https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png
-  title: Tesla, Software Engineer Intern
-  bullets:
-    - Led end-to-end development of an AI agent orchestration platform (Python, Go, TypeScript, LangGraph), automating robotics and factory design workflows for 1,500+ engineers
-    - Developed an internal full stack version control service for part tracking using React, FastAPI and MongoDB
-    - Designed scalable LLM backend infrastructure with REST APIs, Kafka queues, and dynamic Zustand UI state
-    - Improved CI/CD reliability by orchestrating Kubernetes deployments using Helm, Docker, and GitHub Actions
-    - Enabled real-time UI updates by implementing async agent communication with WebSockets, and Redis pub/sub
+    - Led end-to-end development of an AI agent platform using Python, Go, and LangGraph, enabling 200+ engineers to automate factory layout generation and diagnose robotics failures through natural-language queries
+    - Engineered concurrent services using REST APIs, Kafka, and WebSockets to support ≤150ms multi-agent event streaming
+    - Built a full-stack part-tracking platform with React, FastAPI, MongoDB, centralizing material flow traceability for 2K+ engineers
+    - Standardized CI/CD and service deployment with Kubernetes, Docker, and GitHub Actions, improving release reliability
 
-- companyLogo: https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png
-  title: Tesla, Software Engineer Intern
+- company: Tesla
+  title: Tesla, Software Engineer Intern — Material Flow Robotics & Design
+  date: June 2024 — August 2024
   bullets:
-    - Built distributed backend systems (Python, Redis, Celery, GraphQL) powering a 3D
-      factory design tool used by 2K+ engineers to compute layout-dependent
-      performance, capacity, and OPEX/CAPEX trade-offs.
-    - Decreased query latency by 18% through schema redesign of SQL Server,
-      PostgreSQL, and MySQL databases
-    - Optimized ETL pipelines in Airflow and FastAPI, leveraging Pandas and NumPy to
-      increase data throughput
-    - Saved 80+ engineering hours per week by reducing Revit model load times with
-      gzip compression and AWS S3 storage
-    - Established automated pytest unit and A/B tests in GitHub CI/CD, accelerating
-      deployments across 10+ microservices
+    - Developed a TypeScript/FastAPI application to streamline financial modeling for factory design, leveraging Pandas and GraphQL to reduce engineering analysis time by 15 hours weekly
+    - Optimized Revit model load times by implementing gzip compression and AWS S3 caching, saving 80+ engineering hours per week
+    - Redesigned SQL Server/PostgreSQL schemas and cache patterns in Redis, reducing query latency by 18% for 300+ engineers
+    - Scaled Airflow ETL pipelines by batching workloads and parallelizing Celery workers, increasing throughput by 2X
+    - Introduced pytest unit and integration testing across 10+ microservices, integrated into GitHub Actions CI pipelines
 
-- companyLogo: https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png
-  title: Tesla, Controls Engineer Intern
+- company: Tesla
+  title: Tesla, Controls Engineer Intern — Drive Unit
+  date: September 2023 — May 2024
   bullets:
-    - Owned end-to-end development of a production vision system for Cybertruck rotor
-      QC, integrating Python/Halcon image processing with PLC-driven robotics to meet
-      real-time cycle-time constraints
-    - Designed image processing algorithms to reduce lighting and hardware costs by
-      $20K per line
-    - Automated collection of 5K+ images daily for model training by integrating C#
-      APIs with PLC and HMI devices
-    - Accelerated production line cycle times by programming PLC and Robot logic into
-      Tesla Standard Library
-    - Applied Siemens TIA Portal diagnostics, logic analyzers, and hardware debugging
-      tools to validate/tune various I/O
+    - Developed an automated defect detection vision system for the Cybertruck, generating >$200K in annual cost savings
+    - Designed image-processing algorithms in Python that reduced lighting and hardware costs by $20K per production line
+    - Automated collection of 5K+ images daily for model training through C# integrations with PLC and HMI devices
+    - Improved production cycle times by 12% by optimizing PLC and robot logic in the Tesla Standard Library using TIA Portal
+    - Configured Juniper network switches to allow maximum bandwidth transfer for cameras, sensors and other logging hardware
 
+- company: McMaster University
+  title: McMaster University, Undergraduate Researcher — HPC Lab
+  date: March 2025 — November 2025
+  bullets:
+    - Developed multiple C++ solvers for fluid-simulation workloads, reducing memory usage and computational cost
+    - Implemented a Fast Multipole Method solver in C++/CUDA, outperforming the BEM++ PDE benchmark for high-order EM simulations

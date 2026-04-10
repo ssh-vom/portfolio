@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import vscDarkPlus from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 import remarkGfm from 'remark-gfm';
 import { getPostBySlug } from '../utils/blog.js';
-import EditorialLayout from '../components/EditorialLayout.jsx';
+import MinimalHeader from '../components/MinimalHeader.jsx';
 
 function Mermaid({ chart }) {
     const [svg, setSvg] = useState('');
@@ -41,6 +41,21 @@ export default function BlogPost() {
     const { slug } = useParams();
     const [content, setContent] = useState('');
     const [frontmatter, setFrontmatter] = useState({});
+    const [theme, setTheme] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('theme') || 'dark';
+        }
+        return 'dark';
+    });
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }, [theme]);
+
+    const toggleTheme = () => {
+        setTheme(prev => prev === 'dark' ? 'light' : 'dark');
+    };
 
     useEffect(() => {
         const post = getPostBySlug(slug);
@@ -103,39 +118,40 @@ export default function BlogPost() {
         },
     };
 
-    const readingContent = (
-        <>
-            <Link to="/" className="back-link">
-                ← Back
-            </Link>
-            
-            <div className="reading-mode-header">
-                <h1 className="reading-mode-title">
-                    {frontmatter.title || 'Loading...'}
-                </h1>
-                {frontmatter.date && (
-                    <div className="reading-mode-date">
-                        {String(frontmatter.date)}
-                    </div>
-                )}
-            </div>
-
-            <div className="reading-mode-content">
-                <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    rehypePlugins={[]}
-                    components={components}
-                >
-                    {content}
-                </ReactMarkdown>
-            </div>
-        </>
-    );
-
     return (
-        <EditorialLayout 
-            introColumn={readingContent}
-            readingMode={true}
-        />
+        <div data-theme={theme}>
+            <MinimalHeader theme={theme} toggleTheme={toggleTheme} />
+
+            <div className="reading-mode-container">
+                <Link to="/" className="back-link">
+                    ← Back to home
+                </Link>
+
+                <div className="reading-mode-header">
+                    <h1 className="reading-mode-title">
+                        {frontmatter.title || 'Loading...'}
+                    </h1>
+                    {frontmatter.date && (
+                        <div className="reading-mode-date">
+                            {String(frontmatter.date)}
+                        </div>
+                    )}
+                </div>
+
+                <div className="reading-mode-content">
+                    <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        rehypePlugins={[]}
+                        components={components}
+                    >
+                        {content}
+                    </ReactMarkdown>
+                </div>
+            </div>
+
+            <footer className="site-footer">
+                <span>© {new Date().getFullYear()} Shivom Sharma — Toronto, ON</span>
+            </footer>
+        </div>
     );
 }

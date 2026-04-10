@@ -1,90 +1,43 @@
 export const projects = [
   {
-    title: "OpenArcade | C, C++, Python, JavaScript",
+    title: "OpenArcade | Python, C, C++, React, Three.js",
     description:
-      "An accessible-modular gaming controller, multi-threaded firmware, and a configurator UI application.",
+      "Modular accessible gaming controller with distributed BLE mesh, custom messaging protocols, and a Cloudflare-hosted configuration tool.",
     github: "https://github.com/ssh-vom/openarcade",
     previewImage: "/images/OPENARCADE.png",
   },
   {
-    title: "AnalyticZ | Python, TypeScript, Svelte",
+    title: "AnalyticZ | Python, FastAPI, SvelteKit, Docker",
     description:
-      "An agent chat with job scheduling, threads, and concurrent data analysis",
+      "Exploratory data analysis AI agent with sandboxed SQL/Python execution, async chat jobs, and parallel subagent fan-out.",
     github: "https://github.com/ssh-vom/analytics-agent",
     previewImage:
       "https://private-user-images.githubusercontent.com/81389102/548056300-02443af1-5788-41e4-9761-226effb11328.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzA3ODY0MjcsIm5iZiI6MTc3MDc4NjEyNywicGF0aCI6Ii84MTM4OTEwMi81NDgwNTYzMDAtMDI0NDNhZjEtNTc4OC00MWU0LTk3NjEtMjI2ZWZmYjExMzI4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjAyMTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwMjExVDA1MDIwN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTY3YTFmYjM2YzM0NGQwMmVjYjQxOTFiYmEzNDkzN2U5YWZkODgyZTJmZGE2M2YxNTA0NDEyMjFiMmY2MjA3NTgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.EaPKHlfxXX71O59MoNYr7LhJ_IUy96QbxXsbW_IhojM",
   },
   {
-    title: "Kalshi Research Engine | Python, Numpy, Pandas, TimescaleDB",
+    title: "Sniffles | C++, Qt",
     description:
-      "A research project aimed at determining the accuracy of prediction markets like Kalshi.",
+      "Packet sniffer and network protocol analyzer with Qt frontend for capturing, inspecting, and analyzing live network traffic.",
+    github: "https://github.com/ssh-vom/sniffles",
+  },
+  {
+    title: "Kalshi Research Engine | Python, NumPy, Pandas, TimescaleDB",
+    description:
+      "Research project aimed at determining the accuracy of prediction markets like Kalshi.",
     github: "https://github.com/ssh-vom/kalshi-research",
   },
   {
-    title: "BooxServe | Go, Docker, TCP/IP, HTTP",
+    title: "BooxServe | Go, Docker, TCP/IP",
     description:
-      "A CLI tool to download Manga and Textbooks to Boox E-Ink Tablets.",
+      "CLI tool to download manga and textbooks to BOOX E-Ink tablets via REST APIs and TCP/IP.",
     github: "https://github.com/ssh-vom/boox-serve",
     previewImage: "/images/boox_serve_project.png",
   },
   {
-    title: "OpenAI PPO Agent | OpenAI Gym, Pytorch, Numpy",
+    title: "Walls | Python, Textual, REST",
     description:
-      "Implemented OpenAI's research paper with a simplified neural network for efficient RL training.",
-    github: "https://github.com/ssh-vom/OpenAI_PPO_Pong",
-  },
-  {
-    title: "Walls | Python, Textual, Ghostty, REST",
-    description:
-      "Created a TUI to preview, download and set macos wallpapers from wallhaven.cc",
+      "TUI to preview, download and set macOS wallpapers from wallhaven.cc.",
     github: "https://github.com/ssh-vom/walls",
     previewImage: "/images/walls_project.png",
-  },
-  {
-    title: "Spotify Lyrics Searcher | Python, Genius Lyrics API, Spotify API",
-    description:
-      "Developed a fuzzy searcher to get close matches for songs I can't quite remember the lyrics for.",
-    github: "https://github.com/ssh-vom/LyricsSearcher",
-  },
-  {
-    title: "Digital Logic Components | Verilog, Quartus",
-    description:
-      "Built reusable combinational/sequential modules (muxes, counters, FFs) and a seven‑segment decoder validated with simulation.",
-    github:
-      "https://github.com/ssh-vom/FPGA/tree/main/projects/digital-logic-components",
-  },
-  {
-    title: "Reaction Timer FSM | Verilog, ModelSim, Quartus",
-    description:
-      "Designed a reaction‑time game with an LFSR‑based random delay, FSM control logic, and seven‑segment display output.",
-    github:
-      "https://github.com/ssh-vom/FPGA/tree/main/projects/reaction-timer-fsm",
-  },
-  {
-    title: "Audio DSP FIR + Echo Engine | Verilog, FPGA DSP",
-    description:
-      "Implemented FIR filtering and echo effects with audio routing, serial/parallel conversion, and I2C‑controlled IO.",
-    github:
-      "https://github.com/ssh-vom/FPGA/tree/main/projects/audio-dsp-fir-echo",
-  },
-  {
-    title: "Nios II Platform Integration | Qsys, Quartus, C++, Verilog",
-    description:
-      "Integrated a Nios II system with memory‑mapped IO, on‑chip memory, and JTAG UART; verified behavior with SignalTap.",
-    github:
-      "https://github.com/ssh-vom/FPGA/tree/main/projects/nios-ii-platform-integration",
-  },
-  {
-    title: "Soft CPU Stepper Controller | Verilog, Quartus, C++",
-    description:
-      "Built a custom soft CPU datapath (ALU, regfile, PC) with control FSM and branching to drive a stepper motor.",
-    github:
-      "https://github.com/ssh-vom/FPGA/tree/main/projects/soft-cpu-stepper-controller",
-  },
-  {
-    title: "Sniffles | C++, Qt",
-    description:
-      "A lightweight packet sniffer meant to emulate wireshark functionality",
-    github: "https://github.com/ssh-vom/sniffles",
   },
 ];
