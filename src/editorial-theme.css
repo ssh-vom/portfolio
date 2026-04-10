@@ -140,6 +140,25 @@ a:hover {
   mix-blend-mode: screen;
 }
 
+@media (max-width: 968px) {
+  .gojo-watermark {
+    width: 70vw;
+    opacity: 0.12;
+  }
+  
+  .gojo-watermark img {
+    object-fit: contain;
+    object-position: right center;
+  }
+}
+
+@media (max-width: 640px) {
+  .gojo-watermark {
+    width: 85vw;
+    opacity: 0.08;
+  }
+}
+
 [data-theme="light"] .gojo-watermark {
   opacity: 0.16;
 }
@@ -267,24 +286,41 @@ a:hover {
 }
 
 .hero-photo-wrapper {
-  width: 140px;
-  height: 140px;
+  width: 160px;
+  height: 160px;
   flex-shrink: 0;
   overflow: hidden;
-  border-radius: 4px;
-  margin-top: 12px;
+  border-radius: 50%;
+  position: relative;
+  margin-top: 0;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+  box-shadow: 0 8px 32px rgba(201, 162, 39, 0.15);
+}
+
+.hero-photo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  z-index: 1;
 }
 
 .hero-photo-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(20%);
-  transition: filter 0.3s;
+  border-radius: 50%;
+  filter: grayscale(30%) contrast(1.05);
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-photo-wrapper:hover .hero-photo-img {
-  filter: grayscale(0%);
+  filter: grayscale(0%) contrast(1.1);
+  transform: scale(1.05);
 }
 
 .hero-name {
@@ -866,10 +902,6 @@ main {
     grid-template-columns: 1fr;
   }
   
-  .watermark {
-    display: none;
-  }
-  
   .spotify-widget {
     display: none;
   }
@@ -877,15 +909,15 @@ main {
 
 @media (max-width: 768px) {
   .hero-middle {
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 32px;
   }
   
   .hero-photo-wrapper {
-    width: 80px;
-    height: 80px;
-    margin-top: 8px;
+    width: 120px;
+    height: 120px;
+    align-self: flex-start;
   }
   
   .hero-name {
@@ -904,6 +936,11 @@ main {
   
   .hero {
     padding: 100px 20px 60px;
+  }
+  
+  .hero-photo-wrapper {
+    width: 100px;
+    height: 100px;
   }
   
   .hero-bottom {
