@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import App from './pages/App.jsx';
 import BlogPost from './pages/BlogPost.jsx';
-import './editorial-theme.css';
+import './terminal-theme.css';
 
 const rootElement = document.getElementById('root');
 createRoot(rootElement).render(

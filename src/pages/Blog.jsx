@@ -18,27 +18,21 @@ export default function Blog() {
     }, []);
 
     if (posts.length === 0) {
-        return null; // Hide section if no posts
+        return null;
     }
 
     return (
-        <>
-            <div className="section-header">
-                <div className="section-label">Writing</div>
-                <h2 className="section-title">Recent Thoughts</h2>
-            </div>
-
-            <div className="blog-list">
-                {posts.map((post) => (
-                    <div key={post.slug} className="blog-item">
-                        <div className="blog-date">{String(post.date)}</div>
-                        <Link to={`/blog/${post.slug}`} className="blog-title">
-                            {post.title}
-                        </Link>
-                        <div className="blog-read-time">{estimateReadingTime(post.content)}</div>
-                    </div>
-                ))}
-            </div>
-        </>
+        <div className="blog-list">
+            {posts.map((post) => (
+                <Link 
+                    to={`/blog/${post.slug}`} 
+                    className="blog-item"
+                    key={post.slug}
+                >
+                    <span className="blog-title">{post.title}</span>
+                    <span className="blog-meta">{String(post.date)} · {estimateReadingTime(post.content)}</span>
+                </Link>
+            ))}
+        </div>
     );
 }

@@ -22,9 +22,6 @@ export default function EditorialLayout({ children }) {
     <div data-theme={theme}>
       <MinimalHeader theme={theme} toggleTheme={toggleTheme} />
       {children}
-      <footer className="site-footer">
-        <span>© {new Date().getFullYear()} Shivom Sharma — Toronto, ON</span>
-      </footer>
     </div>
   );
 }

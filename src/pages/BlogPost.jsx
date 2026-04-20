@@ -122,23 +122,24 @@ export default function BlogPost() {
         <div data-theme={theme}>
             <MinimalHeader theme={theme} toggleTheme={toggleTheme} />
 
-            <div className="reading-mode-container">
+            <div className="reading-container">
                 <Link to="/" className="back-link">
                     ← Back to home
                 </Link>
 
-                <div className="reading-mode-header">
-                    <h1 className="reading-mode-title">
+                <div className="reading-header">
+                    <div className="reading-label">Blog</div>
+                    <h1 className="reading-title">
                         {frontmatter.title || 'Loading...'}
                     </h1>
                     {frontmatter.date && (
-                        <div className="reading-mode-date">
+                        <div className="reading-date">
                             {String(frontmatter.date)}
                         </div>
                     )}
                 </div>
 
-                <div className="reading-mode-content">
+                <div className="reading-content">
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         rehypePlugins={[]}

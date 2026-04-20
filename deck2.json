@@ -1,0 +1,58 @@
+{
+  "title": "Portfolio Redesign — Bold Directions",
+  "slides": [
+    {
+      "id": "aesthetic",
+      "title": "Choose Your Bold Aesthetic",
+      "context": "Four bold, geometric, high-impact directions inspired by your selection of Constructivist. Each maintains your core Tesla/AI/Robotics content.",
+      "columns": 2,
+      "options": [
+        {
+          "label": "Bauhaus Modernist",
+          "description": "Primary colors and geometric purity — circles, triangles, functional design",
+          "aside": "Inspired by the Bauhaus movement, Kandinsky, and functionalist design.\n\n• Primary palette: pure red (#dc2626), blue (#2563eb), yellow (#facc15), black\n• Basic geometric shapes as design elements — circles, triangles, rectangles\n• Asymmetric balance with mathematical precision\n• Grid-based layouts with intentional breaking points\n• Functional typography (Jost, Futura, Bauhaus-style fonts)\n• White space used as an active design element\n\nTimeless, intellectual, and universally respected design tradition.",
+          "recommended": true,
+          "previewBlocks": [
+            {
+              "type": "html",
+              "content": "<div style='background:#fff;padding:32px;height:100%;font-family:Futura,sans-serif;position:relative;overflow:hidden;'><div style='position:absolute;top:20px;right:20px;width:60px;height:60px;border-radius:50%;background:#dc2626;'></div><div style='position:absolute;top:50px;right:50px;width:30px;height:30px;background:#facc15;clip-path:polygon(50% 0%,0% 100%,100% 100%);'></div><div style='position:absolute;bottom:30px;left:30px;width:80px;height:4px;background:#2563eb;'></div><div style='position:relative;z-index:1;'><div style='font-size:9px;letter-spacing:0.2em;color:#999;margin-bottom:24px;'>FORM FOLLOWS FUNCTION</div><div style='font-size:48px;font-weight:600;color:#1a1a1a;line-height:0.95;letter-spacing:-0.02em;margin-bottom:16px;'>SHIVOM<br/>SHARMA</div><div style='display:flex;gap:16px;margin-bottom:24px;'><div style='width:12px;height:12px;border-radius:50%;background:#dc2626;'></div><div style='width:12px;height:12px;background:#2563eb;'></div><div style='width:12px;height:12px;background:#facc15;'></div></div><div style='border-left:4px solid #1a1a1a;padding-left:20px;margin-bottom:24px;'><div style='font-size:11px;color:#333;line-height:1.6;'><strong>SOFTWARE ENGINEER</strong><br/>Mechatronics • AI Agents<br/>Tesla / McMaster '26</div></div><div style='display:flex;gap:24px;font-size:10px;letter-spacing:0.1em;'><span style='color:#dc2626;font-weight:600;'>GITHUB</span><span style='color:#2563eb;'>LINKEDIN</span><span style='color:#666;'>EMAIL</span></div></div></div>"
+            }
+          ]
+        },
+        {
+          "label": "Tokyo Graphic",
+          "description": "Extreme verticality, kanji energy, massive contrast, international typographic style",
+          "aside": "Inspired by Japanese graphic design, 葛西薫 (Kasai Kaoru), and Japanese magazine culture.\n\n• Extreme vertical rhythm — 90px headlines with 9px body text\n• Vertical text elements alongside horizontal\n• Limited palette: ink black (#1a1a1a) with one accent (vermillion #dc4c4c or indigo #4a6741)\n• Massive contrast between filled and empty space\n• Bold sans-serifs with geometric precision (Hiragino, Yu Gothic)\n• Information-dense but breathable layouts\n\nSophisticated, international, and deeply considered visual hierarchy.",
+          "previewBlocks": [
+            {
+              "type": "html",
+              "content": "<div style='background:#fff;padding:28px;height:100%;font-family:Hiragino Sans,sans-serif;position:relative;'><div style='position:absolute;top:20px;right:20px;font-size:60px;color:#dc4c4c;font-weight:900;writing-mode:vertical-rl;line-height:1;'>志</div><div style='position:relative;z-index:1;'><div style='font-size:8px;letter-spacing:0.3em;color:#999;margin-bottom:8px;'>シヴォム・シャルマ</div><div style='font-size:52px;font-weight:900;color:#1a1a1a;line-height:0.9;letter-spacing:-0.03em;margin-bottom:8px;'>SHIVOM<br/>SHARMA</div><div style='width:100%;height:2px;background:#1a1a1a;margin:20px 0;'></div><div style='display:flex;justify-content:space-between;margin-bottom:24px;'><div style='font-size:10px;letter-spacing:0.15em;color:#666;'>SOFTWARE<br/>ENGINEER</div><div style='text-align:right;'><div style='font-size:10px;letter-spacing:0.15em;color:#dc4c4c;'>TESLA</div><div style='font-size:9px;color:#999;'>3 Internships</div></div></div><div style='border-top:1px solid #ddd;padding-top:16px;'><div style='font-size:20px;font-weight:700;color:#1a1a1a;margin-bottom:8px;'>AI / Robotics / Vision</div><div style='display:flex;gap:20px;font-size:10px;color:#666;'><span>OpenArcade</span><span>AnalyticZ</span><span>Research</span></div></div><div style='display:flex;gap:24px;margin-top:24px;font-size:9px;letter-spacing:0.1em;'><span style='border-bottom:1px solid #1a1a1a;'>GITHUB</span><span style='color:#999;'>LINKEDIN</span></div></div></div>"
+            }
+          ]
+        },
+        {
+          "label": "Art Deco Metropolis",
+          "description": "Machine Age luxury with gold, black, sunbursts, and streamlined geometry",
+          "aside": "Inspired by 1920s Art Deco, Metropolis (1927), and the Machine Age aesthetic.\n\n• Luxurious palette: deep black (#0a0a0a), champagne gold (#d4af37), cream (#f5f5dc)\n• Sunburst rays, streamlined curves, stepped patterns\n• High contrast geometric ornamentation\n• Vertical emphasis with skyscraper proportions\n• Elegant condensed serif or geometric sans-serifs\n• Symmetry with controlled asymmetry for visual interest\n\nProjects ambition, sophistication, and timeless elegance.",
+          "previewBlocks": [
+            {
+              "type": "html",
+              "content": "<div style='background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%);padding:32px;height:100%;font-family:Didot,serif;position:relative;overflow:hidden;'><div style='position:absolute;top:0;left:50%;transform:translateX(-50%);width:200px;height:100px;background:radial-gradient(ellipse at center,rgba(212,175,55,0.15) 0%,transparent 70%);'></div><div style='position:absolute;bottom:20px;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent 0%,#d4af37 50%,transparent 100%);'></div><div style='position:relative;z-index:1;'><div style='text-align:center;margin-bottom:20px;'><div style='font-size:8px;letter-spacing:0.4em;color:#d4af37;'>◆ ◆ ◆</div></div><div style='text-align:center;margin-bottom:24px;'><div style='font-size:44px;font-weight:300;color:#f5f5dc;line-height:0.95;letter-spacing:0.05em;text-shadow:0 0 20px rgba(212,175,55,0.3);'>SHIVOM<br/><span style='color:#d4af37;'>SHARMA</span></div></div><div style='display:flex;justify-content:center;gap:40px;margin-bottom:24px;'><div style='text-align:center;'><div style='font-size:9px;letter-spacing:0.2em;color:#d4af37;margin-bottom:4px;'>ENGINEER</div><div style='font-size:10px;color:#888;'>AI • Robotics</div></div><div style='width:1px;background:#333;'></div><div style='text-align:center;'><div style='font-size:9px;letter-spacing:0.2em;color:#d4af37;margin-bottom:4px;'>TESLA</div><div style='font-size:10px;color:#888;'>3× Intern</div></div><div style='width:1px;background:#333;'></div><div style='text-align:center;'><div style='font-size:9px;letter-spacing:0.2em;color:#d4af37;margin-bottom:4px;'>2026</div><div style='font-size:10px;color:#888;'>McMaster</div></div></div><div style='border:1px solid rgba(212,175,55,0.3);padding:16px;margin-bottom:20px;text-align:center;'><div style='font-size:11px;color:#d4af37;letter-spacing:0.15em;'>OPENARCADE // ANALYTICZ // VISION</div></div><div style='display:flex;justify-content:center;gap:32px;font-size:9px;letter-spacing:0.15em;color:#666;'><span>github</span><span style='color:#d4af37;'>linkedin</span><span>email</span></div></div></div>"
+            }
+          ]
+        },
+        {
+          "label": "Industrial Factory",
+          "description": "Raw steel, riveted metal, stenciled typography, safety yellow warning aesthetics",
+          "aside": "Inspired by industrial revolution, factory signage, and raw engineering materials.\n\n• Raw palette: steel gray (#4a4a4a), warning yellow (#facc15), hazard black, rust orange\n• Stenciled typography like crate markings and machinery plates\n• Riveted borders, metal textures, stamped effects\n• Technical specification layouts — data plate aesthetic\n• OSHA-style warning stripes and safety markings\n• Functional, no-nonsense information design\n\nShows you build real things that work in the real world.",
+          "previewBlocks": [
+            {
+              "type": "html",
+              "content": "<div style='background:#3a3a3a;padding:28px;height:100%;font-family:Arial Black,sans-serif;position:relative;'><div style='position:absolute;top:0;left:0;right:0;height:8px;background:repeating-linear-gradient(45deg,#facc15,#facc15 10px,#1a1a1a 10px,#1a1a1a 20px);'></div><div style='position:absolute;bottom:0;left:0;right:0;height:8px;background:repeating-linear-gradient(45deg,#facc15,#facc15 10px,#1a1a1a 10px,#1a1a1a 20px);'></div><div style='position:relative;z-index:1;'><div style='background:#2a2a2a;border:3px solid #555;padding:20px;margin-bottom:20px;box-shadow:inset 0 0 20px rgba(0,0,0,0.5);'><div style='font-size:10px;color:#facc15;letter-spacing:0.2em;margin-bottom:8px;'>MODEL: ENGINEER-2026</div><div style='font-size:40px;font-weight:900;color:#e5e5e5;line-height:0.9;letter-spacing:0.02em;text-shadow:2px 2px 0 #1a1a1a;'>SHIVOM<br/>SHARMA</div></div><div style='display:flex;gap:12px;margin-bottom:20px;'><div style='background:#facc15;color:#1a1a1a;font-size:9px;padding:6px 12px;font-weight:900;letter-spacing:0.05em;'>⚡ TESLA x3</div><div style='background:#555;color:#facc15;font-size:9px;padding:6px 12px;font-weight:700;letter-spacing:0.05em;'>AI/ROBOTICS</div></div><div style='border:2px solid #555;padding:16px;background:#2a2a2a;margin-bottom:20px;'><div style='font-size:9px;color:#999;letter-spacing:0.1em;margin-bottom:8px;'>TECHNICAL SPECIFICATIONS:</div><div style='font-size:11px;color:#e5e5e5;line-height:1.6;'>► AI Agent Platform (Python/Go)<br/>► Computer Vision (C++/CUDA)<br/>► Distributed Systems (Kafka/K8s)</div></div><div style='display:flex;gap:20px;font-size:10px;'><span style='color:#facc15;font-weight:700;'>[GITHUB]</span><span style='color:#999;'>[LINKEDIN]</span><span style='color:#999;'>[EMAIL]</span></div></div></div>"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 export const projects = [
   {
+    title: "Bunshin | TypeScript, Node.js, CLI, Pi Extension",
+    description:
+      "Local-first, filesystem-based memory system for parallel coding agents. Capture learnings, share knowledge via review queue, and build up team memory over time with CLI and Pi extension tools.",
+    github: "https://github.com/ssh-vom/Bunshin",
+  },
+  {
     title: "OpenArcade | Python, C, C++, React, Three.js",
     description:
       "Modular accessible gaming controller with distributed BLE mesh, custom messaging protocols, and a Cloudflare-hosted configuration tool.",
