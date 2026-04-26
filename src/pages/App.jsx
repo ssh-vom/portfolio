@@ -8,70 +8,71 @@ import EditorialLayout from '../components/EditorialLayout.jsx';
 export default function App() {
     return (
         <EditorialLayout>
-            {/* Hero - Card Based */}
-            <section className="hero-card">
-                <div className="hero-content">
-                    <div className="hero-top">
-                        <div className="hero-photo">
-                            <img src="/images/pfp.jpeg" alt="Shivom Sharma" />
+            <div className="portfolio-layout">
+                <section className="hero">
+                    <div className="hero-kicker">Portfolio / 2026</div>
+
+                    <div className="hero-main">
+                        <div className="hero-photo" aria-hidden="true">
+                            <img src="/images/pfp.jpeg" alt="" />
                         </div>
-                        <div>
+
+                        <div className="hero-copy">
                             <h1 className="hero-name">Shivom Sharma</h1>
-                            <div className="hero-role">Software Engineer & Mechatronics</div>
+                            <p className="hero-description">
+                                Software engineer and mechatronics student building agent systems,
+                                distributed software, and embedded tools.
+                            </p>
                         </div>
                     </div>
-                    
-                    <p className="hero-description">
-                        Building AI agents, distributed systems, and embedded hardware. 
-                        Mechatronics student at McMaster University, graduating May '26.
-                        Seeking New Grad 2026 SWE roles.
-                    </p>
-                    
+
+                    <div className="hero-meta" aria-label="Current status">
+                        <span>New Grad SWE 2026</span>
+                        <span>McMaster Mechatronics</span>
+                        <span>Agents / Systems / Hardware</span>
+                    </div>
+
                     <div className="hero-links">
-                        <a href="https://github.com/ssh-vom" target="_blank" rel="noopener noreferrer">GitHub →</a>
-                        <a href="https://linkedin.com/in/shivomsharma" target="_blank" rel="noopener noreferrer">LinkedIn →</a>
-                        <a href="mailto:shivom.sharma.eng@gmail.com">Email →</a>
-                        <a href="https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume →</a>
+                        <a href="https://github.com/ssh-vom" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://linkedin.com/in/shivomsharma" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        <a href="mailto:shivom.sharma.eng@gmail.com">Email</a>
+                        <a href="https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a>
                     </div>
-                </div>
-            </section>
-
-            <main>
-                {/* Experience - List Layout */}
-                <section className="section" id="experience">
-                    <div className="section-header">
-                        <div className="section-label">Experience</div>
-                    </div>
-                    <Timeline />
                 </section>
 
-                {/* Projects - List Layout */}
-                <section className="section" id="projects">
-                    <div className="section-header">
-                        <div className="section-label">Projects</div>
-                    </div>
-                    <Projects />
-                </section>
+                <main>
+                    <section className="section" id="experience">
+                        <div className="section-header">
+                            <div className="section-label">Experience</div>
+                        </div>
+                        <Timeline />
+                    </section>
 
-                {/* Blog - List Layout */}
-                <section className="section" id="blog">
-                    <div className="section-header">
-                        <div className="section-label">Blog</div>
-                    </div>
-                    <Blog />
-                </section>
+                    <section className="section" id="projects">
+                        <div className="section-header">
+                            <div className="section-label">Projects</div>
+                        </div>
+                        <Projects />
+                    </section>
 
-                {/* Contact */}
-                <section className="section" id="contact">
-                    <div className="section-header">
-                        <div className="section-label">Contact</div>
-                    </div>
-                    <ContactColumn />
-                </section>
-            </main>
+                    <section className="section" id="blog">
+                        <div className="section-header">
+                            <div className="section-label">Writing</div>
+                        </div>
+                        <Blog />
+                    </section>
+
+                    <section className="section" id="contact">
+                        <div className="section-header">
+                            <div className="section-label">Contact</div>
+                        </div>
+                        <ContactColumn />
+                    </section>
+                </main>
+            </div>
 
             <footer className="site-footer">
-                <div>© 2025 Shivom Sharma — Built with React + Vite</div>
+                <div>© {new Date().getFullYear()} Shivom Sharma</div>
             </footer>
 
             <SpotifyNowPlaying />

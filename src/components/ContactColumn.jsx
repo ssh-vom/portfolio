@@ -16,8 +16,11 @@ export default function ContactColumn() {
                     className="contact-card"
                     key={idx}
                 >
-                    <div className="contact-label">{link.label}</div>
-                    <div className="contact-value">{link.value}</div>
+                    <div className="contact-meta">
+                        <div className="contact-label">{link.label}</div>
+                        <div className="contact-value">{link.value}</div>
+                    </div>
+                    <span className="contact-arrow">→</span>
                 </a>
             ))}
         </div>

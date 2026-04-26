@@ -16,7 +16,7 @@ export default function MinimalHeader({ theme, toggleTheme }) {
           onClick={toggleTheme}
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
-          {theme === 'dark' ? '☀️' : '🌙'}
+          {theme === 'dark' ? 'Light' : 'Dark'}
         </button>
       </div>
     </header>
