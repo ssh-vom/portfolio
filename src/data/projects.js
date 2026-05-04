@@ -1,49 +1,215 @@
 export const projects = [
   {
-    title: "Bunshin | TypeScript, Node.js, CLI, Pi Extension",
+    id: "openarcade",
+    name: "OpenArcade",
+    tagline: "Modular accessible gaming controller.",
+    description:
+      "OpenArcade is a modular controller platform focused on accessibility and customization. It combines a Raspberry Pi and ESP32 to provide low-latency wireless and wired connectivity with broad device support.",
+    github: "https://github.com/ssh-vom/openarcade",
+    previewImage: "/images/OPENARCADE.png",
+    techDetails: [
+      { label: "Raspberry Pi + ESP32", icon: "chip" },
+      { label: "BLE + USB HID", icon: "bluetooth" },
+    ],
+    capabilities: ["Python", "C", "C++", "React", "Three.js", "Docker", "Embedded Systems"],
+    focusAreas: [
+      {
+        title: "Hardware",
+        description: "Bridging software and hardware to ship real-world systems.",
+        icon: "hardware",
+      },
+      {
+        title: "Embedded Systems",
+        description: "Designing firmware and low-level protocols for reliable control.",
+        icon: "embedded",
+      },
+      {
+        title: "Accessibility",
+        description: "Building inclusive tools that adapt to diverse user needs.",
+        icon: "accessibility",
+      },
+    ],
+  },
+  {
+    id: "bunshin",
+    name: "Bunshin",
+    tagline: "Local-first memory for parallel coding agents.",
     description:
       "Local-first, filesystem-based memory system for parallel coding agents. Capture learnings, share knowledge via review queue, and build up team memory over time with CLI and Pi extension tools.",
     github: "https://github.com/ssh-vom/Bunshin",
+    techDetails: [
+      { label: "TypeScript + Node.js", icon: "code" },
+      { label: "CLI + VS Code Extension", icon: "terminal" },
+    ],
+    capabilities: ["TypeScript", "Node.js", "CLI", "Pi Extension", "Git"],
+    focusAreas: [
+      {
+        title: "Agents",
+        description: "Building intelligent systems that reason, plan, and act.",
+        icon: "agents",
+      },
+      {
+        title: "Developer Tools",
+        description: "Crafting CLI and editor integrations for productive workflows.",
+        icon: "devtools",
+      },
+      {
+        title: "Distributed Systems",
+        description: "Designing reliable, scalable systems and data pipelines.",
+        icon: "distributed",
+      },
+    ],
   },
   {
-    title: "OpenArcade | Python, C, C++, React, Three.js",
+    id: "analyticz",
+    name: "AnalyticZ",
+    tagline: "Exploratory data analysis AI agent.",
     description:
-      "Modular accessible gaming controller with distributed BLE mesh, custom messaging protocols, and a Cloudflare-hosted configuration tool.",
-    github: "https://github.com/ssh-vom/openarcade",
-    previewImage: "/images/OPENARCADE.png",
-  },
-  {
-    title: "AnalyticZ | Python, FastAPI, SvelteKit, Docker",
-    description:
-      "Exploratory data analysis AI agent with sandboxed SQL/Python execution, async chat jobs, and parallel subagent fan-out.",
+      "Exploratory data analysis AI agent with sandboxed SQL/Python execution, async chat jobs, and parallel subagent fan-out for complex analytical workflows.",
     github: "https://github.com/ssh-vom/analytics-agent",
-    previewImage:
-      "https://private-user-images.githubusercontent.com/81389102/548056300-02443af1-5788-41e4-9761-226effb11328.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzA3ODY0MjcsIm5iZiI6MTc3MDc4NjEyNywicGF0aCI6Ii84MTM4OTEwMi81NDgwNTYzMDAtMDI0NDNhZjEtNTc4OC00MWU0LTk3NjEtMjI2ZWZmYjExMzI4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjAyMTElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwMjExVDA1MDIwN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTY3YTFmYjM2YzM0NGQwMmVjYjQxOTFiYmEzNDkzN2U5YWZkODgyZTJmZGE2M2YxNTA0NDEyMjFiMmY2MjA3NTgmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.EaPKHlfxXX71O59MoNYr7LhJ_IUy96QbxXsbW_IhojM",
+    techDetails: [
+      { label: "FastAPI + SvelteKit", icon: "stack" },
+      { label: "Docker + Sandboxed Execution", icon: "container" },
+    ],
+    capabilities: ["Python", "FastAPI", "SvelteKit", "Docker", "SQL", "Async Jobs"],
+    focusAreas: [
+      {
+        title: "AI / ML",
+        description: "Autonomous agents with sandboxed code execution.",
+        icon: "ai",
+      },
+      {
+        title: "Data Engineering",
+        description: "SQL/Python sandboxing with async job processing.",
+        icon: "data",
+      },
+      {
+        title: "Full Stack",
+        description: "FastAPI backend with reactive SvelteKit frontend.",
+        icon: "fullstack",
+      },
+    ],
   },
   {
-    title: "Sniffles | C++, Qt",
+    id: "sniffles",
+    name: "Sniffles",
+    tagline: "Packet sniffer and network protocol analyzer.",
     description:
-      "Packet sniffer and network protocol analyzer with Qt frontend for capturing, inspecting, and analyzing live network traffic.",
+      "Packet sniffer and network protocol analyzer with Qt frontend for capturing, inspecting, and analyzing live network traffic in real time.",
     github: "https://github.com/ssh-vom/sniffles",
+    techDetails: [
+      { label: "C++ + Qt", icon: "cpp" },
+      { label: "Raw Socket Capture", icon: "network" },
+    ],
+    capabilities: ["C++", "Qt", "Networking", "Systems"],
+    focusAreas: [
+      {
+        title: "Networking",
+        description: "Low-level packet capture and protocol analysis.",
+        icon: "network",
+      },
+      {
+        title: "Systems",
+        description: "High-performance C++ with native GUI integration.",
+        icon: "systems",
+      },
+      {
+        title: "Desktop Apps",
+        description: "Cross-platform GUI applications with Qt.",
+        icon: "desktop",
+      },
+    ],
   },
   {
-    title: "Kalshi Research Engine | Python, NumPy, Pandas, TimescaleDB",
+    id: "kalshi",
+    name: "Kalshi Research Engine",
+    tagline: "Prediction market accuracy research.",
     description:
-      "Research project aimed at determining the accuracy of prediction markets like Kalshi.",
+      "Research project aimed at determining the accuracy of prediction markets like Kalshi using statistical analysis and time-series modeling.",
     github: "https://github.com/ssh-vom/kalshi-research",
+    techDetails: [
+      { label: "Python + Pandas", icon: "python" },
+      { label: "TimescaleDB + NumPy", icon: "database" },
+    ],
+    capabilities: ["Python", "NumPy", "Pandas", "TimescaleDB", "Statistics"],
+    focusAreas: [
+      {
+        title: "Data Science",
+        description: "Statistical analysis of market prediction accuracy.",
+        icon: "datascience",
+      },
+      {
+        title: "Finance",
+        description: "Quantitative modeling of prediction markets.",
+        icon: "finance",
+      },
+      {
+        title: "Research",
+        description: "Exploratory analysis with time-series databases.",
+        icon: "research",
+      },
+    ],
   },
   {
-    title: "BooxServe | Go, Docker, TCP/IP",
+    id: "booxserve",
+    name: "BooxServe",
+    tagline: "E-Ink tablet content delivery tool.",
     description:
-      "CLI tool to download manga and textbooks to BOOX E-Ink tablets via REST APIs and TCP/IP.",
+      "CLI tool to download manga and textbooks to BOOX E-Ink tablets via REST APIs and TCP/IP. Optimized for low-power e-ink displays.",
     github: "https://github.com/ssh-vom/boox-serve",
     previewImage: "/images/boox_serve_project.png",
+    techDetails: [
+      { label: "Go + Docker", icon: "go" },
+      { label: "TCP/IP + REST", icon: "network" },
+    ],
+    capabilities: ["Go", "Docker", "TCP/IP", "REST", "CLI"],
+    focusAreas: [
+      {
+        title: "Systems",
+        description: "TCP/IP networking and file transfer protocols.",
+        icon: "systems",
+      },
+      {
+        title: "CLI Tools",
+        description: "Command-line interface for content automation.",
+        icon: "cli",
+      },
+      {
+        title: "Networking",
+        description: "REST APIs and device-to-device communication.",
+        icon: "network",
+      },
+    ],
   },
   {
-    title: "Walls | Python, Textual, REST",
+    id: "walls",
+    name: "Walls",
+    tagline: "TUI wallpaper manager for macOS.",
     description:
-      "TUI to preview, download and set macOS wallpapers from wallhaven.cc.",
+      "TUI to preview, download and set macOS wallpapers from wallhaven.cc. Built with Python and Textual for a rich terminal experience.",
     github: "https://github.com/ssh-vom/walls",
     previewImage: "/images/walls_project.png",
+    techDetails: [
+      { label: "Python + Textual", icon: "python" },
+      { label: "REST API Integration", icon: "api" },
+    ],
+    capabilities: ["Python", "Textual", "REST", "TUI", "CLI"],
+    focusAreas: [
+      {
+        title: "CLI Tools",
+        description: "Terminal-based wallpaper management and discovery.",
+        icon: "cli",
+      },
+      {
+        title: "TUI",
+        description: "Rich terminal user interface design.",
+        icon: "tui",
+      },
+      {
+        title: "Web APIs",
+        description: "Integration with wallhaven.cc REST API.",
+        icon: "api",
+      },
+    ],
   },
 ];

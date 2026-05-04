@@ -43,9 +43,9 @@ export default function BlogPost() {
     const [frontmatter, setFrontmatter] = useState({});
     const [theme, setTheme] = useState(() => {
         if (typeof window !== 'undefined') {
-            return localStorage.getItem('theme') || 'dark';
+            return localStorage.getItem('theme') || 'light';
         }
-        return 'dark';
+        return 'light';
     });
 
     useEffect(() => {

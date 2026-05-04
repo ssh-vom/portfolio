@@ -1,81 +1,146 @@
-import Timeline from '../components/Timeline.jsx';
-import Projects from './Projects.jsx';
-import Blog from './Blog.jsx';
-import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
+import { useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import Sidebar from '../components/Sidebar.jsx';
+import ProjectWorkspace from '../components/ProjectWorkspace.jsx';
+import ExperienceTimeline from '../components/ExperienceTimeline.jsx';
 import ContactColumn from '../components/ContactColumn.jsx';
-import EditorialLayout from '../components/EditorialLayout.jsx';
+import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
+import { getAllPosts } from '../utils/blog.js';
+
+function estimateReadingTime(content) {
+  const wordsPerMinute = 200;
+  const words = content?.split(/\s+/).length || 0;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return minutes < 1 ? '< 1 min' : `${minutes} min`;
+}
+
+function WritingView() {
+  const posts = getAllPosts();
+  if (posts.length === 0) return null;
+
+  return (
+    <div className="view-inner">
+      <div className="vw-header">
+        <span className="vw-label">Writing</span>
+      </div>
+      <div className="blog-list">
+        {posts.map((post) => (
+          <Link
+            to={`/blog/${post.slug}`}
+            className="blog-item"
+            key={post.slug}
+          >
+            <div className="blog-content">
+              <span className="blog-title">{post.title}</span>
+              <span className="blog-meta">
+                {String(post.date)} · {estimateReadingTime(post.content)}
+              </span>
+            </div>
+            <span className="blog-arrow">→</span>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ExperienceView() {
+  return (
+    <div className="view-inner">
+      <div className="vw-header">
+        <span className="vw-label">Experience</span>
+      </div>
+      <ExperienceTimeline inline />
+    </div>
+  );
+}
+
+function ContactView() {
+  return (
+    <div className="view-inner">
+      <div className="vw-header">
+        <span className="vw-label">Contact</span>
+      </div>
+      <ContactColumn />
+    </div>
+  );
+}
+
+function ResumeView() {
+  return (
+    <div className="view-inner">
+      <div className="vw-header">
+        <span className="vw-label">Resume</span>
+      </div>
+      <div className="resume-embed">
+        <iframe
+          src="https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/preview"
+          width="100%"
+          height="800"
+          allow="autoplay"
+          title="Shivom Sharma Resume"
+        />
+      </div>
+      <a
+        href="https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="resume-external"
+      >
+        Open in new tab →
+      </a>
+    </div>
+  );
+}
 
 export default function App() {
-    return (
-        <EditorialLayout>
-            <div className="portfolio-layout">
-                <section className="hero">
-                    <div className="hero-kicker">Portfolio / 2026</div>
+  const [activeSection, setActiveSection] = useState('projects');
+  const [animState, setAnimState] = useState('entering');
+  const [viewKey, setViewKey] = useState(0);
 
-                    <div className="hero-main">
-                        <div className="hero-photo" aria-hidden="true">
-                            <img src="/images/pfp.jpeg" alt="" />
-                        </div>
+  const handleNavigate = useCallback((section) => {
+    if (section === activeSection) return;
+    setAnimState('exiting');
+    setTimeout(() => {
+      setActiveSection(section);
+      setViewKey((k) => k + 1);
+      setAnimState('entering');
+    }, 100);
+  }, [activeSection]);
 
-                        <div className="hero-copy">
-                            <h1 className="hero-name">Shivom Sharma</h1>
-                            <p className="hero-description">
-                                Software engineer and mechatronics student building agent systems,
-                                distributed software, and embedded tools.
-                            </p>
-                        </div>
-                    </div>
+  const renderView = () => {
+    switch (activeSection) {
+      case 'projects':
+        return <ProjectWorkspace />;
+      case 'writing':
+        return <WritingView />;
+      case 'experience':
+        return <ExperienceView />;
+      case 'contact':
+        return <ContactView />;
+      case 'resume':
+        return <ResumeView />;
+      default:
+        return <ProjectWorkspace />;
+    }
+  };
 
-                    <div className="hero-meta" aria-label="Current status">
-                        <span>New Grad SWE 2026</span>
-                        <span>McMaster Mechatronics</span>
-                        <span>Agents / Systems / Hardware</span>
-                    </div>
+  return (
+    <div className="page-root">
+      <div className="page-layout">
+        <Sidebar
+          projectCount={7}
+          experienceCount={4}
+          activeSection={activeSection}
+          onNavigate={handleNavigate}
+        />
 
-                    <div className="hero-links">
-                        <a href="https://github.com/ssh-vom" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a href="https://linkedin.com/in/shivomsharma" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                        <a href="mailto:shivom.sharma.eng@gmail.com">Email</a>
-                        <a href="https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Resume</a>
-                    </div>
-                </section>
+        <div className={`main-content view-${animState}`} key={viewKey}>
+          {renderView()}
+        </div>
+      </div>
 
-                <main>
-                    <section className="section" id="experience">
-                        <div className="section-header">
-                            <div className="section-label">Experience</div>
-                        </div>
-                        <Timeline />
-                    </section>
-
-                    <section className="section" id="projects">
-                        <div className="section-header">
-                            <div className="section-label">Projects</div>
-                        </div>
-                        <Projects />
-                    </section>
-
-                    <section className="section" id="blog">
-                        <div className="section-header">
-                            <div className="section-label">Writing</div>
-                        </div>
-                        <Blog />
-                    </section>
-
-                    <section className="section" id="contact">
-                        <div className="section-header">
-                            <div className="section-label">Contact</div>
-                        </div>
-                        <ContactColumn />
-                    </section>
-                </main>
-            </div>
-
-            <footer className="site-footer">
-                <div>© {new Date().getFullYear()} Shivom Sharma</div>
-            </footer>
-
-            <SpotifyNowPlaying />
-        </EditorialLayout>
-    );
+      <SpotifyNowPlaying />
+    </div>
+  );
 }
