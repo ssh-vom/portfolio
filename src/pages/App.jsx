@@ -78,6 +78,12 @@ function Hero() {
         </a>
       </div>
 
+      <div className="hero-foot hero-reveal" style={{ '--d': '0.52s' }}>
+        <span className="hero-scroll-hint label">
+          Scroll
+          <ArrowDown />
+        </span>
+      </div>
     </section>
   );
 }
