@@ -42,15 +42,7 @@ export default function WorkIndex() {
             rel="noopener noreferrer"
           >
             <div className="work-card-media">
-              {project.previewVideo ? (
-                <iframe
-                  src={project.previewVideo}
-                  title={project.name}
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              ) : project.previewImage ? (
+              {project.previewImage ? (
                 <img src={project.previewImage} alt={project.name} loading="lazy" />
               ) : (
                 <span className="work-card-num">{String(i + 1).padStart(2, '0')}</span>

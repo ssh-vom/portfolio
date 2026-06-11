@@ -6,7 +6,6 @@ export const projects = [
     description:
       "A distributed, cross-platform gaming controller built with a Raspberry Pi Zero 2 W and ESP32 subcontrollers. Achieves ≤25ms end-to-end latency over BLE with concurrent routines in Python, C, and C++. Features FreeRTOS tasks for I2C-based screen management, battery/temperature reporting, and controller state delivery.",
     github: "https://github.com/ssh-vom/openarcade",
-    previewVideo: "https://www.youtube-nocookie.com/embed/hzakEC6zYgg",
     previewImage: "/images/OPENARCADE.png",
     techDetails: [
       { label: "Raspberry Pi + ESP32", icon: "chip" },

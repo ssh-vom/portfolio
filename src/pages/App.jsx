@@ -68,19 +68,13 @@ function Theatre({ src, title, onClose }) {
         ✕
       </button>
       <div className="theatre-frame" onClick={(e) => e.stopPropagation()}>
-        <iframe
-          src={`${src}?autoplay=1`}
-          title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        <video src={src} autoPlay controls playsInline />
       </div>
     </div>
   );
 }
 
-const VIDEO_ID = 'hzakEC6zYgg';
-const BG_VIDEO_URL = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3`;
+const DEMO_VIDEO = '/videos/openarcade.mp4';
 
 function Hero() {
   const stageRef = useRef(null);
@@ -121,11 +115,7 @@ function Hero() {
           role={inTheatre ? 'button' : undefined}
           aria-label={inTheatre ? 'Play OpenArcade demo with sound' : undefined}
         >
-          <iframe
-            src={BG_VIDEO_URL}
-            title="OpenArcade demo reel"
-            allow="autoplay; encrypted-media; picture-in-picture"
-          />
+          <video src={DEMO_VIDEO} autoPlay muted loop playsInline />
           <div className="hero-frame-scrim" />
         </div>
 
@@ -167,11 +157,7 @@ function Hero() {
       </div>
 
       {theatreOpen && (
-        <Theatre
-          src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}`}
-          title="OpenArcade demo"
-          onClose={() => setTheatreOpen(false)}
-        />
+        <Theatre src={DEMO_VIDEO} title="OpenArcade demo" onClose={() => setTheatreOpen(false)} />
       )}
     </section>
   );
