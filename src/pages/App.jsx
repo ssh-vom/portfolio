@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import roles from '../data/experience.yaml';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SnapMarkers from '../components/SnapMarkers.jsx';
+import Flow from '../components/Flow.jsx';
 import WorkIndex from '../components/WorkIndex.jsx';
 import Reveal from '../components/Reveal.jsx';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
@@ -474,6 +475,7 @@ export default function App() {
 
   return (
     <>
+      <Flow />
       <SiteHeader theme={theme} toggleTheme={toggleTheme} />
       <main>
         <Hero />

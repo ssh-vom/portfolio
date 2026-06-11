@@ -115,6 +115,110 @@ body[data-zone='contact'] { --bg: #f3edec; }
 [data-theme='dark'] body[data-zone='writing'] { --bg: #121215; }
 [data-theme='dark'] body[data-zone='contact'] { --bg: #171111; }
 
+/* ===== Ambient flow field =====
+   Blurred ribbon + blobs in the accent's warm range, fixed behind all
+   content. Self-animating sway plus --fp (page scroll progress, set in
+   Flow.jsx) parallax — the field flows as you move through the site. */
+.flow {
+  --fp: 0;
+  --flow-1: rgba(249, 54, 60, 0.5);
+  --flow-2: rgba(255, 122, 61, 0.45);
+  --flow-3: rgba(255, 87, 161, 0.4);
+  --flow-alpha: 0.17;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+[data-theme='dark'] .flow {
+  --flow-alpha: 0.13;
+}
+
+.flow > * {
+  position: absolute;
+  will-change: transform;
+}
+
+/* Long diagonal ribbon sweeping the right side */
+.flow-ribbon {
+  top: -45vh;
+  right: -30vw;
+  width: 72vw;
+  height: 190vh;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    var(--flow-1) 44%,
+    var(--flow-2) 56%,
+    var(--flow-3) 66%,
+    transparent 80%
+  );
+  filter: blur(80px);
+  opacity: var(--flow-alpha);
+  rotate: calc(16deg + var(--fp) * 12deg);
+  translate: calc(var(--fp) * -10vw) calc(var(--fp) * 16vh);
+  animation: flow-sway 16s ease-in-out infinite alternate;
+}
+
+.flow-blob {
+  width: 56vw;
+  height: 56vw;
+  border-radius: 50%;
+  opacity: var(--flow-alpha);
+}
+
+.flow-blob-a {
+  left: -22vw;
+  top: 8vh;
+  background: radial-gradient(closest-side, var(--flow-2), transparent 72%);
+  filter: blur(48px);
+  translate: calc(var(--fp) * 14vw) calc(var(--fp) * 30vh);
+  animation: flow-drift-a 19s ease-in-out infinite alternate;
+}
+
+.flow-blob-b {
+  right: -18vw;
+  bottom: -20vh;
+  background: radial-gradient(closest-side, var(--flow-3), transparent 72%);
+  filter: blur(56px);
+  translate: calc(var(--fp) * -10vw) calc(var(--fp) * -24vh);
+  animation: flow-drift-b 23s ease-in-out infinite alternate;
+}
+
+@keyframes flow-sway {
+  from { transform: translateX(-6vw) scaleY(1); }
+  to { transform: translateX(7vw) scaleY(1.1); }
+}
+
+@keyframes flow-drift-a {
+  from { transform: translate(-3vw, 3vh) scale(1); }
+  to { transform: translate(10vw, -8vh) scale(1.22); }
+}
+
+@keyframes flow-drift-b {
+  from { transform: translate(3vw, -4vh) scale(1.15); }
+  to { transform: translate(-9vw, 9vh) scale(0.92); }
+}
+
+@media (max-width: 860px) {
+  .flow-ribbon {
+    width: 130vw;
+    filter: blur(48px);
+  }
+  .flow-blob {
+    width: 90vw;
+    height: 90vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow > * {
+    animation: none;
+  }
+}
+
 ::selection {
   background: var(--accent);
   color: #fff;
@@ -1062,6 +1166,9 @@ img {
 
 /* ===== Contact / footer ===== */
 .contact {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   padding-bottom: 40px;
 }
 
@@ -1075,7 +1182,7 @@ img {
   display: inline-block;
   margin-top: 28px;
   font-weight: 550;
-  font-size: clamp(1.375rem, 3.8vw, 2.5rem);
+  font-size: clamp(1.5rem, 4.6vw, 3.25rem);
   letter-spacing: -0.03em;
   line-height: 1.15;
   position: relative;
@@ -1150,7 +1257,8 @@ img {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: clamp(48px, 7vh, 72px);
+  /* Pins to the bottom of the full-viewport contact section */
+  margin-top: auto;
   padding: 28px 0 8px;
   border-top: 1px solid var(--line);
 }
