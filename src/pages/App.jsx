@@ -332,6 +332,37 @@ function ExperienceSection() {
 
 function WritingSection() {
   const posts = getAllPosts();
+  const pageRef = useRef(null);
+
+  // Notebook ink: scrub --np with scroll (both directions) so the red
+  // margin line draws down the page and entries develop line by line,
+  // same scrubbed-progress language as the hero and experience stages.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const el = pageRef.current;
+    if (!el) return;
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      const top = el.getBoundingClientRect().top;
+      const vh = window.innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * 0.92 - top) / (vh * 0.55)));
+      el.style.setProperty('--np', p.toFixed(4));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [posts.length]);
+
   if (posts.length === 0) return null;
 
   return (
@@ -342,10 +373,16 @@ function WritingSection() {
         </h2>
         <span className="label">03 — Writing</span>
       </Reveal>
-      <div className="posts-list">
-        {posts.map((post, i) => (
-          <Reveal key={post.slug} delay={Math.min(i * 0.06, 0.24)}>
-            <Link to={`/blog/${post.slug}`} className="post-row">
+      <Reveal delay={0.08} className="notebook-fill">
+        <div className="notebook-page" ref={pageRef} style={{ '--n': posts.length }}>
+          {posts.map((post, i) => (
+            <Link
+              to={`/blog/${post.slug}`}
+              className="nb-entry"
+              key={post.slug}
+              style={{ '--i': i }}
+            >
+              <span className="nb-num label">{String(i + 1).padStart(2, '0')}</span>
               <span className="post-title">{post.title}</span>
               <span className="post-meta">
                 {formatDate(post.date)} · {estimateReadingTime(post.content)}
@@ -354,9 +391,12 @@ function WritingSection() {
                 <ArrowUpRight />
               </span>
             </Link>
-          </Reveal>
-        ))}
-      </div>
+          ))}
+          <div className="nb-blanks" aria-hidden="true">
+            <span className="nb-caret" />
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }

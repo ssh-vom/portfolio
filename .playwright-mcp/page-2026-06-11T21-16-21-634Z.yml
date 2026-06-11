@@ -1,0 +1,126 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: Shivom Sharma
+    - navigation "Sections" [ref=e6]:
+      - link "Work" [ref=e7] [cursor=pointer]:
+        - /url: "#work"
+      - link "Experience" [ref=e8] [cursor=pointer]:
+        - /url: "#experience"
+      - link "Writing" [ref=e9] [cursor=pointer]:
+        - /url: "#writing"
+      - link "Contact" [ref=e10] [cursor=pointer]:
+        - /url: "#contact"
+    - button "Switch to light mode" [ref=e11] [cursor=pointer]:
+      - img [ref=e12]
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - generic [ref=e21]: Software Engineer at Cloaked · Toronto
+        - heading "I build software from the metal up." [level=1] [ref=e22]
+        - paragraph [ref=e23]:
+          - text: I'm
+          - strong [ref=e24]: Shivom Sharma
+          - text: . Currently at
+          - strong [ref=e25]: Cloaked
+          - text: ; before that, three internships at
+          - strong [ref=e26]: Tesla
+          - text: — factory robotics, AI tooling, and production vision systems. Mechatronics & Business at McMaster, class of 2026.
+        - generic [ref=e27]:
+          - link "Selected work" [ref=e28] [cursor=pointer]:
+            - /url: "#work"
+            - text: Selected work
+            - img [ref=e29]
+          - link "Résumé" [ref=e31] [cursor=pointer]:
+            - /url: https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link
+            - text: Résumé
+            - img [ref=e32]
+        - generic [ref=e35]:
+          - text: Scroll
+          - img [ref=e36]
+      - generic: OpenArcade — click for sound
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - heading "Selected work" [level=2] [ref=e40]
+        - generic [ref=e41]: 01 — Projects
+      - generic [ref=e43]:
+        - link "OpenArcade 01 OpenArcade Modular accessible gaming controller." [ref=e45] [cursor=pointer]:
+          - /url: https://github.com/ssh-vom/openarcade
+          - img "OpenArcade" [ref=e47]
+          - generic [ref=e48]:
+            - generic [ref=e49]: "01"
+            - generic [ref=e50]: OpenArcade
+            - generic [ref=e51]: Modular accessible gaming controller.
+        - link "Bunshin 02 Bunshin Local-first memory for parallel coding agents." [ref=e53] [cursor=pointer]:
+          - /url: https://github.com/ssh-vom/Bunshin
+          - img "Bunshin" [ref=e55]
+          - generic [ref=e56]:
+            - generic [ref=e57]: "02"
+            - generic [ref=e58]: Bunshin
+            - generic [ref=e59]: Local-first memory for parallel coding agents.
+        - generic [ref=e60]:
+          - generic [ref=e61]: 01 / 06
+          - generic [ref=e63]: Scroll
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - heading "Where I've been" [level=2] [ref=e66]
+        - generic [ref=e67]: 02 — Experience
+      - generic [ref=e69]:
+        - article [ref=e71]:
+          - generic [ref=e72]:
+            - generic [ref=e74]: Cloaked
+            - heading "Call Guard" [level=3] [ref=e75]
+            - paragraph [ref=e76]: Software Engineer
+            - generic [ref=e77]: June 2026 — Present
+          - paragraph [ref=e79]: Building Call Guard — just getting started.
+        - generic [ref=e80]:
+          - generic [ref=e81]: 01 / 04
+          - generic [ref=e83]: Scroll
+    - generic [ref=e84]:
+      - generic [ref=e85]:
+        - heading "Notes & writing" [level=2] [ref=e86]
+        - generic [ref=e87]: 03 — Writing
+      - generic [ref=e89]:
+        - link "01 On CLIs and TUIs Jan 30, 2026 · 4 min" [ref=e90] [cursor=pointer]:
+          - /url: /blog/clis-and-tuis
+          - generic [ref=e91]: "01"
+          - generic [ref=e92]: On CLIs and TUIs
+          - generic [ref=e93]: Jan 30, 2026 · 4 min
+          - img [ref=e95]
+        - link "02 BLE is pretty cool Jan 2, 2026 · 4 min" [ref=e97] [cursor=pointer]:
+          - /url: /blog/open-arcade
+          - generic [ref=e98]: "02"
+          - generic [ref=e99]: BLE is pretty cool
+          - generic [ref=e100]: Jan 2, 2026 · 4 min
+          - img [ref=e102]
+        - link "03 Hello World Oct 20, 2025 · 1 min" [ref=e104] [cursor=pointer]:
+          - /url: /blog/hello-world
+          - generic [ref=e105]: "03"
+          - generic [ref=e106]: Hello World
+          - generic [ref=e107]: Oct 20, 2025 · 1 min
+          - img [ref=e109]
+    - generic [ref=e113]:
+      - generic [ref=e114]:
+        - heading "Let's talk" [level=2] [ref=e115]
+        - generic [ref=e116]: 04 — Contact
+      - generic [ref=e117]:
+        - paragraph [ref=e118]: "Based in Toronto. For roles, projects, or anything else — email is fastest:"
+        - link "shivom.sharma.eng@gmail.com" [ref=e119] [cursor=pointer]:
+          - /url: mailto:shivom.sharma.eng@gmail.com
+      - generic [ref=e120]:
+        - link "GitHub" [ref=e121] [cursor=pointer]:
+          - /url: https://github.com/ssh-vom
+          - text: GitHub
+          - img [ref=e122]
+        - link "LinkedIn" [ref=e124] [cursor=pointer]:
+          - /url: https://linkedin.com/in/shivomsharma
+          - text: LinkedIn
+          - img [ref=e125]
+        - link "Résumé" [ref=e127] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link
+          - text: Résumé
+          - img [ref=e128]
+      - generic [ref=e130]:
+        - generic [ref=e131]: © 2026 Shivom Sharma
+        - generic [ref=e132]: Toronto, ON · Canadian Citizen
