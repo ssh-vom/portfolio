@@ -77,8 +77,20 @@
 
 html {
   scroll-behavior: smooth;
+  /* Settles pinned stages on their snap markers when the user stops
+     nearby; proximity (not mandatory) so scrolling is never trapped */
+  scroll-snap-type: y proximity;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.stage-snap {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 100svh;
+  scroll-snap-align: start;
+  pointer-events: none;
 }
 
 body {
@@ -603,47 +615,46 @@ img {
   color: var(--ink-2);
 }
 
-/* ===== Work gallery (horizontal snap scroll) ===== */
-.work-track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: clamp(264px, 31%, 380px);
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: 2px;
-  padding: 2px 2px 6px;
-  scrollbar-width: none;
+/* ===== Work stage (central-focus swipe) =====
+   The stage pins while scroll progress swipes each project out left
+   as the next replaces it from the right. Native scroll throughout. */
+.work-stage {
+  position: relative;
 }
 
-.work-track::-webkit-scrollbar {
-  display: none;
-}
-
-.work-card {
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-}
-
-.work-card-media {
-  aspect-ratio: 3 / 2;
-  display: grid;
-  place-items: center;
-  background: var(--surface-2);
-  border-radius: clamp(10px, 1.25vw, 16px);
+.work-stage-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
   overflow: hidden;
 }
 
-.work-card-media img {
+.work-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(620px, 84vw);
+  will-change: transform, opacity;
+}
+
+.work-slide-link {
+  display: block;
+}
+
+.work-piece-media {
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+  border-radius: clamp(10px, 1.25vw, 16px);
+  overflow: hidden;
+  background: var(--surface-2);
+  box-shadow: var(--shadow-card);
+}
+
+.work-piece-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s var(--ease-out);
-}
-
-.work-card:hover .work-card-media img {
-  transform: scale(1.03);
 }
 
 .work-card-num {
@@ -651,6 +662,44 @@ img {
   font-size: 1.75rem;
   letter-spacing: 0.08em;
   color: var(--ink-3);
+}
+
+.work-stage-foot {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 3vw, 32px);
+}
+
+.work-progress {
+  flex: 1;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.work-progress-fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* Reduced-motion fallback: plain vertical list */
+.work-flow {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6.5vh, 72px);
+}
+
+.work-flow .work-slide-link {
+  width: min(560px, 84%);
+  margin: 0 auto;
 }
 
 .work-card-caption {
@@ -680,95 +729,121 @@ img {
   text-overflow: ellipsis;
 }
 
-.work-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.work-nav-btns {
-  display: flex;
-  gap: 8px;
-}
-
-.work-nav-btn {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  color: var(--ink-2);
-  transition: background-color var(--dur) var(--ease-soft), border-color var(--dur) var(--ease-soft),
-    color var(--dur) var(--ease-soft);
-}
-
-.work-nav-btn:hover {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
-}
-
 .work-nav-btn svg {
   width: 13px;
   height: 13px;
 }
 
-/* ===== Experience ===== */
-.xp-list {
+/* ===== Experience (theatre dolly) =====
+   The stage pins while each role zooms in from a blurred distance,
+   lands sharp at center, then passes the camera and dissolves. */
+.xp-stage {
+  position: relative;
+}
+
+.xp-stage-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.xp-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  will-change: transform, opacity, filter;
+}
+
+.xp-static {
   display: flex;
   flex-direction: column;
+  gap: clamp(56px, 9vh, 110px);
 }
 
-.xp-item {
+/* Full typographic spread — no card, the stage is the canvas */
+.xp-spread {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: clamp(20px, 4vw, 56px);
-  padding: 26px 4px;
-  border-top: 1px solid var(--line);
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
 }
 
-.xp-item:last-child {
-  border-bottom: 1px solid var(--line);
+.xp-spread-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.xp-when {
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  letter-spacing: 0.06em;
-  color: var(--ink-3);
-  padding-top: 6px;
-  white-space: nowrap;
+.xp-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
-.xp-company {
-  font-size: var(--text-h3);
+.xp-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.xp-eyebrow-company {
+  font-size: var(--text-small);
   font-weight: 550;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.xp-focus {
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  font-weight: 550;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  max-width: 16ch;
+  text-wrap: balance;
 }
 
 .xp-role {
-  margin-top: 4px;
-  font-size: var(--text-small);
+  margin-top: 16px;
+  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+  line-height: 1.55;
   color: var(--ink-2);
+  max-width: 34ch;
+  text-wrap: pretty;
+}
+
+.xp-when {
+  margin-top: 22px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.xp-spread-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.xp-now {
+  color: var(--ink-2);
+  font-size: 1.0625rem;
 }
 
 .xp-bullets {
   list-style: none;
-  margin-top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: clamp(14px, 2.2vh, 22px);
   max-width: var(--measure);
 }
 
 .xp-bullets li {
   position: relative;
-  padding-left: 20px;
-  font-size: var(--text-small);
+  padding-left: 26px;
+  font-size: clamp(0.875rem, 1.25vw, 1rem);
   line-height: 1.65;
   color: var(--ink-2);
   text-wrap: pretty;
@@ -778,8 +853,8 @@ img {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.62em;
-  width: 8px;
+  top: 0.68em;
+  width: 12px;
   height: 1px;
   background: var(--accent);
 }
@@ -1172,16 +1247,9 @@ img {
 
 /* ===== Responsive ===== */
 @media (max-width: 860px) {
-  .work-track {
-    grid-auto-columns: min(78%, 320px);
-  }
-  .xp-item {
+  .xp-spread {
     grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 22px 4px;
-  }
-  .xp-when {
-    padding-top: 0;
+    gap: 28px;
   }
   .post-row {
     grid-template-columns: 1fr 28px;

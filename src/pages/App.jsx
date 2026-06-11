@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import roles from '../data/experience.yaml';
 import SiteHeader from '../components/SiteHeader.jsx';
+import SnapMarkers from '../components/SnapMarkers.jsx';
 import WorkIndex from '../components/WorkIndex.jsx';
 import Reveal from '../components/Reveal.jsx';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
@@ -44,6 +45,13 @@ function parseTitle(title) {
   const idx = title.indexOf(',');
   if (idx === -1) return { company: title.trim(), role: '' };
   return { company: title.slice(0, idx).trim(), role: title.slice(idx + 1).trim() };
+}
+
+// "Software Engineer Intern (AI Agents, Robotics)" -> base + team
+function splitRole(roleTitle) {
+  const m = roleTitle.match(/^(.*?)\s*\((.*)\)\s*$/);
+  if (!m) return { base: roleTitle, team: '' };
+  return { base: m[1].trim(), team: m[2].trim() };
 }
 
 function endYear(dateStr) {
@@ -177,8 +185,108 @@ function WorkSection() {
   );
 }
 
+const COMPANY_LOGOS = {
+  Cloaked: '/images/logo_cloaked.png',
+  Tesla: '/images/logo_tesla.png',
+};
+
 function ExperienceSection() {
   const sorted = [...roles].sort((a, b) => endYear(b.date) - endYear(a.date));
+  const stageRef = useRef(null);
+  const slideRefs = useRef([]);
+  const counterRef = useRef(null);
+  const fillRef = useRef(null);
+  const [reduced] = useState(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+
+  // Theatre dolly: each role zooms in from a blurred distance, lands
+  // sharp at center focus, then scales past the camera and dissolves.
+  useEffect(() => {
+    if (reduced) return;
+    const stage = stageRef.current;
+    if (!stage) return;
+    const n = sorted.length;
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      const total = stage.offsetHeight - window.innerHeight;
+      const p = Math.min(1, Math.max(0, -stage.getBoundingClientRect().top / total));
+      const prog = p * (n - 1);
+
+      slideRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const d = i - prog;
+        const ad = Math.abs(d);
+        if (ad > 0.95) {
+          el.style.visibility = 'hidden';
+          return;
+        }
+        el.style.visibility = '';
+        // Eased: dwell at focus, hand off quickly between slides
+        const e = Math.sign(d) * Math.pow(Math.min(ad, 1), 1.4);
+        const ae = Math.abs(e);
+        el.style.transform =
+          `translate(-50%, -50%) translateY(${(e * 16).toFixed(2)}svh) ` +
+          `scale(${(1 - ae * 0.04).toFixed(4)})`;
+        el.style.filter = `blur(${(ae * 7).toFixed(2)}px)`;
+        el.style.opacity = Math.max(0, 1 - ae * 1.2).toFixed(3);
+        el.style.zIndex = String(20 - Math.round(ae * 10));
+        el.style.pointerEvents = ad < 0.5 ? '' : 'none';
+      });
+
+      if (counterRef.current) {
+        counterRef.current.textContent = String(Math.round(prog) + 1).padStart(2, '0');
+      }
+      if (fillRef.current) {
+        fillRef.current.style.transform = `scaleX(${(prog / (n - 1)).toFixed(4)})`;
+      }
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [reduced, sorted.length]);
+
+  const panel = (role, i) => {
+    const { company, role: roleTitle } = parseTitle(role.title);
+    const { base, team } = splitRole(roleTitle);
+    const logo = COMPANY_LOGOS[role.company];
+    return (
+      <article className="xp-spread">
+        <div className="xp-spread-head">
+          <div className="xp-eyebrow">
+            {logo && <img className="xp-logo" src={logo} alt="" />}
+            <span className="xp-eyebrow-company">{company}</span>
+          </div>
+          <h3 className="xp-focus">{team || base}</h3>
+          {team && <p className="xp-role">{base}</p>}
+          <span className="xp-when label">{role.date}</span>
+        </div>
+        <div className="xp-spread-main">
+          {role.bullets?.length > 0 ? (
+            <ul className="xp-bullets">
+              {role.bullets.map((b, bi) => (
+                <li key={bi}>{b}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="xp-now">Building Call Guard — just getting started.</p>
+          )}
+        </div>
+      </article>
+    );
+  };
+
   return (
     <section className="section page" id="experience">
       <Reveal className="section-head">
@@ -187,27 +295,37 @@ function ExperienceSection() {
         </h2>
         <span className="label">02 — Experience</span>
       </Reveal>
-      <div className="xp-list">
-        {sorted.map((role, i) => {
-          const { company, role: roleTitle } = parseTitle(role.title);
-          return (
-            <Reveal as="article" className="xp-item" key={i} delay={Math.min(i * 0.06, 0.24)}>
-              <div className="xp-when">{role.date}</div>
-              <div>
-                <h3 className="xp-company">{company}</h3>
-                <p className="xp-role">{roleTitle}</p>
-                {role.bullets?.length > 0 && (
-                  <ul className="xp-bullets">
-                    {role.bullets.map((b, bi) => (
-                      <li key={bi}>{b}</li>
-                    ))}
-                  </ul>
-                )}
+      {reduced ? (
+        <div className="xp-static">
+          {sorted.map((role, i) => (
+            <Reveal key={i}>{panel(role, i)}</Reveal>
+          ))}
+        </div>
+      ) : (
+        <div
+          className="xp-stage"
+          ref={stageRef}
+          style={{ height: `calc(100svh + ${(sorted.length - 1) * 70}svh)` }}
+        >
+          <SnapMarkers count={sorted.length} />
+          <div className="xp-stage-sticky">
+            {sorted.map((role, i) => (
+              <div className="xp-slide" key={i} ref={(el) => (slideRefs.current[i] = el)}>
+                {panel(role, i)}
               </div>
-            </Reveal>
-          );
-        })}
-      </div>
+            ))}
+            <div className="work-stage-foot">
+              <span className="label">
+                <span ref={counterRef}>01</span> / {String(sorted.length).padStart(2, '0')}
+              </span>
+              <div className="work-progress" aria-hidden="true">
+                <span className="work-progress-fill" ref={fillRef} />
+              </div>
+              <span className="label">Scroll</span>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
