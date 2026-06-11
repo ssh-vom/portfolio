@@ -1,0 +1,344 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: Shivom Sharma
+    - navigation "Sections" [ref=e6]:
+      - link "Work" [ref=e7] [cursor=pointer]:
+        - /url: "#work"
+      - link "Experience" [ref=e8] [cursor=pointer]:
+        - /url: "#experience"
+      - link "Writing" [ref=e9] [cursor=pointer]:
+        - /url: "#writing"
+      - link "Contact" [ref=e10] [cursor=pointer]:
+        - /url: "#contact"
+    - button "Switch to dark mode" [ref=e11] [cursor=pointer]:
+      - img [ref=e12]
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]: Software Engineer at Cloaked
+        - generic [ref=e19]: Toronto, Canada
+      - heading "I build software from the metal up." [level=1] [ref=e20]
+      - paragraph [ref=e21]:
+        - text: I'm
+        - strong [ref=e22]: Shivom Sharma
+        - text: ", a software engineer at"
+        - strong [ref=e23]: Cloaked
+        - text: and previously a 3× intern at
+        - strong [ref=e24]: Tesla
+        - text: — factory robotics, AI tooling, and production vision systems. Mechatronics & Business at McMaster, class of 2026.
+      - generic [ref=e25]:
+        - link "Selected work" [ref=e26] [cursor=pointer]:
+          - /url: "#work"
+          - text: Selected work
+          - img [ref=e27]
+        - link "Résumé" [ref=e29] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link
+          - text: Résumé
+          - img [ref=e30]
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - text: Scroll
+          - img [ref=e34]
+        - generic [ref=e36]: 7 projects · 4 roles
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - heading "Selected work" [level=2] [ref=e39]
+        - generic [ref=e40]: 01 — Projects
+      - generic [ref=e41]:
+        - article [ref=e42]:
+          - button "01 OpenArcade Modular accessible gaming controller." [expanded] [ref=e43] [cursor=pointer]:
+            - generic [ref=e44]: "01"
+            - generic [ref=e45]: OpenArcade
+            - generic [ref=e46]: Modular accessible gaming controller.
+            - img [ref=e48]
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - paragraph [ref=e54]: A distributed, cross-platform gaming controller built with a Raspberry Pi Zero 2 W and ESP32 subcontrollers. Achieves ≤25ms end-to-end latency over BLE with concurrent routines in Python, C, and C++. Features FreeRTOS tasks for I2C-based screen management, battery/temperature reporting, and controller state delivery.
+              - generic [ref=e55]:
+                - generic [ref=e56]:
+                  - generic [ref=e57]: Hardware
+                  - generic [ref=e58]: Bridging software and hardware to ship real-world systems.
+                - generic [ref=e59]:
+                  - generic [ref=e60]: Embedded Systems
+                  - generic [ref=e61]: Designing firmware and low-level protocols for reliable control.
+                - generic [ref=e62]:
+                  - generic [ref=e63]: Accessibility
+                  - generic [ref=e64]: Building inclusive tools that adapt to diverse user needs.
+              - link "View on GitHub" [ref=e65] [cursor=pointer]:
+                - /url: https://github.com/ssh-vom/openarcade
+                - generic [ref=e66]: View on GitHub
+                - img [ref=e67]
+            - generic [ref=e69]:
+              - img "OpenArcade" [ref=e71]
+              - generic [ref=e72]:
+                - generic [ref=e73]: Python
+                - generic [ref=e74]: C
+                - generic [ref=e75]: C++
+                - generic [ref=e76]: React
+                - generic [ref=e77]: Three.js
+                - generic [ref=e78]: Docker
+                - generic [ref=e79]: Embedded Systems
+        - article [ref=e80]:
+          - button "02 Bunshin Local-first memory for parallel coding agents." [ref=e81] [cursor=pointer]:
+            - generic [ref=e82]: "02"
+            - generic [ref=e83]: Bunshin
+            - generic [ref=e84]: Local-first memory for parallel coding agents.
+            - img [ref=e86]
+          - generic [ref=e88]:
+            - generic [ref=e89]:
+              - paragraph [ref=e90]: Local-first, filesystem-based memory system for parallel coding agents. Capture learnings, share knowledge via review queue, and build up team memory over time with CLI and Pi extension tools.
+              - generic [ref=e91]:
+                - generic [ref=e92]:
+                  - generic [ref=e93]: Agents
+                  - generic [ref=e94]: Building intelligent systems that reason, plan, and act.
+                - generic [ref=e95]:
+                  - generic [ref=e96]: Developer Tools
+                  - generic [ref=e97]: Crafting CLI and editor integrations for productive workflows.
+                - generic [ref=e98]:
+                  - generic [ref=e99]: Distributed Systems
+                  - generic [ref=e100]: Designing reliable, scalable systems and data pipelines.
+              - link "View on GitHub" [ref=e101] [cursor=pointer]:
+                - /url: https://github.com/ssh-vom/Bunshin
+                - generic [ref=e102]: View on GitHub
+                - img [ref=e103]
+            - generic [ref=e106]:
+              - generic [ref=e107]: TypeScript
+              - generic [ref=e108]: Node.js
+              - generic [ref=e109]: CLI
+              - generic [ref=e110]: Pi Extension
+              - generic [ref=e111]: Git
+        - article [ref=e112]:
+          - button "03 AnalyticZ Exploratory data analysis AI agent." [ref=e113] [cursor=pointer]:
+            - generic [ref=e114]: "03"
+            - generic [ref=e115]: AnalyticZ
+            - generic [ref=e116]: Exploratory data analysis AI agent.
+            - img [ref=e118]
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - paragraph [ref=e122]: An AI agent for exploratory data analysis with sandboxed SQL and Python execution environments for safe, code-driven analysis on DuckDB and CSV datasets. Features a FastAPI backend for async chat jobs, thread-state management, and long-running workflow summarization with parallel subagent fan-out for branched analysis paths.
+              - generic [ref=e123]:
+                - generic [ref=e124]:
+                  - generic [ref=e125]: AI / ML
+                  - generic [ref=e126]: Autonomous agents with sandboxed code execution.
+                - generic [ref=e127]:
+                  - generic [ref=e128]: Data Engineering
+                  - generic [ref=e129]: SQL/Python sandboxing with async job processing.
+                - generic [ref=e130]:
+                  - generic [ref=e131]: Full Stack
+                  - generic [ref=e132]: FastAPI backend with reactive SvelteKit frontend.
+              - link "View on GitHub" [ref=e133] [cursor=pointer]:
+                - /url: https://github.com/ssh-vom/analytics-agent
+                - generic [ref=e134]: View on GitHub
+                - img [ref=e135]
+            - generic [ref=e138]:
+              - generic [ref=e139]: Python
+              - generic [ref=e140]: FastAPI
+              - generic [ref=e141]: SvelteKit
+              - generic [ref=e142]: Docker
+              - generic [ref=e143]: SQL
+              - generic [ref=e144]: Async Jobs
+        - article [ref=e145]:
+          - button "04 Sniffles Packet sniffer and network protocol analyzer." [ref=e146] [cursor=pointer]:
+            - generic [ref=e147]: "04"
+            - generic [ref=e148]: Sniffles
+            - generic [ref=e149]: Packet sniffer and network protocol analyzer.
+            - img [ref=e151]
+          - generic [ref=e153]:
+            - generic [ref=e154]:
+              - paragraph [ref=e155]: A packet sniffer built in C++ with a Qt frontend for capturing, inspecting, and analyzing live network traffic. Implements protocol parsing workflows for dissecting packet headers, payloads, and transport-layer message structure, with low-level networking tooling for live packet inspection and protocol analysis.
+              - generic [ref=e156]:
+                - generic [ref=e157]:
+                  - generic [ref=e158]: Networking
+                  - generic [ref=e159]: Low-level packet capture and protocol analysis.
+                - generic [ref=e160]:
+                  - generic [ref=e161]: Systems
+                  - generic [ref=e162]: High-performance C++ with native GUI integration.
+                - generic [ref=e163]:
+                  - generic [ref=e164]: Desktop Apps
+                  - generic [ref=e165]: Cross-platform GUI applications with Qt.
+              - link "View on GitHub" [ref=e166] [cursor=pointer]:
+                - /url: https://github.com/ssh-vom/sniffles
+                - generic [ref=e167]: View on GitHub
+                - img [ref=e168]
+            - generic [ref=e171]:
+              - generic [ref=e172]: C++
+              - generic [ref=e173]: Qt
+              - generic [ref=e174]: Networking
+              - generic [ref=e175]: Systems
+        - article [ref=e176]:
+          - button "05 Kalshi Research Engine Prediction market accuracy research." [ref=e177] [cursor=pointer]:
+            - generic [ref=e178]: "05"
+            - generic [ref=e179]: Kalshi Research Engine
+            - generic [ref=e180]: Prediction market accuracy research.
+            - img [ref=e182]
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - paragraph [ref=e186]: Research project aimed at determining the accuracy of prediction markets like Kalshi using statistical analysis and time-series modeling.
+              - generic [ref=e187]:
+                - generic [ref=e188]:
+                  - generic [ref=e189]: Data Science
+                  - generic [ref=e190]: Statistical analysis of market prediction accuracy.
+                - generic [ref=e191]:
+                  - generic [ref=e192]: Finance
+                  - generic [ref=e193]: Quantitative modeling of prediction markets.
+                - generic [ref=e194]:
+                  - generic [ref=e195]: Research
+                  - generic [ref=e196]: Exploratory analysis with time-series databases.
+              - link "View on GitHub" [ref=e197] [cursor=pointer]:
+                - /url: https://github.com/ssh-vom/kalshi-research
+                - generic [ref=e198]: View on GitHub
+                - img [ref=e199]
+            - generic [ref=e202]:
+              - generic [ref=e203]: Python
+              - generic [ref=e204]: NumPy
+              - generic [ref=e205]: Pandas
+              - generic [ref=e206]: TimescaleDB
+              - generic [ref=e207]: Statistics
+        - article [ref=e208]:
+          - button "06 BooxServe E-Ink tablet content delivery tool." [ref=e209] [cursor=pointer]:
+            - generic [ref=e210]: "06"
+            - generic [ref=e211]: BooxServe
+            - generic [ref=e212]: E-Ink tablet content delivery tool.
+            - img [ref=e214]
+          - generic [ref=e216]:
+            - generic [ref=e217]:
+              - paragraph [ref=e218]: CLI tool to download manga and textbooks to BOOX E-Ink tablets via REST APIs and TCP/IP. Optimized for low-power e-ink displays.
+              - generic [ref=e219]:
+                - generic [ref=e220]:
+                  - generic [ref=e221]: Systems
+                  - generic [ref=e222]: TCP/IP networking and file transfer protocols.
+                - generic [ref=e223]:
+                  - generic [ref=e224]: CLI Tools
+                  - generic [ref=e225]: Command-line interface for content automation.
+                - generic [ref=e226]:
+                  - generic [ref=e227]: Networking
+                  - generic [ref=e228]: REST APIs and device-to-device communication.
+              - link "View on GitHub" [ref=e229] [cursor=pointer]:
+                - /url: https://github.com/ssh-vom/boox-serve
+                - generic [ref=e230]: View on GitHub
+                - img [ref=e231]
+            - generic [ref=e233]:
+              - img "BooxServe" [ref=e235]
+              - generic [ref=e236]:
+                - generic [ref=e237]: Go
+                - generic [ref=e238]: Docker
+                - generic [ref=e239]: TCP/IP
+                - generic [ref=e240]: REST
+                - generic [ref=e241]: CLI
+        - article [ref=e242]:
+          - button "07 Walls TUI wallpaper manager for macOS." [ref=e243] [cursor=pointer]:
+            - generic [ref=e244]: "07"
+            - generic [ref=e245]: Walls
+            - generic [ref=e246]: TUI wallpaper manager for macOS.
+            - img [ref=e248]
+          - generic [ref=e250]:
+            - generic [ref=e251]:
+              - paragraph [ref=e252]: TUI to preview, download and set macOS wallpapers from wallhaven.cc. Built with Python and Textual for a rich terminal experience.
+              - generic [ref=e253]:
+                - generic [ref=e254]:
+                  - generic [ref=e255]: CLI Tools
+                  - generic [ref=e256]: Terminal-based wallpaper management and discovery.
+                - generic [ref=e257]:
+                  - generic [ref=e258]: TUI
+                  - generic [ref=e259]: Rich terminal user interface design.
+                - generic [ref=e260]:
+                  - generic [ref=e261]: Web APIs
+                  - generic [ref=e262]: Integration with wallhaven.cc REST API.
+              - link "View on GitHub" [ref=e263] [cursor=pointer]:
+                - /url: https://github.com/ssh-vom/walls
+                - generic [ref=e264]: View on GitHub
+                - img [ref=e265]
+            - generic [ref=e267]:
+              - img "Walls" [ref=e269]
+              - generic [ref=e270]:
+                - generic [ref=e271]: Python
+                - generic [ref=e272]: Textual
+                - generic [ref=e273]: REST
+                - generic [ref=e274]: TUI
+                - generic [ref=e275]: CLI
+    - generic [ref=e276]:
+      - generic [ref=e277]:
+        - heading "Where I've been" [level=2] [ref=e278]
+        - generic [ref=e279]: 02 — Experience
+      - generic [ref=e280]:
+        - article [ref=e281]:
+          - generic [ref=e282]: June 2026 — Present
+          - generic [ref=e283]:
+            - heading "Cloaked" [level=3] [ref=e284]
+            - paragraph [ref=e285]: Software Engineer (Call Guard)
+        - article [ref=e286]:
+          - generic [ref=e287]: May 2025 — August 2025
+          - generic [ref=e288]:
+            - heading "Tesla" [level=3] [ref=e289]
+            - paragraph [ref=e290]: Software Engineer Intern (AI Agents, Material Flow Robotics & Design)
+            - list [ref=e291]:
+              - listitem [ref=e292]: Led AI tooling integration in Python, TypeScript and Go, enabling 200+ engineers to generate factory layouts and perform robot fleet debugging using natural language queries
+              - listitem [ref=e293]: Achieved ≤150ms multi-agent event streaming by developing concurrent FastAPI, Kafka, and WebSocket services
+              - listitem [ref=e294]: Centralized traceability for 2K+ engineers by building a full-stack part-tracking platform in React, FastAPI and MongoDB
+              - listitem [ref=e295]: Improved release reliability by standardizing CI/CD and service deployment with Kubernetes, Docker, and GitHub Actions
+        - article [ref=e296]:
+          - generic [ref=e297]: June 2024 — August 2024
+          - generic [ref=e298]:
+            - heading "Tesla" [level=3] [ref=e299]
+            - paragraph [ref=e300]: Software Engineer Intern (Factory Design Platforms, Material Flow Robotics & Design)
+            - list [ref=e301]:
+              - listitem [ref=e302]: Saved 80+ engineering hours per week by reducing layout load times with compression and AWS S3 caching
+              - listitem [ref=e303]: Reduced p99 latency by 12% for 300+ engineers by refactoring PostgreSQL schemas and caching patterns in Redis
+              - listitem [ref=e304]: Automated 15+ hours of weekly manual work by migrating legacy Excel workflows to a TypeScript/GraphQL API layer
+              - listitem [ref=e305]: Scaled data-intensive pipeline throughput by 2X through efficient workload batching and Celery worker parallelization
+        - article [ref=e306]:
+          - generic [ref=e307]: September 2023 — May 2024
+          - generic [ref=e308]:
+            - heading "Tesla" [level=3] [ref=e309]
+            - paragraph [ref=e310]: Controls Engineer Intern (Drive Unit Automation, Cybertruck)
+            - list [ref=e311]:
+              - listitem [ref=e312]: Generated $200K in annual cost savings by developing an automated defect detection vision system for the Cybertruck
+              - listitem [ref=e313]: Reduced lighting and hardware costs by $20K per production line by designing image-processing algorithms in Python
+              - listitem [ref=e314]: Automated collection of 5K+ images daily for model training through C# integrations with PLC and HMI devices
+              - listitem [ref=e315]: Improved production cycle times by 12% by optimizing PLC and robot logic in the Tesla Standard Library using TIA Portal
+    - generic [ref=e316]:
+      - generic [ref=e317]:
+        - heading "Notes & writing" [level=2] [ref=e318]
+        - generic [ref=e319]: 03 — Writing
+      - generic [ref=e320]:
+        - link "On CLIs and TUIs Jan 30, 2026 · 4 min" [ref=e322] [cursor=pointer]:
+          - /url: /blog/clis-and-tuis
+          - generic [ref=e323]: On CLIs and TUIs
+          - generic [ref=e324]: Jan 30, 2026 · 4 min
+          - img [ref=e326]
+        - link "BLE is pretty cool Jan 2, 2026 · 4 min" [ref=e329] [cursor=pointer]:
+          - /url: /blog/open-arcade
+          - generic [ref=e330]: BLE is pretty cool
+          - generic [ref=e331]: Jan 2, 2026 · 4 min
+          - img [ref=e333]
+        - link "Hello World Oct 20, 2025 · 1 min" [ref=e336] [cursor=pointer]:
+          - /url: /blog/hello-world
+          - generic [ref=e337]: Hello World
+          - generic [ref=e338]: Oct 20, 2025 · 1 min
+          - img [ref=e340]
+    - generic [ref=e342]:
+      - generic [ref=e343]:
+        - heading "Let's talk" [level=2] [ref=e344]
+        - generic [ref=e345]: 04 — Contact
+      - generic [ref=e346]:
+        - paragraph [ref=e347]: "Based in Toronto. For roles, projects, or anything else — email is fastest:"
+        - link "shivom.sharma.eng@gmail.com" [ref=e348] [cursor=pointer]:
+          - /url: mailto:shivom.sharma.eng@gmail.com
+      - generic [ref=e349]:
+        - link "GitHub" [ref=e350] [cursor=pointer]:
+          - /url: https://github.com/ssh-vom
+          - text: GitHub
+          - img [ref=e351]
+        - link "LinkedIn" [ref=e353] [cursor=pointer]:
+          - /url: https://linkedin.com/in/shivomsharma
+          - text: LinkedIn
+          - img [ref=e354]
+        - link "Résumé" [ref=e356] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link
+          - text: Résumé
+          - img [ref=e357]
+      - generic [ref=e359]:
+        - generic [ref=e360]: © 2026 Shivom Sharma
+        - generic [ref=e361]: Toronto, ON · Canadian Citizen

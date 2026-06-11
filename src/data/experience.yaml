@@ -1,35 +1,31 @@
+- company: Cloaked
+  title: Cloaked, Software Engineer (Call Guard)
+  date: June 2026 — Present
+  bullets: []
+
 - company: Tesla
-  title: Tesla, Software Engineer Intern — Material Flow Robotics & Design
+  title: Tesla, Software Engineer Intern (AI Agents, Material Flow Robotics & Design)
   date: May 2025 — August 2025
   bullets:
-    - Led end-to-end development of an AI agent platform using Python, Go, and LangGraph, enabling 200+ engineers to automate factory layout generation and diagnose robotics failures through natural-language queries
-    - Engineered concurrent services using REST APIs, Kafka, and WebSockets to support ≤150ms multi-agent event streaming
-    - Built a full-stack part-tracking platform with React, FastAPI, MongoDB, centralizing material flow traceability for 2K+ engineers
-    - Standardized CI/CD and service deployment with Kubernetes, Docker, and GitHub Actions, improving release reliability
+    - Led AI tooling integration in Python, TypeScript and Go, enabling 200+ engineers to generate factory layouts and perform robot fleet debugging using natural language queries
+    - Achieved ≤150ms multi-agent event streaming by developing concurrent FastAPI, Kafka, and WebSocket services
+    - Centralized traceability for 2K+ engineers by building a full-stack part-tracking platform in React, FastAPI and MongoDB
+    - Improved release reliability by standardizing CI/CD and service deployment with Kubernetes, Docker, and GitHub Actions
 
 - company: Tesla
-  title: Tesla, Software Engineer Intern — Material Flow Robotics & Design
+  title: Tesla, Software Engineer Intern (Factory Design Platforms, Material Flow Robotics & Design)
   date: June 2024 — August 2024
   bullets:
-    - Developed a TypeScript/FastAPI application to streamline financial modeling for factory design, leveraging Pandas and GraphQL to reduce engineering analysis time by 15 hours weekly
-    - Optimized Revit model load times by implementing gzip compression and AWS S3 caching, saving 80+ engineering hours per week
-    - Redesigned SQL Server/PostgreSQL schemas and cache patterns in Redis, reducing query latency by 18% for 300+ engineers
-    - Scaled Airflow ETL pipelines by batching workloads and parallelizing Celery workers, increasing throughput by 2X
-    - Introduced pytest unit and integration testing across 10+ microservices, integrated into GitHub Actions CI pipelines
+    - Saved 80+ engineering hours per week by reducing layout load times with compression and AWS S3 caching
+    - Reduced p99 latency by 12% for 300+ engineers by refactoring PostgreSQL schemas and caching patterns in Redis
+    - Automated 15+ hours of weekly manual work by migrating legacy Excel workflows to a TypeScript/GraphQL API layer
+    - Scaled data-intensive pipeline throughput by 2X through efficient workload batching and Celery worker parallelization
 
 - company: Tesla
-  title: Tesla, Controls Engineer Intern — Drive Unit
+  title: Tesla, Controls Engineer Intern (Drive Unit Automation, Cybertruck)
   date: September 2023 — May 2024
   bullets:
-    - Developed an automated defect detection vision system for the Cybertruck, generating >$200K in annual cost savings
-    - Designed image-processing algorithms in Python that reduced lighting and hardware costs by $20K per production line
+    - Generated $200K in annual cost savings by developing an automated defect detection vision system for the Cybertruck
+    - Reduced lighting and hardware costs by $20K per production line by designing image-processing algorithms in Python
     - Automated collection of 5K+ images daily for model training through C# integrations with PLC and HMI devices
     - Improved production cycle times by 12% by optimizing PLC and robot logic in the Tesla Standard Library using TIA Portal
-    - Configured Juniper network switches to allow maximum bandwidth transfer for cameras, sensors and other logging hardware
-
-- company: McMaster University
-  title: McMaster University, Undergraduate Researcher — HPC Lab
-  date: March 2025 — November 2025
-  bullets:
-    - Developed multiple C++ solvers for fluid-simulation workloads, reducing memory usage and computational cost
-    - Implemented a Fast Multipole Method solver in C++/CUDA, outperforming the BEM++ PDE benchmark for high-order EM simulations

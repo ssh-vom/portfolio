@@ -5,7 +5,14 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import vscDarkPlus from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 import remarkGfm from 'remark-gfm';
 import { getPostBySlug } from '../utils/blog.js';
-import MinimalHeader from '../components/MinimalHeader.jsx';
+import SiteHeader from '../components/SiteHeader.jsx';
+import useTheme from '../hooks/useTheme.js';
+
+function formatDate(date) {
+    const d = new Date(date);
+    if (isNaN(d)) return String(date);
+    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
 
 function Mermaid({ chart }) {
     const [svg, setSvg] = useState('');
@@ -21,7 +28,7 @@ function Mermaid({ chart }) {
                     lineColor: '#78716c',
                     secondaryColor: '#44403c',
                     tertiaryColor: '#1c1917',
-                    fontFamily: 'Departure Mono, monospace',
+                    fontFamily: 'IBM Plex Mono, monospace',
                 },
                 securityLevel: 'loose',
             });
@@ -41,21 +48,7 @@ export default function BlogPost() {
     const { slug } = useParams();
     const [content, setContent] = useState('');
     const [frontmatter, setFrontmatter] = useState({});
-    const [theme, setTheme] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return localStorage.getItem('theme') || 'light';
-        }
-        return 'light';
-    });
-
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme(prev => prev === 'dark' ? 'light' : 'dark');
-    };
+    const [theme, toggleTheme] = useTheme();
 
     useEffect(() => {
         const post = getPostBySlug(slug);
@@ -66,6 +59,7 @@ export default function BlogPost() {
             setContent('Post not found.');
             setFrontmatter({});
         }
+        window.scrollTo(0, 0);
     }, [slug]);
 
     const components = {
@@ -107,7 +101,7 @@ export default function BlogPost() {
                     <img
                         src={fullSrc}
                         alt={alt?.replace(/\s+\d+%$/, '') || ''}
-                        onError={(e) => {
+                        onError={() => {
                             console.error('Image failed to load:', fullSrc);
                         }}
                         style={{ maxWidth: '100%', height: 'auto', width: width || 'auto' }}
@@ -119,27 +113,27 @@ export default function BlogPost() {
     };
 
     return (
-        <div data-theme={theme}>
-            <MinimalHeader theme={theme} toggleTheme={toggleTheme} />
+        <>
+            <SiteHeader theme={theme} toggleTheme={toggleTheme} homePath="/" />
 
-            <div className="reading-container">
-                <Link to="/" className="back-link">
+            <article className="reading-page">
+                <Link to="/" className="back-link hero-reveal" style={{ '--d': '0.1s' }}>
                     ← Back to home
                 </Link>
 
-                <div className="reading-header">
-                    <div className="reading-label">Blog</div>
+                <header className="reading-header hero-reveal" style={{ '--d': '0.2s' }}>
+                    <div className="label">Writing</div>
                     <h1 className="reading-title">
                         {frontmatter.title || 'Loading...'}
                     </h1>
                     {frontmatter.date && (
                         <div className="reading-date">
-                            {String(frontmatter.date)}
+                            {formatDate(frontmatter.date)}
                         </div>
                     )}
-                </div>
+                </header>
 
-                <div className="reading-content">
+                <div className="reading-content hero-reveal" style={{ '--d': '0.32s' }}>
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         rehypePlugins={[]}
@@ -148,11 +142,12 @@ export default function BlogPost() {
                         {content}
                     </ReactMarkdown>
                 </div>
-            </div>
 
-            <footer className="site-footer">
-                <span>© {new Date().getFullYear()} Shivom Sharma — Toronto, ON</span>
-            </footer>
-        </div>
+                <footer className="foot">
+                    <span className="label">© {new Date().getFullYear()} Shivom Sharma</span>
+                    <span className="label">Toronto, ON</span>
+                </footer>
+            </article>
+        </>
     );
 }

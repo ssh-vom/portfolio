@@ -4,7 +4,7 @@ export const projects = [
     name: "OpenArcade",
     tagline: "Modular accessible gaming controller.",
     description:
-      "OpenArcade is a modular controller platform focused on accessibility and customization. It combines a Raspberry Pi and ESP32 to provide low-latency wireless and wired connectivity with broad device support.",
+      "A distributed, cross-platform gaming controller built with a Raspberry Pi Zero 2 W and ESP32 subcontrollers. Achieves ≤25ms end-to-end latency over BLE with concurrent routines in Python, C, and C++. Features FreeRTOS tasks for I2C-based screen management, battery/temperature reporting, and controller state delivery.",
     github: "https://github.com/ssh-vom/openarcade",
     previewImage: "/images/OPENARCADE.png",
     techDetails: [
@@ -65,7 +65,7 @@ export const projects = [
     name: "AnalyticZ",
     tagline: "Exploratory data analysis AI agent.",
     description:
-      "Exploratory data analysis AI agent with sandboxed SQL/Python execution, async chat jobs, and parallel subagent fan-out for complex analytical workflows.",
+      "An AI agent for exploratory data analysis with sandboxed SQL and Python execution environments for safe, code-driven analysis on DuckDB and CSV datasets. Features a FastAPI backend for async chat jobs, thread-state management, and long-running workflow summarization with parallel subagent fan-out for branched analysis paths.",
     github: "https://github.com/ssh-vom/analytics-agent",
     techDetails: [
       { label: "FastAPI + SvelteKit", icon: "stack" },
@@ -95,7 +95,7 @@ export const projects = [
     name: "Sniffles",
     tagline: "Packet sniffer and network protocol analyzer.",
     description:
-      "Packet sniffer and network protocol analyzer with Qt frontend for capturing, inspecting, and analyzing live network traffic in real time.",
+      "A packet sniffer built in C++ with a Qt frontend for capturing, inspecting, and analyzing live network traffic. Implements protocol parsing workflows for dissecting packet headers, payloads, and transport-layer message structure, with low-level networking tooling for live packet inspection and protocol analysis.",
     github: "https://github.com/ssh-vom/sniffles",
     techDetails: [
       { label: "C++ + Qt", icon: "cpp" },

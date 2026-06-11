@@ -1,0 +1,69 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /
+      - generic [ref=e5]: Shivom Sharma
+    - navigation "Sections" [ref=e6]:
+      - link "Work" [ref=e7] [cursor=pointer]:
+        - /url: /#work
+      - link "Experience" [ref=e8] [cursor=pointer]:
+        - /url: /#experience
+      - link "Writing" [ref=e9] [cursor=pointer]:
+        - /url: /#writing
+      - link "Contact" [ref=e10] [cursor=pointer]:
+        - /url: /#contact
+    - button "Switch to dark mode" [ref=e11] [cursor=pointer]:
+      - img [ref=e12]
+  - article [ref=e14]:
+    - link "← Back to home" [ref=e15] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e16]:
+      - generic [ref=e17]: Writing
+      - heading "On CLIs and TUIs" [level=1] [ref=e18]
+      - generic [ref=e19]: Jan 30, 2026
+    - generic [ref=e20]:
+      - heading "On The Art of the CLI and TUI" [level=1] [ref=e21]
+      - paragraph [ref=e22]:
+        - emphasis [ref=e23]: My first programming classes in Java and Turing 8 years ago...
+      - paragraph [ref=e24]: I can still remember making simple programs to calculate numbers, or taking input from a terminal to figure out what day of the week it was given a certain date, all done through the bloated Eclipse shell window we were forced to install. Of course the complexity grew further, building out GUI applications, games, and everything else you could expect for someone jumping into programming, but I never had taken the time to really appreciate the beauty that the simplicity of a terminal could hold.
+      - paragraph [ref=e25]:
+        - text: During my time in mechatronics engineering, I got to work with a ton of low-level code, building programs in C and at times, every line of code you wrote felt in sync with the action that was produced by it. Then as I went on to learn more about the programming world, I found myself building websites, once again jumping into an area filled with complexities that stack, that pulled me further away from my intention. What was simply turning on an LED with a single line, became juggling stylesheets, and
+        - code [ref=e26]: useEffect
+        - text: s to make my UI look how I wanted. As I continued to build up these abstractions, I always sat with the thought of whether it was better than just typing a question into my shell without the bells and whistles.
+      - paragraph [ref=e27]:
+        - text: As I've gone through my university degree, and grown in software I've found myself picking up tools that others have been using since the days of old (sorry if any of you are dated by my young age haha). I've found the terminal to be one of the places I feel most comfortable writing, reading, executing and creating applications and code I began picking up vim motions in VS Code during my co-op 2 years ago, with some inspiration from
+        - link "@ThePrimeagen" [ref=e28] [cursor=pointer]:
+          - /url: https://www.youtube.com/theprimeagen
+        - text: to now almost exclusively working through my terminal with
+        - link "neovim" [ref=e29] [cursor=pointer]:
+          - /url: https://neovim.io/
+        - text: ", and tmux while playing with"
+        - link "opencode" [ref=e30] [cursor=pointer]:
+          - /url: https://opencode.ai/
+        - text: for all of my AI needs.
+      - paragraph [ref=e31]
+      - paragraph [ref=e33]:
+        - text: I'm always trying new things in this area, most recently playing around with
+        - link "helix" [ref=e34] [cursor=pointer]:
+          - /url: https://helix-editor.com/
+        - text: . I've also fearfully avoided emacs thus far, but ORG mode and the idea of bringing more things into my environment do feel very intriguing...
+      - paragraph [ref=e35]: "This is all to say, I've grown to appreciate the terminal so much in my daily workflow, and have made numerous projects within it like:"
+      - paragraph [ref=e36]:
+        - link "walls" [ref=e37] [cursor=pointer]:
+          - /url: https://www.github.com/ssh-vom/walls
+          - strong [ref=e38]: walls
+        - text: ": a WallHaven CLI application for macOS to change your wallpaper instantly"
+      - paragraph [ref=e39]:
+        - link "BooxServe" [ref=e41] [cursor=pointer]:
+          - /url: https://www.github.com/ssh-vom/BooxServe
+          - strong [ref=e42]: BooxServe
+        - text: ": A CLI built in Go to send manga and textbooks to e-ink tablets"
+      - paragraph [ref=e43]
+      - paragraph [ref=e45]: I think CLI's and TUI's feel daunting for most users who don't program, leading programmers to hide their features behind layers of abstractions with buttons, sliders, dropdowns and alike with so many hurdles to get what you want done.
+      - paragraph [ref=e46]: Writing code and interacting with my computer gave me this unique appreciation for being able to deal directly with the machine and tell it what I want it to do.
+      - paragraph [ref=e47]: I've sort of lost my train of thought while writing this, but the core of what I want to discuss really lies in the subtlety, that as we started out interacting with LLMs and AI through a chat, to integrating it within our IDEs (cursor, copilot, etc), we've found ourselves back within the terminal. It feels like an honest return to something simpler, less bloated, aimed at providing an input and getting our desired output. The context lives on our machines, and we just allow it to look for what it needs. I feel like once you know what you want to do, right now it feels unmatched for the productivity it can provide you compared to IDE integrated code editing, chat interfaces, etc.
+      - paragraph [ref=e48]: I'm excited and optimistic for what this might look like in the future, how we get closer to an interface that allows us to so easily connect with our computers and generate content in a cohesive way, that most people jump into without as many reservations.
+      - paragraph [ref=e49]: ~ Shivom
+    - generic [ref=e50]:
+      - generic [ref=e51]: © 2026 Shivom Sharma
+      - generic [ref=e52]: Toronto, ON
