@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import roles from '../data/experience.yaml';
 import SiteHeader from '../components/SiteHeader.jsx';
@@ -50,40 +51,128 @@ function endYear(dateStr) {
   return parseInt(years[years.length - 1]);
 }
 
-function Hero() {
+function Theatre({ src, title, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [onClose]);
+
   return (
-    <section className="hero page">
-      <div className="hero-kicker hero-reveal" style={{ '--d': '0.12s' }}>
-        <span className="label">Software Engineer at Cloaked · Toronto</span>
+    <div className="theatre" onClick={onClose} role="dialog" aria-label={`${title} — theatre mode`}>
+      <button className="theatre-close" onClick={onClose} aria-label="Close theatre mode">
+        ✕
+      </button>
+      <div className="theatre-frame" onClick={(e) => e.stopPropagation()}>
+        <iframe
+          src={`${src}?autoplay=1`}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    </div>
+  );
+}
+
+const VIDEO_ID = 'hzakEC6zYgg';
+const BG_VIDEO_URL = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${VIDEO_ID}&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3`;
+
+function Hero() {
+  const stageRef = useRef(null);
+  const [p, setP] = useState(0);
+  const [theatreOpen, setTheatreOpen] = useState(false);
+
+  // Scrub progress: 0 = video is the hero background, 1 = settled theatre frame
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      const el = stageRef.current;
+      if (!el) return;
+      const total = el.offsetHeight - window.innerHeight;
+      setP(Math.min(1, Math.max(0, -el.getBoundingClientRect().top / total)));
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  const inTheatre = p > 0.6;
+
+  return (
+    <section className="hero-stage" ref={stageRef} style={{ '--p': p }}>
+      <div className="hero-sticky">
+        <div
+          className={`hero-frame ${inTheatre ? 'is-theatre' : ''}`}
+          onClick={() => inTheatre && setTheatreOpen(true)}
+          role={inTheatre ? 'button' : undefined}
+          aria-label={inTheatre ? 'Play OpenArcade demo with sound' : undefined}
+        >
+          <iframe
+            src={BG_VIDEO_URL}
+            title="OpenArcade demo reel"
+            allow="autoplay; encrypted-media; picture-in-picture"
+          />
+          <div className="hero-frame-scrim" />
+        </div>
+
+        <div className={`hero-copy page ${p > 0.3 ? 'is-faded' : ''}`}>
+          <div className="hero-kicker hero-reveal" style={{ '--d': '0.12s' }}>
+            <span className="label">Software Engineer at Cloaked · Toronto</span>
+          </div>
+
+          <h1 className="hero-title hero-reveal" style={{ '--d': '0.22s' }}>
+            I build software from the <span className="accent-word">metal&nbsp;up</span>.
+          </h1>
+
+          <p className="hero-sub hero-reveal" style={{ '--d': '0.34s' }}>
+            I'm <strong>Shivom Sharma</strong>. Currently at <strong>Cloaked</strong>; before that,
+            three internships at <strong>Tesla</strong> — factory robotics, AI tooling, and production
+            vision systems. Mechatronics &amp; Business at McMaster, class of 2026.
+          </p>
+
+          <div className="hero-actions hero-reveal" style={{ '--d': '0.42s' }}>
+            <a href="#work" className="btn btn-primary">
+              Selected work
+              <ArrowDown />
+            </a>
+            <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+              Résumé
+              <ArrowUpRight />
+            </a>
+          </div>
+
+          <div className="hero-foot hero-reveal" style={{ '--d': '0.52s' }}>
+            <span className="hero-scroll-hint label">
+              Scroll
+              <ArrowDown />
+            </span>
+          </div>
+        </div>
+
+        <span className="hero-theatre-caption label">OpenArcade — click for sound</span>
       </div>
 
-      <h1 className="hero-title hero-reveal" style={{ '--d': '0.22s' }}>
-        I build software from the <span className="serif-accent">metal&nbsp;up</span>.
-      </h1>
-
-      <p className="hero-sub hero-reveal" style={{ '--d': '0.34s' }}>
-        I'm <strong>Shivom Sharma</strong>. Currently at <strong>Cloaked</strong>; before that,
-        three internships at <strong>Tesla</strong> — factory robotics, AI tooling, and production
-        vision systems. Mechatronics &amp; Business at McMaster, class of 2026.
-      </p>
-
-      <div className="hero-actions hero-reveal" style={{ '--d': '0.42s' }}>
-        <a href="#work" className="btn btn-primary">
-          Selected work
-          <ArrowDown />
-        </a>
-        <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-          Résumé
-          <ArrowUpRight />
-        </a>
-      </div>
-
-      <div className="hero-foot hero-reveal" style={{ '--d': '0.52s' }}>
-        <span className="hero-scroll-hint label">
-          Scroll
-          <ArrowDown />
-        </span>
-      </div>
+      {theatreOpen && (
+        <Theatre
+          src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}`}
+          title="OpenArcade demo"
+          onClose={() => setTheatreOpen(false)}
+        />
+      )}
     </section>
   );
 }
@@ -93,7 +182,7 @@ function WorkSection() {
     <section className="section page" id="work">
       <Reveal className="section-head">
         <h2 className="section-title">
-          Selected <span className="serif-accent">work</span>
+          Selected <span className="accent-word">work</span>
         </h2>
         <span className="label">01 — Projects</span>
       </Reveal>
@@ -108,7 +197,7 @@ function ExperienceSection() {
     <section className="section page" id="experience">
       <Reveal className="section-head">
         <h2 className="section-title">
-          Where I've <span className="serif-accent">been</span>
+          Where I've <span className="accent-word">been</span>
         </h2>
         <span className="label">02 — Experience</span>
       </Reveal>
@@ -145,7 +234,7 @@ function WritingSection() {
     <section className="section page" id="writing">
       <Reveal className="section-head">
         <h2 className="section-title">
-          Notes &amp; <span className="serif-accent">writing</span>
+          Notes &amp; <span className="accent-word">writing</span>
         </h2>
         <span className="label">03 — Writing</span>
       </Reveal>
@@ -179,7 +268,7 @@ function ContactSection() {
     <section className="section page contact" id="contact">
       <Reveal className="section-head">
         <h2 className="section-title">
-          Let's <span className="serif-accent">talk</span>
+          Let's <span className="accent-word">talk</span>
         </h2>
         <span className="label">04 — Contact</span>
       </Reveal>
@@ -218,6 +307,26 @@ function ContactSection() {
 
 export default function App() {
   const [theme, toggleTheme] = useTheme();
+
+  // Tint the page background to whichever section occupies mid-viewport
+  useEffect(() => {
+    const sections = document.querySelectorAll('main > section');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            document.body.dataset.zone = entry.target.id || 'hero';
+          }
+        });
+      },
+      { rootMargin: '-45% 0px -45% 0px' }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => {
+      observer.disconnect();
+      delete document.body.dataset.zone;
+    };
+  }, []);
 
   return (
     <>
