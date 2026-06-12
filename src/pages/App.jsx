@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useViewTransitionState } from 'react-router-dom';
 import roles from '../data/experience.yaml';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SnapMarkers from '../components/SnapMarkers.jsx';
@@ -331,6 +331,31 @@ function ExperienceSection() {
     );
 }
 
+function NotebookEntry({ post, index }) {
+    const href = `/blog/${post.slug}`;
+    // Only the entry being navigated to may carry the shared
+    // view-transition name; it must be unique on the page.
+    const transitioning = useViewTransitionState(href);
+
+    return (
+        <Link to={href} viewTransition className="nb-entry" style={{ '--i': index }}>
+            <span className="nb-num label">{String(index + 1).padStart(2, '0')}</span>
+            <span
+                className="post-title"
+                style={{ viewTransitionName: transitioning ? 'post-title' : 'none' }}
+            >
+                {post.title}
+            </span>
+            <span className="post-meta">
+                {formatDate(post.date)} · {estimateReadingTime(post.content)}
+            </span>
+            <span className="post-arrow" aria-hidden="true">
+                <ArrowUpRight />
+            </span>
+        </Link>
+    );
+}
+
 function WritingSection() {
     const posts = getAllPosts();
     const pageRef = useRef(null);
@@ -377,21 +402,7 @@ function WritingSection() {
             <Reveal delay={0.08} className="notebook-fill">
                 <div className="notebook-page" ref={pageRef} style={{ '--n': posts.length }}>
                     {posts.map((post, i) => (
-                        <Link
-                            to={`/blog/${post.slug}`}
-                            className="nb-entry"
-                            key={post.slug}
-                            style={{ '--i': i }}
-                        >
-                            <span className="nb-num label">{String(i + 1).padStart(2, '0')}</span>
-                            <span className="post-title">{post.title}</span>
-                            <span className="post-meta">
-                                {formatDate(post.date)} · {estimateReadingTime(post.content)}
-                            </span>
-                            <span className="post-arrow" aria-hidden="true">
-                                <ArrowUpRight />
-                            </span>
-                        </Link>
+                        <NotebookEntry post={post} index={i} key={post.slug} />
                     ))}
                     <div className="nb-blanks" aria-hidden="true">
                         <span className="nb-caret" />

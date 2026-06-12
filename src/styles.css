@@ -104,21 +104,39 @@ body {
   transition: background-color 0.9s var(--ease-soft), color 0.35s var(--ease-soft);
 }
 
-/* Ambient morph: the page tint follows the section in view */
-body[data-zone='work'] { --bg: #f3efe7; }
-body[data-zone='experience'] { --bg: #edefed; }
-body[data-zone='writing'] { --bg: #efeef3; }
-body[data-zone='contact'] { --bg: #f3edec; }
+/* Ambient morph: the page tint follows the section in view — each
+   section reads as its own paper stock: sand, sage, lavender, blush */
+body[data-zone='work'] { --bg: #f4ebd9; }
+body[data-zone='experience'] { --bg: #e6eee5; }
+body[data-zone='writing'] { --bg: #e9e8f4; }
+body[data-zone='contact'] { --bg: #f6e7e4; }
 
-[data-theme='dark'] body[data-zone='work'] { --bg: #161310; }
-[data-theme='dark'] body[data-zone='experience'] { --bg: #111412; }
-[data-theme='dark'] body[data-zone='writing'] { --bg: #121215; }
-[data-theme='dark'] body[data-zone='contact'] { --bg: #171111; }
+[data-theme='dark'] body[data-zone='work'] { --bg: #1a150c; }
+[data-theme='dark'] body[data-zone='experience'] { --bg: #0f1710; }
+[data-theme='dark'] body[data-zone='writing'] { --bg: #14121d; }
+[data-theme='dark'] body[data-zone='contact'] { --bg: #1d100f; }
 
 /* ===== Ambient flow field =====
    Blurred ribbon + blobs in the accent's warm range, fixed behind all
    content. Self-animating sway plus --fp (page scroll progress, set in
-   Flow.jsx) parallax — the field flows as you move through the site. */
+   Flow.jsx) parallax — the field flows as you move through the site.
+   Registered so the per-zone hue shifts below interpolate smoothly. */
+@property --flow-1 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(249, 54, 60, 0.5);
+}
+@property --flow-2 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(255, 122, 61, 0.45);
+}
+@property --flow-3 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(255, 87, 161, 0.4);
+}
+
 .flow {
   --fp: 0;
   --flow-1: rgba(249, 54, 60, 0.5);
@@ -130,6 +148,33 @@ body[data-zone='contact'] { --bg: #f3edec; }
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
+  transition:
+    --flow-1 1.2s var(--ease-soft),
+    --flow-2 1.2s var(--ease-soft),
+    --flow-3 1.2s var(--ease-soft);
+}
+
+/* The field's hues drift with the zone tint: amber over the sand stock,
+   green over sage, violet-pink over lavender, home reds over blush */
+body[data-zone='work'] .flow {
+  --flow-1: rgba(255, 140, 40, 0.5);
+  --flow-2: rgba(249, 96, 54, 0.45);
+  --flow-3: rgba(255, 187, 87, 0.4);
+}
+body[data-zone='experience'] .flow {
+  --flow-1: rgba(43, 168, 74, 0.5);
+  --flow-2: rgba(118, 196, 110, 0.45);
+  --flow-3: rgba(186, 214, 110, 0.4);
+}
+body[data-zone='writing'] .flow {
+  --flow-1: rgba(132, 87, 255, 0.5);
+  --flow-2: rgba(255, 87, 161, 0.45);
+  --flow-3: rgba(96, 110, 255, 0.4);
+}
+body[data-zone='contact'] .flow {
+  --flow-1: rgba(249, 54, 60, 0.55);
+  --flow-2: rgba(232, 58, 102, 0.45);
+  --flow-3: rgba(255, 122, 61, 0.4);
 }
 
 [data-theme='dark'] .flow {
@@ -1514,5 +1559,38 @@ img {
   }
   .nb-entry .post-title {
     font-size: clamp(1.25rem, 5.5vw, 1.5rem);
+  }
+}
+
+/* ===== View transitions =====
+   Navigating to a blog post morphs the notebook entry's title into the
+   article header (react-router v7 viewTransition links; browsers without
+   the API just navigate normally). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+
+::view-transition-group(post-title) {
+  animation-duration: 0.5s;
+  animation-timing-function: var(--ease-out);
+}
+
+/* The title's box changes size a lot between list row and big header;
+   letting each snapshot keep its aspect avoids stretch artifacts */
+::view-transition-old(post-title),
+::view-transition-new(post-title) {
+  height: 100%;
+  object-fit: none;
+  object-position: left top;
+  overflow: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

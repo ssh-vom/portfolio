@@ -1,0 +1,153 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "Home" [ref=e4] [cursor=pointer]:
+      - /url: /
+    - navigation "Sections" [ref=e5]:
+      - link "Work" [ref=e6] [cursor=pointer]:
+        - /url: "#work"
+      - link "Experience" [ref=e7] [cursor=pointer]:
+        - /url: "#experience"
+      - link "Writing" [ref=e8] [cursor=pointer]:
+        - /url: "#writing"
+      - link "Contact" [ref=e9] [cursor=pointer]:
+        - /url: "#contact"
+    - button "Switch to light mode" [ref=e10] [cursor=pointer]:
+      - img [ref=e11]
+  - main [ref=e14]:
+    - generic [ref=e16]:
+      - generic [ref=e18]:
+        - generic [ref=e20]: Software Engineer at Cloaked · Toronto
+        - heading "I build software from the metal up." [level=1] [ref=e21]
+        - paragraph [ref=e22]:
+          - text: I'm
+          - strong [ref=e23]: Shivom Sharma
+          - text: . Currently at
+          - strong [ref=e24]: Cloaked
+          - text: ; before that, three internships at
+          - strong [ref=e25]: Tesla
+          - text: — factory robotics, AI tooling, and production vision systems. Mechatronics & Business at McMaster, class of 2026.
+        - generic [ref=e26]:
+          - link "Selected work" [ref=e27] [cursor=pointer]:
+            - /url: "#work"
+            - text: Selected work
+            - img [ref=e28]
+          - link "Résumé" [ref=e30] [cursor=pointer]:
+            - /url: https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link
+            - text: Résumé
+            - img [ref=e31]
+        - generic [ref=e34]:
+          - text: Scroll
+          - img [ref=e35]
+      - generic: OpenArcade — click for sound
+    - generic [ref=e38]:
+      - generic [ref=e39]: Selected Work
+      - generic [ref=e41]: Selected Work
+      - generic [ref=e43]: Selected Work
+      - generic [ref=e45]: Selected Work
+      - generic [ref=e47]: Selected Work
+      - generic [ref=e49]: Selected Work
+    - generic [ref=e51]:
+      - generic [ref=e52]:
+        - heading "Selected work" [level=2] [ref=e53]
+        - generic [ref=e54]: 01 — Projects
+      - generic [ref=e56]:
+        - link "OpenArcade 01 OpenArcade Modular accessible gaming controller." [ref=e58] [cursor=pointer]:
+          - /url: https://github.com/ssh-vom/openarcade
+          - img "OpenArcade" [ref=e60]
+          - generic [ref=e61]:
+            - generic [ref=e62]: "01"
+            - generic [ref=e63]: OpenArcade
+            - generic [ref=e64]: Modular accessible gaming controller.
+        - link "Bunshin 02 Bunshin Local-first memory for parallel coding agents." [ref=e66] [cursor=pointer]:
+          - /url: https://github.com/ssh-vom/Bunshin
+          - img "Bunshin" [ref=e68]
+          - generic [ref=e69]:
+            - generic [ref=e70]: "02"
+            - generic [ref=e71]: Bunshin
+            - generic [ref=e72]: Local-first memory for parallel coding agents.
+        - generic [ref=e73]:
+          - generic [ref=e74]: 01 / 06
+          - generic [ref=e76]: Scroll
+    - generic [ref=e78]:
+      - generic [ref=e79]: Experience
+      - generic [ref=e81]: Experience
+      - generic [ref=e83]: Experience
+      - generic [ref=e85]: Experience
+      - generic [ref=e87]: Experience
+      - generic [ref=e89]: Experience
+    - generic [ref=e91]:
+      - generic [ref=e92]:
+        - heading "Where I've been" [level=2] [ref=e93]
+        - generic [ref=e94]: 02 — Experience
+      - generic [ref=e96]:
+        - article [ref=e98]:
+          - generic [ref=e99]:
+            - generic [ref=e101]: Cloaked
+            - heading "Call Guard" [level=3] [ref=e102]
+            - paragraph [ref=e103]: Software Engineer
+            - generic [ref=e104]: June 2026 — Present
+          - paragraph [ref=e106]: Building Call Guard — just getting started.
+        - generic [ref=e107]:
+          - generic [ref=e108]: 01 / 04
+          - generic [ref=e110]: Scroll
+    - generic [ref=e112]:
+      - generic [ref=e113]: Notes & Writing
+      - generic [ref=e115]: Notes & Writing
+      - generic [ref=e117]: Notes & Writing
+      - generic [ref=e119]: Notes & Writing
+      - generic [ref=e121]: Notes & Writing
+      - generic [ref=e123]: Notes & Writing
+    - generic [ref=e125]:
+      - generic [ref=e126]:
+        - heading "Notes & writing" [level=2] [ref=e127]
+        - generic [ref=e128]: 03 — Writing
+      - generic [ref=e130]:
+        - link "01 On CLIs and TUIs Jan 30, 2026 · 4 min" [ref=e131] [cursor=pointer]:
+          - /url: /blog/clis-and-tuis
+          - generic [ref=e132]: "01"
+          - generic [ref=e133]: On CLIs and TUIs
+          - generic [ref=e134]: Jan 30, 2026 · 4 min
+          - img [ref=e136]
+        - link "02 BLE is pretty cool Jan 2, 2026 · 4 min" [ref=e138] [cursor=pointer]:
+          - /url: /blog/open-arcade
+          - generic [ref=e139]: "02"
+          - generic [ref=e140]: BLE is pretty cool
+          - generic [ref=e141]: Jan 2, 2026 · 4 min
+          - img [ref=e143]
+        - link "03 Hello World Oct 20, 2025 · 1 min" [ref=e145] [cursor=pointer]:
+          - /url: /blog/hello-world
+          - generic [ref=e146]: "03"
+          - generic [ref=e147]: Hello World
+          - generic [ref=e148]: Oct 20, 2025 · 1 min
+          - img [ref=e150]
+    - generic [ref=e155]:
+      - generic [ref=e156]: Let's Talk
+      - generic [ref=e158]: Let's Talk
+      - generic [ref=e160]: Let's Talk
+      - generic [ref=e162]: Let's Talk
+      - generic [ref=e164]: Let's Talk
+      - generic [ref=e166]: Let's Talk
+    - generic [ref=e168]:
+      - generic [ref=e169]:
+        - heading "Let's talk" [level=2] [ref=e170]
+        - generic [ref=e171]: 04 — Contact
+      - generic [ref=e172]:
+        - paragraph [ref=e173]: "Based in Toronto. For roles, projects, or anything else — email is fastest:"
+        - link "shivom.sharma.eng@gmail.com" [ref=e174] [cursor=pointer]:
+          - /url: mailto:shivom.sharma.eng@gmail.com
+      - generic [ref=e175]:
+        - link "GitHub" [ref=e176] [cursor=pointer]:
+          - /url: https://github.com/ssh-vom
+          - text: GitHub
+          - img [ref=e177]
+        - link "LinkedIn" [ref=e179] [cursor=pointer]:
+          - /url: https://linkedin.com/in/shivomsharma
+          - text: LinkedIn
+          - img [ref=e180]
+        - link "Résumé" [ref=e182] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link
+          - text: Résumé
+          - img [ref=e183]
+      - generic [ref=e185]:
+        - generic [ref=e186]: © 2026 Shivom Sharma
+        - generic [ref=e187]: Toronto, ON · Canadian Citizen

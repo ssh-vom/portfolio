@@ -46,19 +46,15 @@ function Mermaid({ chart }) {
 
 export default function BlogPost() {
     const { slug } = useParams();
-    const [content, setContent] = useState('');
-    const [frontmatter, setFrontmatter] = useState({});
     const [theme, toggleTheme] = useTheme();
 
+    // Resolved synchronously so the title exists in the first frame —
+    // the view transition morphs it from the notebook entry on the home page.
+    const post = getPostBySlug(slug);
+    const frontmatter = post || {};
+    const content = post ? post.content : 'Post not found.';
+
     useEffect(() => {
-        const post = getPostBySlug(slug);
-        if (post) {
-            setContent(post.content);
-            setFrontmatter(post);
-        } else {
-            setContent('Post not found.');
-            setFrontmatter({});
-        }
         window.scrollTo(0, 0);
     }, [slug]);
 
@@ -117,17 +113,19 @@ export default function BlogPost() {
             <SiteHeader theme={theme} toggleTheme={toggleTheme} homePath="/" />
 
             <article className="reading-page">
-                <Link to="/" className="back-link hero-reveal" style={{ '--d': '0.1s' }}>
+                <Link to="/" viewTransition className="back-link hero-reveal" style={{ '--d': '0.1s' }}>
                     ← Back to home
                 </Link>
 
-                <header className="reading-header hero-reveal" style={{ '--d': '0.2s' }}>
-                    <div className="label">Writing</div>
-                    <h1 className="reading-title">
-                        {frontmatter.title || 'Loading...'}
+                <header className="reading-header">
+                    <div className="label hero-reveal" style={{ '--d': '0.2s' }}>Writing</div>
+                    {/* No hero-reveal: this is the shared view-transition element,
+                        it must be fully visible while the morph plays. */}
+                    <h1 className="reading-title" style={{ viewTransitionName: 'post-title' }}>
+                        {frontmatter.title || 'Post not found'}
                     </h1>
                     {frontmatter.date && (
-                        <div className="reading-date">
+                        <div className="reading-date hero-reveal" style={{ '--d': '0.26s' }}>
                             {formatDate(frontmatter.date)}
                         </div>
                     )}

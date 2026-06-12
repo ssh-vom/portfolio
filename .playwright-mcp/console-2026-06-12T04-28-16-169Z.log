@@ -1,0 +1,133 @@
+[     367ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:21550
+[     496ms] Error: useViewTransitionState must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.
+    at invariant (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:527:11)
+    at useDataRouterContext3 (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9909:3)
+    at useViewTransitionState (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:10306:22)
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:573:25)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:11548:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14926:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:15914:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3674:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3699:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3733:39)
+[     496ms] Error: useViewTransitionState must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.
+    at invariant (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:527:11)
+    at useDataRouterContext3 (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9909:3)
+    at useViewTransitionState (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:10306:22)
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:573:25)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:11548:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14926:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:15914:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3674:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3699:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3733:39)
+[     496ms] Error: useViewTransitionState must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.
+    at invariant (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:527:11)
+    at useDataRouterContext3 (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9909:3)
+    at useViewTransitionState (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:10306:22)
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:573:25)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:11548:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14926:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:15914:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3674:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3699:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3733:39)
+[     497ms] Error: useViewTransitionState must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.
+    at invariant (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:527:11)
+    at useDataRouterContext3 (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9909:3)
+    at useViewTransitionState (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:10306:22)
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:573:25)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:11548:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14926:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:15914:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3674:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3699:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3733:39)
+[     497ms] Error: useViewTransitionState must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.
+    at invariant (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:527:11)
+    at useDataRouterContext3 (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9909:3)
+    at useViewTransitionState (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:10306:22)
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:573:25)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:11548:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14926:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:15914:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3674:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3699:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3733:39)
+[     497ms] Error: useViewTransitionState must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.
+    at invariant (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:527:11)
+    at useDataRouterContext3 (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9909:3)
+    at useViewTransitionState (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:10306:22)
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:573:25)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:11548:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14926:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:15914:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3674:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3699:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:3733:39)
+[     498ms] [ERROR] The above error occurred in the <NotebookEntry> component:
+
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:570:26)
+    at div
+    at div
+    at Reveal (http://localhost:5173/src/components/Reveal.jsx:19:34)
+    at section
+    at WritingSection (http://localhost:5173/src/pages/App.jsx:627:19)
+    at main
+    at App (http://localhost:5173/src/pages/App.jsx:817:32)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:5624:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:6518:3)
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:6461:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9563:3)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14031
+[     498ms] [ERROR] The above error occurred in the <NotebookEntry> component:
+
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:570:26)
+    at div
+    at div
+    at Reveal (http://localhost:5173/src/components/Reveal.jsx:19:34)
+    at section
+    at WritingSection (http://localhost:5173/src/pages/App.jsx:627:19)
+    at main
+    at App (http://localhost:5173/src/pages/App.jsx:817:32)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:5624:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:6518:3)
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:6461:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9563:3)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14031
+[     498ms] [ERROR] The above error occurred in the <NotebookEntry> component:
+
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:570:26)
+    at div
+    at div
+    at Reveal (http://localhost:5173/src/components/Reveal.jsx:19:34)
+    at section
+    at WritingSection (http://localhost:5173/src/pages/App.jsx:627:19)
+    at main
+    at App (http://localhost:5173/src/pages/App.jsx:817:32)
+    at RenderedRoute (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:5624:26)
+    at Routes (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:6518:3)
+    at Router (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:6461:13)
+    at BrowserRouter (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9563:3)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14031
+[     498ms] Error: useViewTransitionState must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.
+    at invariant (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:527:11)
+    at useDataRouterContext3 (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:9909:3)
+    at useViewTransitionState (http://localhost:5173/node_modules/.vite/deps/react-router-dom.js?v=1a86fd7f:10306:22)
+    at NotebookEntry (http://localhost:5173/src/pages/App.jsx:573:25)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:11548:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:14926:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:15914:22)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:19753:22)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:19198:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:19137:13)
+[     509ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/favicon.ico:0
+[   22953ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-4D4CFRWF.js?v=1a86fd7f:21550
+[   23104ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/current-track:0
+[   23104ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/current-track:0
