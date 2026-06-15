@@ -77,9 +77,13 @@
 
 html {
   scroll-behavior: smooth;
-  /* Settles pinned stages on their snap markers when the user stops
-     nearby; proximity (not mandatory) so scrolling is never trapped */
-  scroll-snap-type: y proximity;
+  /* Reserve the scrollbar gutter so the layout width never shifts when a
+     scrollbar toggles between sections — keeps everything centered on
+     Windows (classic scrollbars), matches macOS overlay scrollbars. */
+  scrollbar-gutter: stable;
+  /* No scroll-snapping: a Windows mouse wheel sends large discrete deltas
+     that fight proximity snapping and make the scroll-scrubbed stages step
+     and re-settle. Free scrolling tracks the wheel directly. */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -370,9 +374,12 @@ img {
   padding: 6px;
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--surface) 82%, transparent);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  /* More opaque surface + lighter blur: a fixed backdrop-filter is
+     re-rasterized every scroll frame and is the main scroll-jank source on
+     Windows Chrome. Keeping it frosted but cheap. */
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
   box-shadow: var(--shadow-pill);
   max-width: calc(100vw - 32px);
 }
@@ -489,8 +496,8 @@ img {
 
 .hero-frame {
   position: relative;
-  width: calc(100vw - (100vw - min(1080px, 100vw - 48px)) * var(--p, 0));
-  height: calc(100svh - (100svh - min(1080px, 100vw - 48px) * 0.5625) * var(--p, 0));
+  width: calc(100% - (100% - min(1080px, 100% - 48px)) * var(--p, 0));
+  height: calc(100svh - (100svh - min(1080px, 100% - 48px) * 0.5625) * var(--p, 0));
   border-radius: calc(var(--radius-lg) * var(--p, 0));
   overflow: hidden;
   background: #000;
@@ -820,7 +827,7 @@ img {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: min(620px, 84vw);
+  width: min(620px, 84%);
   will-change: transform, opacity;
 }
 

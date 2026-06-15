@@ -33,17 +33,19 @@ export default function WorkIndex() {
 
       slideRefs.current.forEach((el, i) => {
         if (!el) return;
+        const s = el.style;
         const d = i - prog;
-        if (Math.abs(d) > 1.6) {
-          el.style.visibility = 'hidden';
-          return;
-        }
-        el.style.visibility = '';
+        const vis = Math.abs(d) > 1.6 ? 'hidden' : '';
+        if (s.visibility !== vis) s.visibility = vis;
+        if (vis) return;
         const ad = Math.min(1, Math.abs(d));
-        el.style.transform =
+        // translateZ(0) keeps each slide on its own GPU layer.
+        const transform =
           `translate(-50%, -50%) translateX(${(d * 112).toFixed(2)}%) ` +
-          `rotate(${(d * -2.5).toFixed(2)}deg) scale(${(1 - ad * 0.12).toFixed(3)})`;
-        el.style.opacity = (1 - ad * 0.62).toFixed(3);
+          `rotate(${(d * -2.5).toFixed(2)}deg) scale(${(1 - ad * 0.12).toFixed(3)}) translateZ(0)`;
+        if (s.transform !== transform) s.transform = transform;
+        const opacity = (1 - ad * 0.62).toFixed(3);
+        if (s.opacity !== opacity) s.opacity = opacity;
       });
 
       if (counterRef.current) {

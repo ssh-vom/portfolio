@@ -218,23 +218,32 @@ function ExperienceSection() {
 
             slideRefs.current.forEach((el, i) => {
                 if (!el) return;
+                const s = el.style;
                 const d = i - prog;
                 const ad = Math.abs(d);
-                if (ad > 0.95) {
-                    el.style.visibility = 'hidden';
-                    return;
-                }
-                el.style.visibility = '';
+                const vis = ad > 0.95 ? 'hidden' : '';
+                if (s.visibility !== vis) s.visibility = vis;
+                if (vis) return;
                 // Eased: dwell at focus, hand off quickly between slides
                 const e = Math.sign(d) * Math.pow(Math.min(ad, 1), 1.4);
                 const ae = Math.abs(e);
-                el.style.transform =
+                // translateZ(0) keeps each slide on its own GPU layer.
+                const transform =
                     `translate(-50%, -50%) translateY(${(e * 16).toFixed(2)}svh) ` +
-                    `scale(${(1 - ae * 0.04).toFixed(4)})`;
-                el.style.filter = `blur(${(ae * 7).toFixed(2)}px)`;
-                el.style.opacity = Math.max(0, 1 - ae * 1.2).toFixed(3);
-                el.style.zIndex = String(20 - Math.round(ae * 10));
-                el.style.pointerEvents = ad < 0.5 ? '' : 'none';
+                    `scale(${(1 - ae * 0.04).toFixed(4)}) translateZ(0)`;
+                if (s.transform !== transform) s.transform = transform;
+                // Blur is the costly part on Windows GPUs: lighter radius,
+                // quantized to 0.5px so the compositor reuses rasters between
+                // frames instead of re-blurring every one.
+                const blur = (Math.round(ae * 4 * 2) / 2).toFixed(1);
+                const filter = blur === '0.0' ? 'none' : `blur(${blur}px)`;
+                if (s.filter !== filter) s.filter = filter;
+                const opacity = Math.max(0, 1 - ae * 1.2).toFixed(3);
+                if (s.opacity !== opacity) s.opacity = opacity;
+                const z = String(20 - Math.round(ae * 10));
+                if (s.zIndex !== z) s.zIndex = z;
+                const pe = ad < 0.5 ? '' : 'none';
+                if (s.pointerEvents !== pe) s.pointerEvents = pe;
             });
 
             if (counterRef.current) {
