@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useViewTransitionState } from 'react-router-dom';
-import roles from '../data/experience.yaml';
+import roles from '../data/experience.js';
 import SiteHeader from '../components/SiteHeader.jsx';
 import SnapMarkers from '../components/SnapMarkers.jsx';
 import Flow from '../components/Flow.jsx';

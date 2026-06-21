@@ -1,5 +1,0 @@
-- [Stack vs CLAUDE.md](stack-vs-claudemd.md) — Vite/React SPA; design lives in src/styles.css (Loyal-red Swiss/editorial, 2026-06 redesign); CLAUDE.md is for a different (Next.js) project
-- [Copy tone: no slop](copy-tone-no-slop.md) — user rejects buzzword-list copy; plain declarative facts only ("I build software from the metal up.")
-- [Keep the animations](animations-keep.md) — "deslopify" = copy/clutter only; user likes the blur rise-in and scroll-hint drift, don't touch motion
-- [No serif/italic type](design-no-serif.md) — user finds serif italic accents ugly; site is single-sans + mono, emphasize with color/weight only
-- [Scroll-reactive, full-viewport sections](design-scroll-reactive.md) — every section: 100svh + scrubbed scroll progress (see writing notebook's --np), not one-shot reveals

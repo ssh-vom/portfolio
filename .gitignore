@@ -1,3 +1,7 @@
 *.env
+.DS_Store
+.claude/
+.playwright-mcp/
+dist/
 node_modules/
 tokens.json

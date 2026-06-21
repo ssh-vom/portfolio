@@ -1,10 +1,7 @@
 const express = require("express");
-const axios = require("axios");
 const dotenv = require("dotenv");
-const querystring = require("querystring");
 const fs = require("fs").promises;
 const path = require("path");
-const matter = require("gray-matter");
 
 dotenv.config();
 
@@ -55,6 +52,28 @@ async function loadTokens() {
 // Save tokens to file
 async function saveTokens(tokens) {
   await fs.writeFile(TOKENS_PATH, JSON.stringify(tokens, null, 2));
+}
+
+async function spotifyJson(url, options) {
+  const response = await fetch(url, options);
+  const data = await response.json().catch(() => null);
+  if (!response.ok) {
+    const error = new Error(`Spotify HTTP ${response.status}`);
+    error.response = { status: response.status, data };
+    throw error;
+  }
+  return data;
+}
+
+function parseFrontMatter(raw) {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  const attributes = {};
+  if (!match) return attributes;
+  for (const line of match[1].split(/\r?\n/)) {
+    const i = line.indexOf(":");
+    if (i !== -1) attributes[line.slice(0, i).trim()] = line.slice(i + 1).trim();
+  }
+  return attributes;
 }
 
 function normalizeBaseUrl(url) {
@@ -115,14 +134,14 @@ async function loadBlogPosts() {
   for (const filePath of files) {
     try {
       const raw = await fs.readFile(filePath, "utf8");
-      const { data } = matter(raw);
-      const slug = data.slug || path.basename(filePath, ".md");
+      const attributes = parseFrontMatter(raw);
+      const slug = attributes.slug || path.basename(filePath, ".md");
       posts.push({
         slug,
-        title: data.title || slug,
-        description: data.description || "",
-        image: data.image || "",
-        date: data.date || "",
+        title: attributes.title || slug,
+        description: attributes.description || "",
+        image: attributes.image || "",
+        date: attributes.date || "",
       });
     } catch (error) {
       console.warn("Failed to parse blog post:", filePath, error.message);
@@ -235,27 +254,25 @@ async function refreshAccessToken() {
     return false;
   }
   try {
-    const response = await axios.post(
-      "https://accounts.spotify.com/api/token",
-      querystring.stringify({
+    const data = await spotifyJson("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      body: new URLSearchParams({
         grant_type: "refresh_token",
         refresh_token: refreshToken,
       }),
-      {
-        headers: {
-          Authorization: `Basic ${Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString("base64")}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+      headers: {
+        Authorization: `Basic ${Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString("base64")}`,
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-    );
+    });
 
-    accessToken = response.data.access_token;
+    accessToken = data.access_token;
     // Set expiration time (usually 1 hour) with a small buffer
-    tokenExpirationTime = Date.now() + response.data.expires_in * 1000 - 60000;
+    tokenExpirationTime = Date.now() + data.expires_in * 1000 - 60000;
 
     // If we got a new refresh token, store it
-    if (response.data.refresh_token) {
-      refreshToken = response.data.refresh_token;
+    if (data.refresh_token) {
+      refreshToken = data.refresh_token;
       await saveTokens({ refreshToken });
     }
 
@@ -272,14 +289,12 @@ app.get("/init-auth", (req, res) => {
     return res.status(503).send("Spotify is not configured.");
   }
   const scope = "user-read-playback-state user-read-currently-playing";
-  const authURL = `https://accounts.spotify.com/authorize?${querystring.stringify(
-    {
-      response_type: "code",
-      client_id: SPOTIFY_CLIENT_ID,
-      scope: scope,
-      redirect_uri: SPOTIFY_REDIRECT_URI,
-    },
-  )}`;
+  const authURL = `https://accounts.spotify.com/authorize?${new URLSearchParams({
+    response_type: "code",
+    client_id: SPOTIFY_CLIENT_ID,
+    scope,
+    redirect_uri: SPOTIFY_REDIRECT_URI,
+  })}`;
 
   res.redirect(authURL);
 });
@@ -296,25 +311,22 @@ app.get("/callback", async (req, res) => {
   }
 
   try {
-    const tokenResponse = await axios.post(
-      "https://accounts.spotify.com/api/token",
-      querystring.stringify({
+    const data = await spotifyJson("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      body: new URLSearchParams({
         code,
         redirect_uri: SPOTIFY_REDIRECT_URI,
         grant_type: "authorization_code",
       }),
-      {
-        headers: {
-          Authorization: `Basic ${Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString("base64")}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+      headers: {
+        Authorization: `Basic ${Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString("base64")}`,
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-    );
+    });
 
-    accessToken = tokenResponse.data.access_token;
-    refreshToken = tokenResponse.data.refresh_token;
-    tokenExpirationTime =
-      Date.now() + tokenResponse.data.expires_in * 1000 - 60000;
+    accessToken = data.access_token;
+    refreshToken = data.refresh_token;
+    tokenExpirationTime = Date.now() + data.expires_in * 1000 - 60000;
 
     // Store tokens
     await saveTokens({ refreshToken });
@@ -340,7 +352,7 @@ const isProduction = process.env.NODE_ENV === "production";
 if (isProduction) {
   app.use(express.static(distPath));
 }
-// Static for legacy/public assets (PDF, media) without serving index.html
+// Static for public assets without serving index.html
 app.use(express.static(publicPath, { index: false }));
 
 // Blog post route with social meta tags (production only)
@@ -382,21 +394,21 @@ app.get("/current-track", async (req, res) => {
   }
 
   try {
-    const response = await axios.get(
+    const data = await spotifyJson(
       "https://api.spotify.com/v1/me/player/currently-playing",
       { headers: { Authorization: `Bearer ${accessToken}` } },
     );
 
-    if (!response.data || !response.data.item) {
+    if (!data?.item) {
       return res.status(404).json({ message: "No track is currently playing" });
     }
 
-    const track = response.data.item;
+    const track = data.item;
     const trackInfo = {
       name: track.name,
       artist: track.artists.map((a) => a.name).join(", "),
       albumCover: track.album.images?.[0]?.url ?? null,
-      currentTime: response.data.progress_ms,
+      currentTime: data.progress_ms,
       duration: track.duration_ms,
     };
 

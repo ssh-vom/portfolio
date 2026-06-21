@@ -1491,8 +1491,11 @@ img {
 .reading-content pre,
 .reading-content pre[class*='language-'] {
   margin: 1.6em 0 !important;
+  padding: 14px 16px;
   border-radius: var(--radius) !important;
   border: 1px solid var(--line);
+  background: var(--surface-2);
+  overflow-x: auto;
   font-size: 0.8125rem !important;
 }
 
@@ -1534,13 +1537,6 @@ img {
   text-transform: uppercase;
   color: var(--ink-3);
   font-weight: 500;
-}
-
-.mermaid-error {
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  color: var(--accent);
-  white-space: pre-wrap;
 }
 
 /* ===== Responsive ===== */
