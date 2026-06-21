@@ -8,7 +8,7 @@ import WorkIndex from '../components/WorkIndex.jsx';
 import Reveal from '../components/Reveal.jsx';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
 import useTheme from '../hooks/useTheme.js';
-import { getAllPosts } from '../utils/blog.js';
+import { getAllPosts, formatDate } from '../utils/blog.js';
 
 const RESUME_URL =
     'https://drive.google.com/file/d/1dF-L6oKwGsYKAEfJycaFoQokeM7xw6NR/view?usp=drive_link';
@@ -27,19 +27,6 @@ function ArrowUpRight() {
             <path d="M7 17L17 7M9 7h8v8" />
         </svg>
     );
-}
-
-function estimateReadingTime(content) {
-    const wordsPerMinute = 200;
-    const words = content?.split(/\s+/).length || 0;
-    const minutes = Math.ceil(words / wordsPerMinute);
-    return minutes < 1 ? '< 1 min' : `${minutes} min`;
-}
-
-function formatDate(date) {
-    const d = new Date(date);
-    if (isNaN(d)) return String(date);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
 function parseTitle(title) {

@@ -1,9 +1,8 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const fs = require("fs").promises;
 const path = require("path");
 
-dotenv.config();
+process.loadEnvFile();
 
 const PUBLIC_SITE_URL = process.env.PUBLIC_SITE_URL || "https://shivom.dev";
 const BLOG_DIR = path.join(__dirname, "src", "blog");
@@ -76,10 +75,6 @@ function parseFrontMatter(raw) {
   return attributes;
 }
 
-function normalizeBaseUrl(url) {
-  return String(url || "").replace(/\/+$/, "");
-}
-
 function escapeHtml(value) {
   return String(value || "")
     .replace(/&/g, "&amp;")
@@ -105,29 +100,21 @@ function toIsoDate(dateValue) {
   return date.toISOString();
 }
 
+// ponytail: src/blog is flat — readdir over glob-walk. Re-add recursion if nested.
 async function collectMarkdownFiles(dir) {
   try {
     const entries = await fs.readdir(dir, { withFileTypes: true });
-    const files = [];
-    for (const entry of entries) {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        files.push(...(await collectMarkdownFiles(fullPath)));
-      } else if (entry.isFile() && entry.name.endsWith(".md")) {
-        files.push(fullPath);
-      }
-    }
-    return files;
+    return entries
+      .filter((e) => e.isFile() && e.name.endsWith(".md"))
+      .map((e) => path.join(dir, e.name));
   } catch (error) {
     console.warn("Blog directory not found:", dir);
     return [];
   }
 }
 
-let cachedBlogPosts = null;
-
+// ponytail: 3-file disk read is sub-ms — cache + null guard costs more than it saves.
 async function loadBlogPosts() {
-  if (cachedBlogPosts) return cachedBlogPosts;
   const files = await collectMarkdownFiles(BLOG_DIR);
   const posts = [];
 
@@ -148,13 +135,7 @@ async function loadBlogPosts() {
     }
   }
 
-  cachedBlogPosts = posts;
   return posts;
-}
-
-async function getBlogPostBySlug(slug) {
-  const posts = await loadBlogPosts();
-  return posts.find((post) => post.slug === slug) || null;
 }
 
 function buildMetaTags({
@@ -220,7 +201,7 @@ function updateTitle(html, title) {
 }
 
 function buildMetaForPost(post, baseUrl) {
-  const normalizedBaseUrl = normalizeBaseUrl(baseUrl);
+  const normalizedBaseUrl = String(baseUrl || "").replace(/\/+$/, "");
   const hasPost = Boolean(post);
   const title = hasPost ? post.title : DEFAULT_META.title;
   const description = hasPost && post.description
@@ -363,7 +344,7 @@ app.get("/blog/:slug", async (req, res, next) => {
 
   try {
     const { slug } = req.params;
-    const post = await getBlogPostBySlug(slug);
+    const post = (await loadBlogPosts()).find((p) => p.slug === slug) || null;
     const { metaTags, pageTitle } = buildMetaForPost(post, PUBLIC_SITE_URL);
 
     const indexFile = path.join(distPath, "index.html");

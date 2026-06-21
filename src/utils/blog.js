@@ -1,5 +1,11 @@
 const postFiles = import.meta.glob('/src/blog/**/*.md', { eager: true, query: '?raw', import: 'default' });
 
+export function formatDate(date) {
+  const d = new Date(date);
+  if (isNaN(d)) return String(date);
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
 function parseFrontMatter(raw) {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
   const attributes = {};

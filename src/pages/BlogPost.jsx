@@ -1,15 +1,9 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import { getPostBySlug } from '../utils/blog.js';
+import { getPostBySlug, formatDate } from '../utils/blog.js';
 import SiteHeader from '../components/SiteHeader.jsx';
 import useTheme from '../hooks/useTheme.js';
-
-function formatDate(date) {
-    const d = new Date(date);
-    if (isNaN(d)) return String(date);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-}
 
 export default function BlogPost() {
     const { slug } = useParams();
@@ -44,9 +38,6 @@ export default function BlogPost() {
                     <img
                         src={fullSrc}
                         alt={alt?.replace(/\s+\d+%$/, '') || ''}
-                        onError={() => {
-                            console.error('Image failed to load:', fullSrc);
-                        }}
                         style={{ maxWidth: '100%', height: 'auto', width: width || 'auto' }}
                         loading="lazy"
                     />

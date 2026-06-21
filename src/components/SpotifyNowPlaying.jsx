@@ -1,41 +1,33 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SpotifyNowPlaying() {
     const [track, setTrack] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    const fetchTrack = useCallback(async () => {
-        try {
-            const response = await fetch('/current-track');
-            
-            if (response.status === 404) {
-                setTrack(null);
-                setLoading(false);
-                return;
-            }
-            
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-            
-            const data = await response.json();
-            setTrack(data);
-        } catch {
-            setTrack(null);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
 
     useEffect(() => {
+        let alive = true;
+        const fetchTrack = async () => {
+            try {
+                const response = await fetch('/current-track');
+                if (response.status === 404) {
+                    if (alive) setTrack(null);
+                    return;
+                }
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                if (alive) setTrack(data);
+            } catch {
+                if (alive) setTrack(null);
+            }
+        };
         fetchTrack();
         const interval = setInterval(fetchTrack, 10000);
-        return () => clearInterval(interval);
-    }, [fetchTrack]);
+        return () => {
+            alive = false;
+            clearInterval(interval);
+        };
+    }, []);
 
-    if (loading || !track) {
-        return null; // Don't show if not playing
-    }
+    if (!track) return null;
 
     return (
         <div className="spotify-widget">
