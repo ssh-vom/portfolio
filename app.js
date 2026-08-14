@@ -2,7 +2,11 @@ const express = require("express");
 const fs = require("fs").promises;
 const path = require("path");
 
-process.loadEnvFile();
+try {
+  process.loadEnvFile();
+} catch (error) {
+  if (error.code !== "ENOENT") throw error;
+}
 
 const PUBLIC_SITE_URL = process.env.PUBLIC_SITE_URL || "https://shivom.dev";
 const BLOG_DIR = path.join(__dirname, "src", "blog");
