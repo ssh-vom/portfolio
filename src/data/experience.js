@@ -1,5 +1,11 @@
 export default [
   {
+    company: 'Cloaked',
+    title: 'Cloaked, Software Engineer (Call Guard)',
+    date: 'June 2026 — Present',
+    bullets: [],
+  },
+  {
     company: 'Tesla',
     title: 'Tesla, Software Engineer Intern (AI Agents, Material Flow Robotics & Design)',
     date: 'May 2025 — August 2025',
