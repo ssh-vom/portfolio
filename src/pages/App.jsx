@@ -117,7 +117,7 @@ function Hero() {
 
                 <div className={`hero-copy page ${p > 0.3 ? 'is-faded' : ''}`}>
                     <div className="hero-kicker hero-reveal" style={{ '--d': '0.12s' }}>
-                        <span className="label">Software Engineer at Cloaked · Toronto</span>
+                        <span className="label">Software Engineer · Toronto</span>
                     </div>
 
                     <h1 className="hero-title hero-reveal" style={{ '--d': '0.22s' }}>
@@ -125,9 +125,9 @@ function Hero() {
                     </h1>
 
                     <p className="hero-sub hero-reveal" style={{ '--d': '0.34s' }}>
-                        I'm <strong>Shivom Sharma</strong>. Currently at <strong>Cloaked</strong>; before that,
-                        three internships at <strong>Tesla</strong> — factory robotics, AI tooling, and production
-                        vision systems. Mechatronics &amp; Business at McMaster, class of 2026.
+                        I'm <strong>Shivom Sharma</strong>. I've completed three internships at <strong>Tesla</strong> — factory
+                        robotics, AI tooling, and production vision systems. Mechatronics &amp; Business at McMaster,
+                        class of 2026.
                     </p>
 
                     <div className="hero-actions hero-reveal" style={{ '--d': '0.42s' }}>
@@ -174,7 +174,6 @@ function WorkSection() {
 }
 
 const COMPANY_LOGOS = {
-    Cloaked: '/images/logo_cloaked.png',
     Tesla: '/images/logo_tesla.png',
 };
 
