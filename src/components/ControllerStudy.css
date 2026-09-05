@@ -2,6 +2,10 @@
   --explode: 0;
   --rail: 0;
   --gap: 0;
+  --swap-lift: 0;
+  --button-out: 0;
+  --joystick-in: 0;
+  --joystick-lift: 1;
   position: relative;
   height: auto;
   margin-top: 48px;
@@ -36,7 +40,7 @@
 /* Ghost the lifted lid so the rear-mounted perfboard stays readable. */
 .iso-top-layer .iso-plate-top { fill-opacity: calc(1 - var(--explode) * 0.88); }
 .iso-top-layer .iso-side-left, .iso-top-layer .iso-side-right { fill-opacity: calc(1 - var(--explode) * 0.65); }
-.iso-buttons-layer { transform: translateY(calc(-25px - var(--explode) * 154px)); }
+.iso-buttons-layer { transform: translateY(calc(-22px - var(--explode) * 154px)); }
 /* First slide parallel to the rail, then move away normal to the sidewall.
    Reverse in the opposite order: align, then slide home. */
 .iso-module-layer { transform: translate(calc(var(--gap) * 69px + var(--rail) * 60px), calc(var(--gap) * 40px - var(--rail) * 35px)); }
@@ -55,6 +59,19 @@
 .iso-display-ink { stroke: #a8c4a5; stroke-width: 2; }
 .iso-function, .iso-socket { fill: #182320; stroke: var(--iso-stroke); }
 .iso-screw { fill: #a4ada6; stroke: var(--iso-stroke); }
+.iso-button-layout {
+  transform: translate(calc(var(--button-out) * -135px), calc(var(--swap-lift) * -105px));
+  opacity: calc(1 - var(--button-out));
+}
+.iso-joystick-layout {
+  transform: translate(calc((1 - var(--joystick-in)) * 135px), calc(-16px - var(--joystick-lift) * 105px));
+  opacity: var(--joystick-in);
+}
+.iso-stick-boot { fill: #1c2924; stroke: #7e8c82; }
+.iso-stick-collar { fill: #37473c; stroke: #8a9a8f; }
+.iso-stick-shaft { stroke: #b7c1b8; stroke-width: 7; stroke-linecap: round; }
+.iso-stick-ball { fill: #af6554; stroke: #d39b84; stroke-width: 1.2; }
+.iso-stick-highlight { fill: none; stroke: #ebc0a6; stroke-width: 2; stroke-linecap: round; opacity: 0.65; }
 .iso-button-edge { fill: #234957; stroke: #294450; }
 .iso-button-face { fill: #658b9c; stroke: #9ebac3; stroke-width: 1; }
 .iso-button-glint { fill: none; stroke: #c0d5db; stroke-linecap: round; opacity: 0.7; }
