@@ -54,13 +54,13 @@ export default function WorkIndex() {
 
       <div className="project-collection-head">
         <p>A few more things <em>I’ve built.</em></p>
-        <span className="label">02 — {String(projects.length).padStart(2, '0')} / The collection</span>
+        <span className="label">02 to {String(projects.length).padStart(2, '0')} / The collection</span>
       </div>
       <div className="project-grid">
         {collection.map((project, index) => (
           <Reveal as="article" className={`project-card project-card--${project.id}`} key={project.id}>
             <a className="project-preview" href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`Explore ${project.name} on GitHub`}>
-              <img src={project.previewImage} alt={`${project.name} — ${project.tagline}`} loading="lazy" decoding="async" />
+              <img src={project.previewImage} alt={`${project.name}: ${project.tagline}`} loading="lazy" decoding="async" />
               <span className="project-preview-action" aria-hidden="true">View project ↗</span>
             </a>
             <div className="project-card-meta label"><span>{String(index + 2).padStart(2, '0')}</span><span>{notes[project.id].category}</span></div>

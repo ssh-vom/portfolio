@@ -87,14 +87,10 @@
 .iso-annotations text { fill: var(--ink-3); font: 8px var(--font-mono); letter-spacing: 0.5px; }
 .controller-study figcaption { width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.02em; color: var(--ink-3); }
 .controller-study-status { color: var(--ink-2); }
-.controller-playback { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px 20px; margin-top: 22px; }
-.controller-study-hint { font-size: 0.6875rem; color: var(--ink-3); }
-.controller-playback-button { padding: 8px 14px; border: 1px solid var(--line-strong); border-radius: 4px; font-size: 0.75rem; }
-.controller-playback-button:hover { background: var(--surface-2); }
 @media (max-width: 600px) {
   .controller-study-heading .label { font-size: 0.625rem; }
   .controller-study svg { width: calc(100% + 28px); }
   .controller-study figcaption { font-size: 0.5625rem; flex-direction: column; align-items: center; text-align: center; }
   .iso-annotations { display: none; }
 }
-/* Reduced motion starts paused in React; explicit Play still works. */
+/* Autoplay is disabled in React when reduced motion is requested. */

@@ -159,12 +159,7 @@ export default function ControllerStudy() {
           <g className="iso-annotations"><g className="iso-buttons-layer"><path d="M152 290H78" /><text x="33" y="280">08 / BUTTONS</text></g><g className="iso-board-layer"><path d="M407 300h89" /><text x="462" y="290">ESP32 + PERFBOARD</text></g><path d="M190 430H90" /><text x="27" y="420">PRINTED ENCLOSURE</text></g>
         </svg>
         <figcaption><span>CAD-informed study · connector shown in cutaway</span><span className="controller-study-status" ref={statusRef}>01 / Release the rail</span></figcaption>
-        <div className="controller-playback">
-          <span className="controller-study-hint">{playing ? 'Explode, reconnect & swap plates · 22-second loop' : 'Animation paused'}</span>
-          <button type="button" className="controller-playback-button" onClick={() => setPlaying((value) => !value)}>
-            {playing ? 'Pause animation' : 'Play animation'}
-          </button>
-        </div>
+
       </figure>
     </div>
   );

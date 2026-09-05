@@ -65,7 +65,7 @@ function Theatre({ src, title, onClose }) {
     }, [onClose]);
 
     return (
-        <div className="theatre" onClick={onClose} role="dialog" aria-label={`${title} — theatre mode`}>
+        <div className="theatre" onClick={onClose} role="dialog" aria-label={`${title}: theatre mode`}>
             <button className="theatre-close" onClick={onClose} aria-label="Close theatre mode">
                 ✕
             </button>
@@ -138,9 +138,10 @@ function Hero() {
                     </h1>
 
                     <p className="hero-sub hero-reveal" style={{ '--d': '0.34s' }}>
-                        I'm <strong>Shivom Sharma</strong>. Currently at <strong>Cloaked</strong>; before that,
-                        three internships at <strong>Tesla</strong> — factory robotics, AI tooling, and production
-                        vision systems. Mechatronics &amp; Business at McMaster, class of 2026.
+                        I'm <strong>Shivom Sharma</strong>, a software engineer at <strong>Cloaked</strong>.
+                        Previously, I worked on factory robotics, AI tooling, and production vision systems
+                        across three internships at <strong>Tesla</strong>. Mechatronics &amp; Business at
+                        McMaster, class of 2026.
                     </p>
 
                     <div className="hero-actions hero-reveal" style={{ '--d': '0.42s' }}>
@@ -163,7 +164,7 @@ function Hero() {
                     </div>
                 </div>
 
-                <span className="hero-theatre-caption label">OpenArcade — click for sound</span>
+                <span className="hero-theatre-caption label">OpenArcade · Click for sound</span>
             </div>
 
             {theatreOpen && (
@@ -180,7 +181,7 @@ function WorkSection() {
                 <h2 className="section-title">
                     Selected <span className="accent-word">work</span>
                 </h2>
-                <span className="label">01 — Projects</span>
+                <span className="label">01 / Projects</span>
             </Reveal>
             <WorkIndex />
         </section>
@@ -291,7 +292,7 @@ function ExperienceSection() {
                             ))}
                         </ul>
                     ) : (
-                        <p className="xp-now">Building Call Guard — just getting started.</p>
+                        <p className="xp-now">Building Call Guard. Just getting started.</p>
                     )}
                 </div>
             </article>
@@ -304,7 +305,7 @@ function ExperienceSection() {
                 <h2 className="section-title">
                     Where I've <span className="accent-word">been</span>
                 </h2>
-                <span className="label">02 — Experience</span>
+                <span className="label">02 / Experience</span>
             </Reveal>
             {reduced ? (
                 <div className="xp-static">
@@ -407,7 +408,7 @@ function WritingSection() {
                 <h2 className="section-title">
                     Notes &amp; <span className="accent-word">writing</span>
                 </h2>
-                <span className="label">03 — Writing</span>
+                <span className="label">03 / Writing</span>
             </Reveal>
             <Reveal delay={0.08} className="notebook-fill">
                 <div className="notebook-page" ref={pageRef} style={{ '--n': posts.length }}>
@@ -436,12 +437,12 @@ function ContactSection() {
                 <h2 className="section-title">
                     Let's <span className="accent-word">talk</span>
                 </h2>
-                <span className="label">04 — Contact</span>
+                <span className="label">04 / Contact</span>
             </Reveal>
 
             <Reveal delay={0.08}>
                 <p className="contact-lede">
-                    Based in Toronto. For roles, projects, or anything else — email is fastest:
+                    Based in Toronto. Have a role, a project, or a question in mind? Send me an email.
                 </p>
                 <a href="mailto:shivom.sharma.eng@gmail.com" className="contact-email">
                     shivom.sharma.eng@gmail.com
