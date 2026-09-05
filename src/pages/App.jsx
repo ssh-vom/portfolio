@@ -8,6 +8,7 @@ import WorkIndex from '../components/WorkIndex.jsx';
 import Reveal from '../components/Reveal.jsx';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
 import useTheme from '../hooks/useTheme.js';
+import useSectionTone from '../hooks/useSectionTone.js';
 import { getAllPosts, formatDate } from '../utils/blog.js';
 
 const RESUME_URL =
@@ -115,6 +116,13 @@ function Hero() {
                     onClick={() => inTheatre && setTheatreOpen(true)}
                     role={inTheatre ? 'button' : undefined}
                     aria-label={inTheatre ? 'Play OpenArcade demo with sound' : undefined}
+                    tabIndex={inTheatre ? 0 : undefined}
+                    onKeyDown={(event) => {
+                        if (inTheatre && (event.key === 'Enter' || event.key === ' ')) {
+                            event.preventDefault();
+                            setTheatreOpen(true);
+                        }
+                    }}
                 >
                     <video src={DEMO_VIDEO + "#t=15"} autoPlay muted loop playsInline />
                     <div className="hero-frame-scrim" />
@@ -148,9 +156,10 @@ function Hero() {
 
                     <div className="hero-foot hero-reveal" style={{ '--d': '0.52s' }}>
                         <span className="hero-scroll-hint label">
-                            Scroll
+                            Explore the work
                             <ArrowDown />
                         </span>
+                        <span className="label">Software · Systems · Craft</span>
                     </div>
                 </div>
 
@@ -465,25 +474,7 @@ function ContactSection() {
 export default function App() {
     const [theme, toggleTheme] = useTheme();
 
-    // Tint the page background to whichever section occupies mid-viewport
-    useEffect(() => {
-        const sections = document.querySelectorAll('main > section');
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        document.body.dataset.zone = entry.target.id || 'hero';
-                    }
-                });
-            },
-            { rootMargin: '-45% 0px -45% 0px' }
-        );
-        sections.forEach((s) => observer.observe(s));
-        return () => {
-            observer.disconnect();
-            delete document.body.dataset.zone;
-        };
-    }, []);
+    useSectionTone(theme);
 
     return (
         <>

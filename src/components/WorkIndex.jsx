@@ -1,134 +1,76 @@
-import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { projects } from '../data/projects.js';
 import Reveal from './Reveal.jsx';
-import SnapMarkers from './SnapMarkers.jsx';
+import ControllerStudy from './ControllerStudy.jsx';
+import './WorkIndex.css';
 
-const STEP_SVH = 70; // scroll budget per project
+const notes = {
+  bunshin: { category: 'Developer tools', summary: 'A shared memory for coding agents. Local-first files, a review queue, and a CLI that lets learnings outlive a single session.' },
+  analyticz: { category: 'Applied AI', summary: 'An exploratory data analyst that writes and runs SQL and Python in isolated environments, with parallel agents for branching investigations.' },
+  sniffles: { category: 'Systems & networking', summary: 'See what’s moving across the wire. Live packet capture, protocol dissection, and a native C++ interface for inspecting network traffic.' },
+  booxserve: { category: 'Everyday utilities', summary: 'From the command line to e-ink. A lightweight tool that delivers manga and textbooks directly to BOOX tablets.' },
+  walls: { category: 'Terminal interfaces', summary: 'A small ritual for a fresh desktop. Browse, preview, and set wallpapers without leaving the terminal.' },
+};
+
+function Outbound({ href, children, className = '' }) {
+  return <a className={`project-link ${className}`} href={href} target="_blank" rel="noopener noreferrer">{children}<span aria-hidden="true">↗</span></a>;
+}
 
 export default function WorkIndex() {
-  const stageRef = useRef(null);
-  const slideRefs = useRef([]);
-  const counterRef = useRef(null);
-  const fillRef = useRef(null);
-  const [reduced] = useState(
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
-
-  // Central-focus swipe: scroll progress through the stage scrubs each
-  // project out to the left while the next replaces it from the right.
-  // Native scrolling throughout — fast scrolls fly through unhindered.
-  useEffect(() => {
-    if (reduced) return;
-    const stage = stageRef.current;
-    if (!stage) return;
-
-    const n = projects.length;
-    let raf = 0;
-
-    const update = () => {
-      raf = 0;
-      const total = stage.offsetHeight - window.innerHeight;
-      const p = Math.min(1, Math.max(0, -stage.getBoundingClientRect().top / total));
-      const prog = p * (n - 1);
-
-      slideRefs.current.forEach((el, i) => {
-        if (!el) return;
-        const s = el.style;
-        const d = i - prog;
-        const vis = Math.abs(d) > 1.6 ? 'hidden' : '';
-        if (s.visibility !== vis) s.visibility = vis;
-        if (vis) return;
-        const ad = Math.min(1, Math.abs(d));
-        // translateZ(0) keeps each slide on its own GPU layer.
-        const transform =
-          `translate(-50%, -50%) translateX(${(d * 112).toFixed(2)}%) ` +
-          `rotate(${(d * -2.5).toFixed(2)}deg) scale(${(1 - ad * 0.12).toFixed(3)}) translateZ(0)`;
-        if (s.transform !== transform) s.transform = transform;
-        const opacity = (1 - ad * 0.62).toFixed(3);
-        if (s.opacity !== opacity) s.opacity = opacity;
-      });
-
-      if (counterRef.current) {
-        counterRef.current.textContent = String(Math.round(prog) + 1).padStart(2, '0');
-      }
-      if (fillRef.current) {
-        fillRef.current.style.transform = `scaleX(${(prog / (n - 1)).toFixed(4)})`;
-      }
-    };
-
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, [reduced]);
-
-  const tile = (project, i) => (
-    <a
-      className="work-slide-link"
-      href={project.github}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <div className="work-piece-media">
-        {project.previewImage ? (
-          <img src={project.previewImage} alt={project.name} loading="lazy" />
-        ) : (
-          <span className="work-card-num">{String(i + 1).padStart(2, '0')}</span>
-        )}
-      </div>
-      <div className="work-card-caption">
-        <span className="label">{String(i + 1).padStart(2, '0')}</span>
-        <span className="work-card-name">{project.name}</span>
-        <span className="work-card-tagline">{project.tagline}</span>
-      </div>
-    </a>
-  );
-
-  if (reduced) {
-    return (
-      <div className="work-flow">
-        {projects.map((project, i) => (
-          <Reveal as="article" key={project.id}>
-            {tile(project, i)}
-          </Reveal>
-        ))}
-      </div>
-    );
-  }
+  const [featured, ...collection] = projects;
 
   return (
-    <div
-      className="work-stage"
-      ref={stageRef}
-      style={{ height: `calc(100svh + ${(projects.length - 1) * STEP_SVH}svh)` }}
-    >
-      <SnapMarkers count={projects.length} />
-      <div className="work-stage-sticky">
-        {projects.map((project, i) => (
-          <div
-            className="work-slide"
-            key={project.id}
-            ref={(el) => (slideRefs.current[i] = el)}
-          >
-            {tile(project, i)}
-          </div>
-        ))}
-        <div className="work-stage-foot">
-          <span className="label">
-            <span ref={counterRef}>01</span> / {String(projects.length).padStart(2, '0')}
-          </span>
-          <div className="work-progress" aria-hidden="true">
-            <span className="work-progress-fill" ref={fillRef} />
-          </div>
-          <span className="label">Scroll</span>
+    <div className="project-gallery">
+      <article className="project-feature">
+        <div className="project-feature-intro">
+          <span className="label">01 / Featured project</span>
+          <span className="label">Hardware meets software</span>
         </div>
+        <div className="project-feature-layout">
+          <div className="project-feature-copy">
+            <h3>{featured.name}</h3>
+            <p className="project-feature-deck">More ways<br />to <em>play.</em></p>
+            <p className="project-description">A modular, accessible gaming controller. Built from the circuit up, with Raspberry Pi and ESP32 modules that work together over Bluetooth.</p>
+            <dl className="project-facts">
+              <div><dt>≤25 ms</dt><dd>End-to-end latency</dd></div>
+              <div><dt>BLE + USB</dt><dd>Controller interfaces</dd></div>
+            </dl>
+            <div className="project-feature-links">
+              <Outbound href={featured.github}>Explore the source</Outbound>
+              <Link to="/blog/open-arcade" className="project-link">Read the dev log <span aria-hidden="true">↗</span></Link>
+            </div>
+          </div>
+          <div className="project-feature-visuals">
+          <figure className="project-demo">
+            <video controls playsInline preload="none" poster="/images/openarcade-demo.jpg" aria-label="OpenArcade controller demonstration">
+              <source src="/videos/openarcade.mp4" type="video/mp4" />
+            </video>
+            <figcaption><span className="project-demo-dot" aria-hidden="true" />OpenArcade, in action<span>Play with sound ↗</span></figcaption>
+          </figure>
+          </div>
+        </div>
+        <ControllerStudy />
+      </article>
+
+      <div className="project-collection-head">
+        <p>A few more things <em>I’ve built.</em></p>
+        <span className="label">02 — {String(projects.length).padStart(2, '0')} / The collection</span>
+      </div>
+      <div className="project-grid">
+        {collection.map((project, index) => (
+          <Reveal as="article" className={`project-card project-card--${project.id}`} key={project.id}>
+            <a className="project-preview" href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`Explore ${project.name} on GitHub`}>
+              <img src={project.previewImage} alt={`${project.name} — ${project.tagline}`} loading="lazy" decoding="async" />
+              <span className="project-preview-action" aria-hidden="true">View project ↗</span>
+            </a>
+            <div className="project-card-meta label"><span>{String(index + 2).padStart(2, '0')}</span><span>{notes[project.id].category}</span></div>
+            <h3><Outbound href={project.github}>{project.name}</Outbound></h3>
+            <p className="project-description">{notes[project.id].summary}</p>
+            <ul className="project-stack" aria-label={`${project.name} technologies`}>
+              {project.capabilities.slice(0, 3).map((tech) => <li key={tech}>{tech}</li>)}
+            </ul>
+          </Reveal>
+        ))}
       </div>
     </div>
   );

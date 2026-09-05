@@ -1,0 +1,83 @@
+.controller-stage {
+  --explode: 0;
+  --rail: 0;
+  --gap: 0;
+  position: relative;
+  height: auto;
+  margin-top: 48px;
+  border-top: 1px solid var(--line);
+}
+.controller-study {
+  --iso-top: #454c49;
+  --iso-left: #303734;
+  --iso-right: #252d29;
+  --iso-stroke: #7e8c82;
+  position: relative;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 0;
+}
+.controller-study-heading { width: 100%; display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+.controller-study-heading p { font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: -0.03em; }
+.controller-study svg { display: block; width: min(100%, 780px); height: auto; aspect-ratio: 4 / 3; overflow: visible; }
+.iso-ground { fill: none; stroke: var(--line-strong); stroke-width: 0.7; }
+.iso-ground .iso-shadow { fill: var(--ink); stroke: none; opacity: calc(0.06 - var(--explode) * 0.025); }
+.iso-plate-top { fill: var(--iso-top); stroke: var(--iso-stroke); stroke-width: 1; }
+.iso-side-left { fill: var(--iso-left); stroke: var(--iso-stroke); stroke-width: 0.8; }
+.iso-side-right { fill: var(--iso-right); stroke: var(--iso-stroke); stroke-width: 0.8; }
+.iso-cavity rect { fill: var(--iso-right); stroke: var(--iso-stroke); }
+.iso-cavity path { fill: none; stroke: var(--iso-stroke); opacity: 0.55; }
+.iso-cavity circle { fill: var(--iso-top); stroke: var(--iso-stroke); }
+.iso-board-layer { transform: translateY(calc(-7px - var(--explode) * 48px)); }
+.iso-top-layer { transform: translateY(calc(-16px - var(--explode) * 106px)); }
+/* Ghost the lifted lid so the rear-mounted perfboard stays readable. */
+.iso-top-layer .iso-plate-top { fill-opacity: calc(1 - var(--explode) * 0.88); }
+.iso-top-layer .iso-side-left, .iso-top-layer .iso-side-right { fill-opacity: calc(1 - var(--explode) * 0.65); }
+.iso-buttons-layer { transform: translateY(calc(-25px - var(--explode) * 154px)); }
+/* First slide parallel to the rail, then move away normal to the sidewall.
+   Reverse in the opposite order: align, then slide home. */
+.iso-module-layer { transform: translate(calc(var(--gap) * 69px + var(--rail) * 60px), calc(var(--gap) * 40px - var(--rail) * 35px)); }
+.iso-board { --iso-top: #a38b59; --iso-left: #7a643e; --iso-right: #665637; --iso-stroke: #c5b183; }
+.iso-perf-holes { fill: #d2bc87; stroke: #665637; stroke-width: 0.35; }
+.iso-devkit { fill: #214739; stroke: #77917b; }
+.iso-chip { fill: #a6b2ad; stroke: #d0d6d0; }
+.iso-chip-pins { stroke: #c6bb92; stroke-width: 3; }
+.iso-chip-label { fill: #29362f; font: 6px var(--font-mono); }
+.iso-usb { fill: #abb8b1; stroke: #5e7265; }
+.iso-jst { fill: #e7e3d4; stroke: #a9ac98; stroke-width: 0.7; }
+.iso-wires { fill: none; stroke: #bd8a68; stroke-width: 1.3; }
+.iso-battery { --iso-top: #2c3531; --iso-left: #222824; --iso-right: #1b221e; }
+.iso-battery-label { fill: #b5bca9; }
+.iso-display { fill: #142b23; stroke: var(--iso-stroke); }
+.iso-display-ink { stroke: #a8c4a5; stroke-width: 2; }
+.iso-function, .iso-socket { fill: #182320; stroke: var(--iso-stroke); }
+.iso-screw { fill: #a4ada6; stroke: var(--iso-stroke); }
+.iso-button-edge { fill: #234957; stroke: #294450; }
+.iso-button-face { fill: #658b9c; stroke: #9ebac3; stroke-width: 1; }
+.iso-button-glint { fill: none; stroke: #c0d5db; stroke-linecap: round; opacity: 0.7; }
+.iso-guides { fill: none; stroke: var(--iso-stroke); stroke-width: 0.8; stroke-dasharray: 0.025 0.025; opacity: calc(var(--explode) * 0.55); }
+.iso-vertical-wall { fill: #303b35; stroke: var(--iso-stroke); stroke-width: 0.8; }
+.iso-rail { fill: #1c2922; stroke: #91a194; stroke-width: 0.7; }
+.iso-magnet-rim { fill: #19251e; stroke: #7b8c7c; stroke-width: 0.6; }
+.iso-magnet { fill: #c8c6b5; stroke: #eee7ce; stroke-width: 0.5; }
+.iso-mating-face .iso-vertical-wall { fill: #394b40; fill-opacity: calc(1 - var(--gap) * 0.6); stroke-dasharray: 3 3; }
+.iso-connector .iso-side-left, .iso-connector .iso-side-right { fill-opacity: calc(1 - var(--gap) * 0.75); }
+.iso-annotations { opacity: var(--explode); }
+.iso-annotations path { fill: none; stroke: var(--ink-3); stroke-width: 0.7; }
+.iso-annotations text { fill: var(--ink-3); font: 8px var(--font-mono); letter-spacing: 0.5px; }
+.controller-study figcaption { width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.02em; color: var(--ink-3); }
+.controller-study-status { color: var(--ink-2); }
+.controller-playback { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px 20px; margin-top: 22px; }
+.controller-study-hint { font-size: 0.6875rem; color: var(--ink-3); }
+.controller-playback-button { padding: 8px 14px; border: 1px solid var(--line-strong); border-radius: 4px; font-size: 0.75rem; }
+.controller-playback-button:hover { background: var(--surface-2); }
+@media (max-width: 600px) {
+  .controller-study-heading .label { font-size: 0.625rem; }
+  .controller-study svg { width: calc(100% + 28px); }
+  .controller-study figcaption { font-size: 0.5625rem; flex-direction: column; align-items: center; text-align: center; }
+  .iso-annotations { display: none; }
+}
+/* Reduced motion starts paused in React; explicit Play still works. */
