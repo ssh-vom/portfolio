@@ -13,9 +13,11 @@ def main():
     parser.add_argument('file', type=Path)
     parser.add_argument('--slug', required=True)
     parser.add_argument('--time', type=float, default=3.0, help='Frame timestamp in seconds')
+    parser.add_argument('--crop', help="Crop before scaling: 'width:height:x:y' (ffmpeg crop syntax)")
     args = parser.parse_args()
     if args.time < 0:
         parser.error('--time must be nonnegative')
+    filters = ([f'crop={args.crop}'] if args.crop else []) + ['scale=960:-2']
     with upload_lock():
         entries = json.loads(MANIFEST.read_text())
         entry = next((e for e in entries if e['slug'] == args.slug), None)
@@ -37,7 +39,7 @@ def main():
         try:
             subprocess.run([
                 'ffmpeg', '-v', 'error', '-y', '-ss', str(args.time), '-i', str(source),
-                '-frames:v', '1', '-vf', 'scale=960:-2', '-q:v', '3', str(temporary),
+                '-frames:v', '1', '-vf', ','.join(filters), '-q:v', '3', str(temporary),
             ], check=True)
             if not temporary.is_file() or temporary.stat().st_size == 0:
                 raise ValueError('No frame generated')
