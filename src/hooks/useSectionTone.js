@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
 const tones = {
-  light: ['#f2f1ee', '#f3f0e9', '#edf0e9', '#efedf1', '#f3eeea'],
-  dark: ['#131211', '#1a150c', '#0f1710', '#14121d', '#1d100f'],
+  light: ['#f2f1ee', '#f3f0e9', '#edf0e9', '#ece9e5', '#efedf1', '#f3eeea'],
+  dark: ['#131211', '#1a150c', '#0f1710', '#171419', '#14121d', '#1d100f'],
 };
 const rgb = (hex) => hex.match(/[a-f\d]{2}/gi).map((channel) => parseInt(channel, 16));
 

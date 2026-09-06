@@ -391,8 +391,11 @@ app.get("/current-track", async (req, res) => {
     const track = data.item;
     const trackInfo = {
       name: track.name,
-      artist: track.artists.map((a) => a.name).join(", "),
-      albumCover: track.album.images?.[0]?.url ?? null,
+      artist: track.artists?.map((a) => a.name).join(", ") || track.show?.name || "Unknown artist",
+      album: track.album?.name ?? null,
+      albumCover: track.album?.images?.[0]?.url ?? track.images?.[0]?.url ?? null,
+      url: track.external_urls?.spotify ?? null,
+      isPlaying: data.is_playing === true,
       currentTime: data.progress_ms,
       duration: track.duration_ms,
     };

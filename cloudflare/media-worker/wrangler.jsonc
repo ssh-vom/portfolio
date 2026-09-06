@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "shivom-portfolio-media",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    "MEDIA_ENABLED": "true",
+    "DAILY_REQUEST_LIMIT": "1000",
+    "MONTHLY_REQUEST_LIMIT": "20000"
+  },
+  "r2_buckets": [
+    { "binding": "MEDIA", "bucket_name": "shivom-portfolio-assets" }
+  ],
+  "durable_objects": {
+    "bindings": [{ "name": "BUDGET", "class_name": "MediaBudget" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["MediaBudget"] }],
+  "ratelimits": [{
+    "name": "VISITOR_LIMIT",
+    "namespace_id": "731942",
+    "simple": { "limit": 60, "period": 60 }
+  }],
+  "observability": { "enabled": false }
+}

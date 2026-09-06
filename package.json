@@ -5,7 +5,11 @@
     "dev": "concurrently -k -n server,client \"node app.js\" \"vite\"",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node app.js"
+    "start": "node app.js",
+    "media:upload": "python3 scripts/media_upload.py",
+    "media:prepare-publish": "python3 scripts/media_upload.py --prepare-publish",
+    "media:test": "python3 -m unittest discover -s scripts/tests -p 'test_*.py'",
+    "media:poster": "python3 scripts/media_poster.py"
   },
   "repository": {
     "type": "git",

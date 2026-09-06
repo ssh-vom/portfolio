@@ -5,6 +5,7 @@ import SiteHeader from '../components/SiteHeader.jsx';
 import SnapMarkers from '../components/SnapMarkers.jsx';
 import Flow from '../components/Flow.jsx';
 import WorkIndex from '../components/WorkIndex.jsx';
+import CreativeGallery from '../components/CreativeGallery.jsx';
 import Reveal from '../components/Reveal.jsx';
 import SpotifyNowPlaying from '../components/SpotifyNowPlaying.jsx';
 import useTheme from '../hooks/useTheme.js';
@@ -485,6 +486,7 @@ export default function App() {
                 <Hero />
                 <WorkSection />
                 <ExperienceSection />
+                <CreativeGallery />
                 <WritingSection />
                 <ContactSection />
             </main>

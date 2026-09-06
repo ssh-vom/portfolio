@@ -1,6 +1,7 @@
 const navLinks = [
   { label: 'Work', anchor: 'work' },
   { label: 'Experience', anchor: 'experience' },
+  { label: 'Creative', anchor: 'creative' },
   { label: 'Writing', anchor: 'writing' },
   { label: 'Contact', anchor: 'contact' },
 ];

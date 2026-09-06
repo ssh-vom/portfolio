@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-media-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "check": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy",
+    "test": "node --test test/*.test.js"
+  },
+  "devDependencies": { "wrangler": "4.129.0" }
+}
