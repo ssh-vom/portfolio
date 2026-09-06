@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 
+// Prod: Cloudflare worker (KV-backed tokens, edge-cached). Dev: Vite proxy to
+// the local Express server on :8888 (see vite.config.mjs).
+const TRACK_ENDPOINT = 'https://shivom-portfolio-spotify.shivom-sharma-eng.workers.dev/current-track';
+const USE_TRACK_ENDPOINT = typeof window !== 'undefined' && !window.location.hostname.startsWith('localhost') && !window.location.hostname.startsWith('127.');
+
 function time(ms) {
     const seconds = Math.floor(Math.max(0, ms || 0) / 1000);
     return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
@@ -23,7 +28,7 @@ export default function SpotifyNowPlaying() {
                 return;
             }
             try {
-                const response = await fetch('/current-track', { signal: controller.signal });
+                const response = await fetch(USE_TRACK_ENDPOINT ? TRACK_ENDPOINT : '/current-track', { signal: controller.signal });
                 if (response.status === 404 || response.status === 204) {
                     setTrack(null);
                     setStatus('idle');
