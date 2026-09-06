@@ -44,8 +44,8 @@ function Viewer({ item, onClose, opener }) {
                 <div className={`creative-player creative-player--${item.type}`}>
                     {failed ? <p className="creative-error" role="status">This piece is temporarily unavailable. Please try again later.</p>
                         : item.type === 'video' ? <video src={mediaUrl(item)} poster={item.poster} controls autoPlay playsInline preload="metadata" onError={() => setFailed(true)} />
-                        : item.type === 'audio' ? <><div className="creative-record" aria-hidden="true"><span /></div><audio src={mediaUrl(item)} controls autoPlay preload="metadata" onError={() => setFailed(true)} /></>
-                        : <img src={mediaUrl(item)} alt={item.alt || item.title} onError={() => setFailed(true)} />}
+                            : item.type === 'audio' ? <><div className="creative-record" aria-hidden="true"><span /></div><audio src={mediaUrl(item)} controls autoPlay preload="metadata" onError={() => setFailed(true)} /></>
+                                : <img src={mediaUrl(item)} alt={item.alt || item.title} onError={() => setFailed(true)} />}
                 </div>
                 <p className="creative-viewer-note">{item.description || 'Made outside the lines.'} <span>ESC to close</span></p>
             </div>
@@ -63,8 +63,8 @@ export default function CreativeGallery() {
     return (
         <section className="section page creative-section" id="creative">
             <Reveal className="section-head">
-                <h2 className="section-title">Outside <span className="serif">the lines.</span></h2>
-                <p className="creative-intro">Edits, moving pictures, and things made just because.</p>
+                <h2 className="section-title"><span className="serif">The Archive.</span></h2>
+                <p className="creative-intro">Some of my creative stuff, both finished and unfinished.</p>
             </Reveal>
             <div className="creative-toolbar">
                 <span className="label">Creative archive <span className="creative-count">/ {String(works.length).padStart(2, '0')}</span></span>
@@ -85,7 +85,6 @@ export default function CreativeGallery() {
                     </button>;
                 })}
             </div>
-            <p className="creative-footnote">A small collection. Always in progress.</p>
             {active && <Viewer key={active.slug} item={active} opener={opener.current} onClose={() => setActive(null)} />}
         </section>
     );
