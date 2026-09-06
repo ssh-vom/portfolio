@@ -12,11 +12,9 @@ function time(ms) {
 
 const POSITION_KEY = 'spotify-widget-position';
 
-// Keep the widget fully on-screen (approx width; read precise width at drag time).
-function clampPosition({ x, y }) {
+// Keep the widget fully on-screen during drags.
+function clampPosition({ x, y }, width = 340, height = 220) {
     const margin = 8;
-    const width = Math.min(340, window.innerWidth - 32);
-    const height = 200; // rough; enough to keep it reachable
     return {
         x: Math.min(Math.max(margin, x), Math.max(margin, window.innerWidth - width - margin)),
         y: Math.min(Math.max(margin, y), Math.max(margin, window.innerHeight - height - margin)),
@@ -59,18 +57,23 @@ export default function SpotifyNowPlaying() {
         dragState.current = {
             grabX: event.clientX - rect.left,
             grabY: event.clientY - rect.top,
+            width: rect.width,
+            height: rect.height,
             pointerId: event.pointerId,
         };
-        widget.setPointerCapture(event.pointerId);
+        // Capture on the HEADER (where the listeners live), not the widget.
+        event.currentTarget.setPointerCapture(event.pointerId);
         setDragging(true);
     }, []);
 
     const onHeaderPointerMove = useCallback(event => {
         if (!dragState.current || event.pointerId !== dragState.current.pointerId) return;
-        const next = clampPosition({
-            x: event.clientX - dragState.current.grabX,
-            y: event.clientY - dragState.current.grabY,
-        });
+        const { grabX, grabY, width, height } = dragState.current;
+        const next = clampPosition(
+            { x: event.clientX - grabX, y: event.clientY - grabY },
+            width,
+            height,
+        );
         setPosition(prev => (prev ? { ...prev, ...next } : { ...next, first: true }));
     }, []);
 
@@ -78,11 +81,13 @@ export default function SpotifyNowPlaying() {
         if (!dragState.current || event.pointerId !== dragState.current.pointerId) return;
         dragState.current = null;
         setDragging(false);
+        try { event.currentTarget.releasePointerCapture(event.pointerId); } catch { /* already released */ }
         setPosition(p => {
-            if (p) {
-                try { localStorage.setItem(POSITION_KEY, JSON.stringify({ x: p.x, y: p.y })); } catch { /* private mode */ }
+            const clean = p ? { x: p.x, y: p.y } : null;
+            if (clean) {
+                try { localStorage.setItem(POSITION_KEY, JSON.stringify(clean)); } catch { /* private mode */ }
             }
-            return p;
+            return clean;
         });
     }, []);
 

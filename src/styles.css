@@ -1388,9 +1388,9 @@ section[id] {
   align-items: center;
 }
 .spotify-header, .spotify-footer { justify-content: space-between; }
-.spotify-header.is-detached { cursor: grab; }
+.spotify-header.is-detached { cursor: grab; touch-action: none; }
 .spotify-widget.is-dragging { transition: none; cursor: grabbing; user-select: none; }
-.spotify-widget.is-dragging .spotify-header { cursor: grabbing; }
+.spotify-widget.is-dragging .spotify-header { cursor: grabbing; touch-action: none; }
 .spotify-brand { gap: 7px; font-size: 12px; font-weight: 550; }
 .spotify-brand svg { color: #238b50; }
 .spotify-toggle {
