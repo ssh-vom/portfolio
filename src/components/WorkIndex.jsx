@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import setVideoVolume from '../utils/setVideoVolume.js';
 import { projects } from '../data/projects.js';
 import Reveal from './Reveal.jsx';
 import ControllerStudy from './ControllerStudy.jsx';
@@ -42,7 +43,7 @@ export default function WorkIndex() {
           </div>
           <div className="project-feature-visuals">
           <figure className="project-demo">
-            <video controls playsInline preload="none" poster="/images/openarcade-demo.jpg" aria-label="OpenArcade controller demonstration">
+            <video ref={setVideoVolume} controls playsInline preload="none" poster="/images/openarcade-demo.jpg" aria-label="OpenArcade controller demonstration">
               <source src="/videos/openarcade.mp4" type="video/mp4" />
             </video>
             <figcaption><span className="project-demo-dot" aria-hidden="true" />OpenArcade, in action<span>Play with sound ↗</span></figcaption>

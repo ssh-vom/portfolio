@@ -75,7 +75,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Lenis handles smooth interaction; route restoration must be immediate. */
+  scroll-behavior: auto;
   /* Reserve the scrollbar gutter so the layout width never shifts when a
      scrollbar toggles between sections — keeps everything centered on
      Windows (classic scrollbars), matches macOS overlay scrollbars. */
@@ -119,152 +120,30 @@ body[data-zone='contact'] { --bg: #f3eeea; }
 [data-theme='dark'] body[data-zone='writing'] { --bg: #14121d; }
 [data-theme='dark'] body[data-zone='contact'] { --bg: #1d100f; }
 
-/* ===== Ambient flow field =====
-   Blurred ribbon + blobs in the accent's warm range, fixed behind all
-   content. Self-animating sway plus --fp (page scroll progress, set in
-   Flow.jsx) parallax — the field flows as you move through the site.
-   Registered so the per-zone hue shifts below interpolate smoothly. */
-@property --flow-1 {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: rgba(249, 54, 60, 0.5);
-}
-@property --flow-2 {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: rgba(255, 122, 61, 0.45);
-}
-@property --flow-3 {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: rgba(255, 87, 161, 0.4);
-}
-
-.flow {
-  --fp: 0;
-  --flow-1: rgba(249, 54, 60, 0.5);
-  --flow-2: rgba(255, 122, 61, 0.45);
-  --flow-3: rgba(255, 87, 161, 0.4);
-  --flow-alpha: 0.09;
+/* Paper's grain gradient stays behind content; the video hero is untouched. */
+.paper-field {
   position: fixed;
-  inset: 0;
+  /* Overscan keeps the blurred edges outside the viewport. */
+  inset: -20px;
   z-index: -1;
-  overflow: hidden;
   pointer-events: none;
-  transition:
-    --flow-1 1.2s var(--ease-soft),
-    --flow-2 1.2s var(--ease-soft),
-    --flow-3 1.2s var(--ease-soft);
+  overflow: hidden;
+  opacity: 0.32;
+  filter: blur(12px) saturate(0.9);
+  background: radial-gradient(ellipse at 85% 20%, #c4b1ec, transparent 60%),
+    radial-gradient(ellipse at 75% 65%, #eea398, transparent 65%),
+    radial-gradient(ellipse at 40% 100%, #e7c17e, transparent 65%);
 }
-
-/* The field's hues drift with the zone tint: amber over the sand stock,
-   green over sage, violet-pink over lavender, home reds over blush */
-body[data-zone='work'] .flow {
-  --flow-1: rgba(255, 140, 40, 0.5);
-  --flow-2: rgba(249, 96, 54, 0.45);
-  --flow-3: rgba(255, 187, 87, 0.4);
+[data-theme='dark'] .paper-field {
+  opacity: 0.2;
+  filter: blur(12px) saturate(0.75) brightness(0.35);
+  background: radial-gradient(ellipse at 85% 20%, #77639d, transparent 60%),
+    radial-gradient(ellipse at 75% 65%, #b77382, transparent 65%),
+    radial-gradient(ellipse at 40% 100%, #b38b57, transparent 65%);
 }
-body[data-zone='experience'] .flow {
-  --flow-1: rgba(43, 168, 74, 0.5);
-  --flow-2: rgba(118, 196, 110, 0.45);
-  --flow-3: rgba(186, 214, 110, 0.4);
-}
-body[data-zone='writing'] .flow {
-  --flow-1: rgba(132, 87, 255, 0.5);
-  --flow-2: rgba(255, 87, 161, 0.45);
-  --flow-3: rgba(96, 110, 255, 0.4);
-}
-body[data-zone='contact'] .flow {
-  --flow-1: rgba(249, 54, 60, 0.55);
-  --flow-2: rgba(232, 58, 102, 0.45);
-  --flow-3: rgba(255, 122, 61, 0.4);
-}
-
-[data-theme='dark'] .flow {
-  --flow-alpha: 0.13;
-}
-
-.flow > * {
-  position: absolute;
-  will-change: transform;
-}
-
-/* Long diagonal ribbon sweeping the right side */
-.flow-ribbon {
-  top: -45vh;
-  right: -30vw;
-  width: 72vw;
-  height: 190vh;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    var(--flow-1) 44%,
-    var(--flow-2) 56%,
-    var(--flow-3) 66%,
-    transparent 80%
-  );
-  filter: blur(80px);
-  opacity: var(--flow-alpha);
-  rotate: calc(16deg + var(--fp) * 12deg);
-  translate: calc(var(--fp) * -10vw) calc(var(--fp) * 16vh);
-  animation: flow-sway 16s ease-in-out infinite alternate;
-}
-
-.flow-blob {
-  width: 56vw;
-  height: 56vw;
-  border-radius: 50%;
-  opacity: var(--flow-alpha);
-}
-
-.flow-blob-a {
-  left: -22vw;
-  top: 8vh;
-  background: radial-gradient(closest-side, var(--flow-2), transparent 72%);
-  filter: blur(48px);
-  translate: calc(var(--fp) * 14vw) calc(var(--fp) * 30vh);
-  animation: flow-drift-a 19s ease-in-out infinite alternate;
-}
-
-.flow-blob-b {
-  right: -18vw;
-  bottom: -20vh;
-  background: radial-gradient(closest-side, var(--flow-3), transparent 72%);
-  filter: blur(56px);
-  translate: calc(var(--fp) * -10vw) calc(var(--fp) * -24vh);
-  animation: flow-drift-b 23s ease-in-out infinite alternate;
-}
-
-@keyframes flow-sway {
-  from { transform: translateX(-6vw) scaleY(1); }
-  to { transform: translateX(7vw) scaleY(1.1); }
-}
-
-@keyframes flow-drift-a {
-  from { transform: translate(-3vw, 3vh) scale(1); }
-  to { transform: translate(10vw, -8vh) scale(1.22); }
-}
-
-@keyframes flow-drift-b {
-  from { transform: translate(3vw, -4vh) scale(1.15); }
-  to { transform: translate(-9vw, 9vh) scale(0.92); }
-}
-
-@media (max-width: 860px) {
-  .flow-ribbon {
-    width: 130vw;
-    filter: blur(48px);
-  }
-  .flow-blob {
-    width: 90vw;
-    height: 90vw;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .flow > * {
-    animation: none;
-  }
+@media (max-width: 700px) {
+  .paper-field { opacity: 0.26; }
+  [data-theme='dark'] .paper-field { opacity: 0.16; }
 }
 
 ::selection {
@@ -611,7 +490,6 @@ section[id] {
   background: rgba(0, 0, 0, 0.35);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  animation: rise-in 0.45s var(--ease-out) both;
 }
 
 .theatre-frame {
@@ -1674,6 +1552,22 @@ section[id] {
 ::view-transition-group(post-title) {
   animation-duration: 0.5s;
   animation-timing-function: var(--ease-out);
+}
+
+::view-transition-group(media-preview),
+::view-transition-group(theatre-preview),
+::view-transition-group(media-title) {
+  animation-duration: 0.55s;
+  animation-timing-function: var(--ease-out);
+}
+
+::view-transition-old(media-preview),
+::view-transition-new(media-preview),
+::view-transition-old(theatre-preview),
+::view-transition-new(theatre-preview) {
+  height: 100%;
+  object-fit: cover;
+  overflow: clip;
 }
 
 /* The title's box changes size a lot between list row and big header;

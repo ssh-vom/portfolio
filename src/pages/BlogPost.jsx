@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { getPostBySlug, formatDate } from '../utils/blog.js';
@@ -14,10 +13,6 @@ export default function BlogPost() {
     const post = getPostBySlug(slug);
     const frontmatter = post || {};
     const content = post ? post.content : 'Post not found.';
-
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [slug]);
 
     const components = {
         img({ src, alt, ...props }) {

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import setVideoVolume from '../utils/setVideoVolume.js';
+import transitionMedia from '../utils/transitionMedia.js';
 import { Link, useViewTransitionState } from 'react-router-dom';
 import roles from '../data/experience.js';
 import SiteHeader from '../components/SiteHeader.jsx';
@@ -54,7 +56,8 @@ function endYear(dateStr) {
     return parseInt(years[years.length - 1]);
 }
 
-function Theatre({ src, title, onClose }) {
+function Theatre({ src, title, onClose, opener }) {
+    const overlayRef = useRef(null);
     useEffect(() => {
         const onKey = (e) => e.key === 'Escape' && onClose();
         window.addEventListener('keydown', onKey);
@@ -66,12 +69,12 @@ function Theatre({ src, title, onClose }) {
     }, [onClose]);
 
     return (
-        <div className="theatre" onClick={onClose} role="dialog" aria-label={`${title}: theatre mode`}>
+        <div ref={overlayRef} className="theatre" onClick={onClose} role="dialog" aria-label={`${title}: theatre mode`}>
             <button className="theatre-close" onClick={onClose} aria-label="Close theatre mode">
                 ✕
             </button>
-            <div className="theatre-frame" onClick={(e) => e.stopPropagation()}>
-                <video src={src} autoPlay controls playsInline />
+            <div className="theatre-frame" style={{ viewTransitionName: 'theatre-preview' }} onClick={(e) => e.stopPropagation()}>
+                <video ref={setVideoVolume} src={src} autoPlay controls playsInline />
             </div>
         </div>
     );
@@ -81,6 +84,7 @@ const DEMO_VIDEO = '/videos/openarcade.mp4';
 
 function Hero() {
     const stageRef = useRef(null);
+    const previewRef = useRef(null);
     const [p, setP] = useState(0);
     const [theatreOpen, setTheatreOpen] = useState(false);
 
@@ -114,14 +118,16 @@ function Hero() {
             <div className="hero-sticky">
                 <div
                     className={`hero-frame ${inTheatre ? 'is-theatre' : ''}`}
-                    onClick={() => inTheatre && setTheatreOpen(true)}
+                    ref={previewRef}
+                    style={{ viewTransitionName: theatreOpen ? 'none' : 'theatre-preview' }}
+                    onClick={() => inTheatre && transitionMedia(() => setTheatreOpen(true))}
                     role={inTheatre ? 'button' : undefined}
                     aria-label={inTheatre ? 'Play OpenArcade demo with sound' : undefined}
                     tabIndex={inTheatre ? 0 : undefined}
                     onKeyDown={(event) => {
                         if (inTheatre && (event.key === 'Enter' || event.key === ' ')) {
                             event.preventDefault();
-                            setTheatreOpen(true);
+                            transitionMedia(() => setTheatreOpen(true));
                         }
                     }}
                 >
@@ -169,7 +175,7 @@ function Hero() {
             </div>
 
             {theatreOpen && (
-                <Theatre src={DEMO_VIDEO} title="OpenArcade demo" onClose={() => setTheatreOpen(false)} />
+                <Theatre src={DEMO_VIDEO} title="OpenArcade demo" opener={previewRef.current} onClose={() => transitionMedia(() => setTheatreOpen(false))} />
             )}
         </section>
     );
@@ -480,7 +486,7 @@ export default function App() {
 
     return (
         <>
-            <Flow />
+            <Flow theme={theme} />
             <SiteHeader theme={theme} toggleTheme={toggleTheme} />
             <main>
                 <Hero />

@@ -1,45 +1,63 @@
-import { useEffect, useRef } from 'react';
+import { lazy, Suspense, Component, useEffect, useState } from 'react';
 
-/**
- * Ambient flow field: a blurred ribbon and two drifting blobs in the
- * accent palette, fixed behind all content. Each shape self-animates
- * slowly (water-like sway) while --fp — overall page scroll progress —
- * parallaxes them, so the whole field flows as you move through the site.
- */
-export default function Flow() {
-  const ref = useRef(null);
+const GrainGradient = lazy(() => import('@paper-design/shaders-react')
+  .then((module) => ({ default: module.GrainGradient })));
+
+class ShaderFallback extends Component {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() { return this.state.failed ? null : this.props.children; }
+}
+
+export default function Flow({ theme = 'light' }) {
+  const [enabled, setEnabled] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const el = ref.current;
-    if (!el) return;
-    let raf = 0;
-
-    const update = () => {
-      raf = 0;
-      const doc = document.documentElement;
-      const max = doc.scrollHeight - window.innerHeight;
-      const p = max > 0 ? window.scrollY / max : 0;
-      el.style.setProperty('--fp', p.toFixed(4));
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const probe = document.createElement('canvas');
+    const gl = probe.getContext('webgl2');
+    const supported = Boolean(gl);
+    gl?.getExtension('WEBGL_lose_context')?.loseContext();
+    const update = () => setEnabled(supported && !reduced.matches);
+    const visibility = () => setVisible(!document.hidden);
     update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    visibility();
+    reduced.addEventListener('change', update);
+    document.addEventListener('visibilitychange', visibility);
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      cancelAnimationFrame(raf);
+      reduced.removeEventListener('change', update);
+      document.removeEventListener('visibilitychange', visibility);
     };
   }, []);
 
+  const dark = theme === 'dark';
   return (
-    <div className="flow" ref={ref} aria-hidden="true">
-      <span className="flow-ribbon" />
-      <span className="flow-blob flow-blob-a" />
-      <span className="flow-blob flow-blob-b" />
+    <div className="paper-field" aria-hidden="true">
+      {enabled && (
+        <ShaderFallback>
+          <Suspense fallback={null}>
+            <GrainGradient
+              width="100%" height="100%"
+              colors={dark
+                ? ['#77639d', '#b77382', '#b38b57']
+                : ['#c4b1ec', '#eea398', '#e7c17e']}
+              colorBack={dark ? '#131211' : '#f2f1ee'}
+              shape="wave"
+              softness={0.62}
+              intensity={0.55}
+              noise={0.32}
+              speed={visible ? 0.42 : 0}
+              frame={12000}
+              scale={0.85}
+              rotation={-25}
+              offsetX={0}
+              minPixelRatio={1}
+              maxPixelCount={1200000}
+            />
+          </Suspense>
+        </ShaderFallback>
+      )}
     </div>
   );
 }
