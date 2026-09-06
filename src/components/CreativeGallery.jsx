@@ -97,7 +97,7 @@ export default function CreativeGallery() {
                         {item.poster || item.type === 'image' ? <img className="creative-poster" src={item.poster || mediaUrl(item)} alt="" loading="lazy" onError={event => { event.currentTarget.style.visibility = 'hidden'; }} /> : <div className="creative-wave" aria-hidden="true">{Array.from({ length: 41 }, (_, i) => <i key={i} style={{ '--bar': `${20 + ((i * 37 + 17) % 75)}%` }} />)}</div>}
                         <span className="creative-scrim" />
                         <span className="creative-tile-top"><span>{String(index + 1).padStart(2, '0')} / {labels[item.type]}</span><span>{durationLabel(item.duration)}</span></span>
-                        <span className="creative-tile-title"><strong style={{ viewTransitionName: !active && selectedSlug === item.slug ? 'media-title' : 'none' }}><Title title={title} /></strong><small>{subtitle || (item.type === 'audio' ? 'A sound study' : 'Creative study')}</small></span>
+                        <span className="creative-tile-title"><strong style={{ viewTransitionName: !active && selectedSlug === item.slug ? 'media-title' : 'none' }}><Title title={title} /></strong>{subtitle && <small>{subtitle}</small>}</span>
                         <span className="creative-tile-bottom"><span>{item.type === 'image' ? 'View still' : 'Press play'}</span><span aria-hidden="true">{item.type === 'image' ? '↗' : '▶'}</span></span>
                     </button>;
                 })}
