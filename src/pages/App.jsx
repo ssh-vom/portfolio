@@ -473,6 +473,10 @@ function ContactSection() {
 
             <footer className="foot">
                 <span className="label">© {new Date().getFullYear()} Shivom Sharma</span>
+                <a className="foot-top label" href="#top" aria-label="Back to top">
+                    Back to top
+                    <ArrowUpRight />
+                </a>
                 <span className="label">Toronto, ON · Canadian Citizen</span>
             </footer>
         </section>

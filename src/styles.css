@@ -16,17 +16,12 @@
   --line-strong: rgba(23, 22, 20, 0.18);
   --accent: #f9363c;
   --accent-ink: #e53237;
-  --accent-soft: rgba(249, 54, 60, 0.08);
-  --green: #2ba84a;
-  --green-soft: rgba(43, 168, 74, 0.12);
 
   --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-editorial: 'Instrument Serif', Georgia, serif;
 
-  --text-hero: clamp(2.5rem, 6.4vw, 4.75rem);
   --text-h2: clamp(1.75rem, 3.6vw, 2.75rem);
-  --text-h3: clamp(1.25rem, 2.2vw, 1.625rem);
   --text-body: 1rem;
   --text-small: 0.875rem;
   --text-micro: 0.75rem;
@@ -34,14 +29,10 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
   --dur: 0.25s;
-  --dur-slow: 0.7s;
 
   --radius: 12px;
   --radius-lg: 20px;
-  --radius-pill: 999px;
-
   --shadow-pill: 0 1px 2px rgba(23, 22, 20, 0.05), 0 8px 24px rgba(23, 22, 20, 0.06);
-  --shadow-card: 0 1px 2px rgba(23, 22, 20, 0.04), 0 12px 32px rgba(23, 22, 20, 0.05);
 
   --gutter: clamp(20px, 4.5vw, 56px);
   --measure: 62ch;
@@ -58,11 +49,7 @@
   --line-strong: rgba(241, 239, 233, 0.2);
   --accent: #ff4d52;
   --accent-ink: #ff7479;
-  --accent-soft: rgba(255, 77, 82, 0.1);
-  --green: #41c463;
-  --green-soft: rgba(65, 196, 99, 0.14);
   --shadow-pill: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.25), 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* ===== Base ===== */
@@ -81,12 +68,15 @@ html {
      scrollbar toggles between sections — keeps everything centered on
      Windows (classic scrollbars), matches macOS overlay scrollbars. */
   scrollbar-gutter: stable;
-  /* No scroll-snapping: a Windows mouse wheel sends large discrete deltas
-     that fight proximity snapping and make the scroll-scrubbed stages step
-     and re-settle. Free scrolling tracks the wheel directly. */
+  /* Native widgets (scrollbars, form controls, dialog backdrops) follow
+     the active theme instead of always rendering light. */
+  color-scheme: light dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+[data-theme='light'] { color-scheme: light; }
+[data-theme='dark'] { color-scheme: dark; }
 
 .stage-snap {
   position: absolute;
@@ -97,6 +87,29 @@ html {
   pointer-events: none;
 }
 
+/* Thin neutral scrollbar; accent on hover. macOS overlays ignore this,
+   Windows classic scrollbars pick it up. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ink) 22%, transparent);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--ink) 40%, transparent);
+  background-clip: content-box;
+}
+
 body {
   font-family: var(--font-sans);
   font-size: var(--text-body);
@@ -105,7 +118,9 @@ body {
   background: var(--section-bg, var(--bg));
   min-height: 100vh;
   overflow-x: hidden;
-  transition: color 0.35s var(--ease-soft);
+  /* Theme flip eases in rather than cutting; only the ambient background
+     transitions here — surfaces transition in their own blocks below. */
+  transition: color 0.35s var(--ease-soft), background-color 0.45s var(--ease-soft);
 }
 
 /* Ambient morph: the page tint follows the section in view — each
@@ -294,13 +309,32 @@ section[id] {
   border: 1px solid var(--line);
 }
 
-.hdr-nav {
-  display: flex;
-  align-items: center;
-  gap: 2px;
+.hdr {
+  transition: background-color 0.45s var(--ease-soft), border-color 0.45s var(--ease-soft),
+    box-shadow 0.45s var(--ease-soft);
+}
+
+.hdr-link.is-active {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+/* Small dot under the active link — the pill's own sense of place. */
+.hdr-link.is-active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
 }
 
 .hdr-link {
+  position: relative;
   padding: 7px 13px;
   border-radius: var(--radius-pill);
   font-size: var(--text-small);
@@ -395,7 +429,11 @@ section[id] {
 
 .hero-frame.is-theatre {
   cursor: pointer;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 8px 24px rgba(0, 0, 0, 0.22),
+    0 24px 80px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
 }
 
 .hero-frame video {
@@ -580,6 +618,10 @@ section[id] {
     border-color var(--dur) var(--ease-soft), color var(--dur) var(--ease-soft);
 }
 
+.btn:active {
+  transform: scale(0.975);
+}
+
 .btn svg {
   width: 13px;
   height: 13px;
@@ -707,58 +749,12 @@ section[id] {
   }
 }
 
-/* ===== Work stage (central-focus swipe) =====
-   The stage pins while scroll progress swipes each project out left
-   as the next replaces it from the right. Native scroll throughout. */
-.work-stage {
-  position: relative;
-}
-
-.work-stage-sticky {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  overflow: hidden;
-}
-
-.work-slide {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(620px, 84%);
-  will-change: transform, opacity;
-}
-
-.work-slide-link {
-  display: block;
-}
-
-.work-piece-media {
-  aspect-ratio: 3 / 2;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--surface-2);
-  box-shadow: var(--shadow-card);
-}
-
-.work-piece-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.work-card-num {
-  font-family: var(--font-mono);
-  font-size: 1.75rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-}
-
+/* ===== Experience stage foot =====
+   Counter + progress rail shared language with the work stage. */
 .work-stage-foot {
   position: absolute;
+  /* Hug the section box edge (the same axis the section titles read on;
+     .section's horizontal padding is 0, titles sit flush at the box). */
   left: 4px;
   right: 4px;
   bottom: 30px;
@@ -783,69 +779,6 @@ section[id] {
   transform-origin: left;
 }
 
-/* Reduced-motion fallback: plain vertical list */
-.work-flow {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(40px, 6.5vh, 72px);
-}
-
-.work-flow .work-slide-link {
-  width: min(560px, 84%);
-  margin: 0 auto;
-}
-
-.work-card-caption {
-  display: grid;
-  grid-template-columns: 28px 1fr 32px;
-  align-items: baseline;
-  gap: 4px 12px;
-  margin-top: 22px;
-  padding: 18px 0 0;
-  border-top: 1px solid var(--line-strong);
-  min-width: 0;
-}
-
-.work-card-caption > .label {
-  grid-row: 1 / 3;
-}
-
-.work-card-arrow {
-  grid-column: 3;
-  grid-row: 1 / 3;
-  align-self: center;
-  font-size: 1.4rem;
-  color: var(--ink-3);
-  transition: transform var(--dur), color var(--dur);
-}
-
-.work-slide-link:hover .work-card-arrow {
-  color: var(--accent);
-  transform: translate(3px, -3px);
-}
-
-.work-card-name {
-  font-size: 1.125rem;
-  font-weight: 550;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-
-.work-slide-link:hover .work-card-name {
-  color: var(--accent);
-}
-
-.work-card-tagline {
-  grid-column: 2;
-  font-size: var(--text-small);
-  color: var(--ink-2);
-  line-height: 1.5;
-}
-
-.work-nav-btn svg {
-  width: 13px;
-  height: 13px;
-}
 
 /* ===== Experience (theatre dolly) =====
    The stage pins while each role zooms in from a blurred distance,
@@ -1003,6 +936,7 @@ section[id] {
   border-radius: 4px;
   box-shadow: 0 8px 28px rgba(23, 22, 20, 0.025);
   overflow: hidden;
+  transition: background-color 0.45s var(--ease-soft), border-color 0.45s var(--ease-soft);
   transform: perspective(1200px) rotateX(calc((1 - var(--settle)) * 4deg))
     translateY(calc((1 - var(--settle)) * 28px));
   transform-origin: top center;
@@ -1053,8 +987,6 @@ section[id] {
 
 /* Flexible run of empty ruled lines to the bottom of the page */
 .nb-blanks {
-  flex: 1;
-  min-height: 120px;
   position: relative;
   background: repeating-linear-gradient(
     to bottom,
@@ -1233,6 +1165,29 @@ section[id] {
   padding: 28px 0 8px;
   border-top: 1px solid var(--line);
 }
+
+.foot-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color var(--dur) var(--ease-soft);
+}
+
+.foot-top svg {
+  width: 11px;
+  height: 11px;
+  transform: rotate(-45deg);
+  transition: transform 0.4s var(--ease-out);
+}
+
+.foot-top:hover {
+  color: var(--accent);
+}
+
+.foot-top:hover svg {
+  transform: rotate(-45deg) translate(-2px, -2px);
+}
+
 
 /* ===== Spotify widget ===== */
 .spotify-widget {
@@ -1510,7 +1465,6 @@ section[id] {
   .hero-kicker .label { font-size: 0.625rem; letter-spacing: 0.08em; }
   .hero-foot > .label { display: none; }
   .section-head { align-items: flex-start; flex-direction: column-reverse; gap: 12px; }
-  .work-card-caption { grid-template-columns: 22px 1fr 24px; gap: 4px 8px; }
   .contact { min-height: 80svh; }
   .foot { margin-top: 72px; }
 }

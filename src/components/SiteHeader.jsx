@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 const navLinks = [
   { label: 'Work', anchor: 'work' },
   { label: 'Experience', anchor: 'experience' },
@@ -28,15 +30,31 @@ function MoonIcon() {
  * (pure anchors) and '/' on subpages (route back home first).
  */
 export default function SiteHeader({ theme, toggleTheme, homePath = '' }) {
+  // useSectionTone already computes the active section into
+  // body[data-zone] every scroll frame; subscribe to that attribute
+  // instead of running a second observer.
+  const [active, setActive] = useState(() => document.body.dataset.zone || 'hero');
+  useEffect(() => {
+    const check = () => setActive(document.body.dataset.zone || 'hero');
+    const observer = new MutationObserver(check);
+    observer.observe(document.body, { attributes: true, attributeFilter: ['data-zone'] });
+    return () => observer.disconnect();
+  }, []);
   return (
     <header className="hdr hero-reveal" style={{ '--d': '0.05s' }}>
       <a className="hdr-brand" href={`${homePath || '/'}`} aria-label="Home">
         <img src="/images/pfp.jpeg" alt="" className="hdr-avatar" />
         <span>Shivom Sharma</span>
       </a>
+
       <nav className="hdr-nav" aria-label="Sections">
         {navLinks.map((link) => (
-          <a key={link.anchor} className="hdr-link" href={`${homePath}#${link.anchor}`}>
+          <a
+            key={link.anchor}
+            className={`hdr-link ${active === link.anchor ? 'is-active' : ''}`}
+            href={`${homePath}#${link.anchor}`}
+            aria-current={active === link.anchor ? 'true' : undefined}
+          >
             {link.label}
           </a>
         ))}
