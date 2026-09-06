@@ -1,0 +1,14 @@
+{
+  "name": "shivom-portfolio-spotify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Spotify now-playing backend for the portfolio (KV-backed tokens, edge-cached track, daily request cap).",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

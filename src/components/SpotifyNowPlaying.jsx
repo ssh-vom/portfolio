@@ -11,10 +11,17 @@ export default function SpotifyNowPlaying() {
     const [collapsed, setCollapsed] = useState(false);
     const [now, setNow] = useState(Date.now());
 
+    const POLL_INTERVAL = 30000; // worker-side cache TTL is 20s; poll politely
     useEffect(() => {
         const controller = new AbortController();
         let timer;
+        // Requests count against the account-wide Workers free tier, so only
+        // poll while the tab is visible.
         const fetchTrack = async () => {
+            if (document.hidden) {
+                timer = setTimeout(fetchTrack, POLL_INTERVAL);
+                return;
+            }
             try {
                 const response = await fetch('/current-track', { signal: controller.signal });
                 if (response.status === 404 || response.status === 204) {
@@ -33,13 +40,21 @@ export default function SpotifyNowPlaying() {
                     setStatus('unavailable');
                 }
             } finally {
-                if (!controller.signal.aborted) timer = setTimeout(fetchTrack, 10000);
+                if (!controller.signal.aborted) timer = setTimeout(fetchTrack, POLL_INTERVAL);
             }
         };
         fetchTrack();
+        const onVisibility = () => {
+            if (!document.hidden) {
+                clearTimeout(timer);
+                timer = setTimeout(fetchTrack, 0);
+            }
+        };
+        document.addEventListener('visibilitychange', onVisibility);
         return () => {
             controller.abort();
             clearTimeout(timer);
+            document.removeEventListener('visibilitychange', onVisibility);
         };
     }, []);
 

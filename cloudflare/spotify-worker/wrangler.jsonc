@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "shivom-portfolio-spotify",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {
+    // Self-fusing daily cap: past this, /current-track returns 204 ("not playing")
+    // so an always-open browser tab can never eat the account's free request budget.
+    "MAX_DAILY_REQUESTS": "5000",
+    // Edge-cache TTL for track payloads (seconds). Caps Spotify API calls
+    // at roughly 2/min total across ALL visitors.
+    "TRACK_CACHE_TTL": "20"
+  },
+  "kv_namespaces": [
+    // Stores: refresh_token, access_token, access_token_expires_at, req_count:<YYYY-MM-DD>
+    { "binding": "SPOTIFY_KV", "id": "111fb5c6a1784168ae445c7d94284895" }
+  ],
+  "observability": { "enabled": false }
+}
