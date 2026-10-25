@@ -141,7 +141,8 @@ function Hero() {
                     </div>
 
                     <h1 className="hero-title hero-reveal" style={{ '--d': '0.22s' }}>
-                        I build software from the <span className="accent-word">metal&nbsp;up</span>.
+                        I build software<br />
+                        {' from the '}<span className="accent-word">metal&nbsp;up</span>.
                     </h1>
 
                     <p className="hero-sub hero-reveal" style={{ '--d': '0.34s' }}>

@@ -574,12 +574,19 @@ section[id] {
 }
 
 .hero-title {
-  font-size: clamp(2.8rem, 6.8vw, 5.5rem);
+  font-family: 'Manrope', var(--font-sans);
+  font-size: clamp(2.5rem, 5.7vw, 5.125rem);
   font-weight: 500;
-  line-height: 1.02;
-  letter-spacing: -0.045em;
-  max-width: 17ch;
-  text-wrap: balance;
+  line-height: 1.1;
+  letter-spacing: -0.049em;
+  max-width: 850px;
+}
+
+.hero-title .accent-word {
+  font-family: 'Newsreader', var(--font-editorial);
+  font-size: 1.09em;
+  font-weight: 500;
+  letter-spacing: -0.034em;
 }
 
 
@@ -1462,6 +1469,7 @@ section[id] {
 }
 
 @media (max-width: 640px) {
+  .hero-title br { display: none; }
   .hero-kicker .label { font-size: 0.625rem; letter-spacing: 0.08em; }
   .hero-foot > .label { display: none; }
   .section-head { align-items: flex-start; flex-direction: column-reverse; gap: 12px; }
